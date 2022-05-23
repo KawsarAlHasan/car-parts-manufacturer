@@ -1,39 +1,108 @@
 import React from 'react';
 
+
 const Footer = (props) => {
     return (
-        <div>
-            <footer className="footer p-10 bg-zinc-800 text-white">
-                <div>
-                    <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" className="fill-current"><path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path></svg>
-                    <p><b>Programming Hero</b> <br /> Complete Web Development Course with <br /> Jhankar Mahbub</p>
+        <div className="bg-dark text-center text-white">
+
+            <section
+                className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+            >
+                <div className="m-6 d-none d-lg-block">
+                    <span>Get connected with us on social networks:</span>
                 </div>
-                <div>
-                    <span className="footer-title">Services</span>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+
+                <div className='ms-5'>
+                    <a href="https://web.facebook.com/kawsar.alhasan.58/" className="me-4 text-reset">
+                        <i className="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/kawsaralhasan2" className="me-4 text-reset">
+                        <i className="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://app.netlify.com/teams/kawsaralhasan/overview" className="me-4 text-reset">
+                        <i className="fab fa-google"></i>
+                    </a>
+                    <a href="https://www.instagram.com/kawsar.alhasan.58/" className="me-4 text-reset">
+                        <i className="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/kawsar-al-hasan-1b985420a/" className="me-4 text-reset">
+                        <i className="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/KawsarAlHasan" className="me-4 text-reset">
+                        <i className="fab fa-github"></i>
+                    </a>
                 </div>
-                <div>
-                    <span className="footer-title">USEFUL LINKS</span>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
+            </section>
+
+            <section className="">
+                <div className="container text-center text-md-start mt-5">
+                    <div className="row mt-3">
+                        <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">
+                                <i className="fas fa-gem me-3"></i>Company name
+                            </h6>
+                            <p>
+                                Programming Hero <br/>
+                                Complete Web Development Course with Jhankar Mahbub
+                            </p>
+                        </div>
+
+                        <div className="col-6 col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">
+                                Products
+                            </h6>
+                            <p>
+                                <a href="#!" className="text-reset text-decoration-none">Bumpers</a>
+                            </p>
+                            <p>
+                                <a href="#!" className="text-reset text-decoration-none">Tailgates</a>
+                            </p>
+                            <p>
+                                <a href="#!" className="text-reset text-decoration-none">Grilles</a>
+                            </p>
+                            <p>
+                                <a href="#!" className="text-reset text-decoration-none">Radiator</a>
+                            </p>
+                        </div>
+
+                        <div className="col-6 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">
+                                Useful links
+                            </h6>
+                            <p>
+                                <a href="/home" className="text-reset text-decoration-none">Home</a>
+                            </p>
+                            <p>
+                                <a href="/blogs" className="text-reset text-decoration-none">Blogs</a>
+                            </p>
+                            <p>
+                                <a href="/items" className="text-reset text-decoration-none">Items</a>
+                            </p>
+                            <p>
+                                <a href="/login" className="text-reset text-decoration-none">Login</a>
+                            </p>
+                        </div>
+
+                        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">
+                                Contact
+                            </h6>
+                            <p><i className="fas fa-home me-3"></i> Dhaka, Bangladesh</p>
+                            <p>
+                                <i className="fas fa-envelope me-3"></i>
+                                kawsaralhasan.420@gmail.com
+                            </p>
+                            <p><i className="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                            <p><i className="fas fa-print me-3"></i> + 01 234 567 89</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <span className="footer-title">CONTACT</span>
-                    <a className="link link-hover">Dhaka, Bangladesh</a>
-                    <a className="link link-hover">kawsaralhasan.420@gmail.com</a>
-                    <a className="link link-hover">+ 01 234 567 89</a>
-                </div>
-            </footer>
-            <footer className="footer footer-center p-4 bg-black text-white">
-                <div>
-                    <p>Copyright © 2022 - Kawsar Al Hasan</p>
-                </div>
-            </footer>
+            </section>
+
+            <div className="text-center p-4" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
+                © 2022 Copyright:
+                <a className="text-reset fw-bold text-decoration-none" href="https://web.facebook.com/kawsar.alhasan.58/"> Kawsar Al Hasan</a>
+            </div>
         </div>
     );
 };

@@ -1,18 +1,48 @@
 import React from 'react';
-import banner from '../../../images/banner.jpg';
+import { Carousel } from 'react-bootstrap';
+import banner1 from '../../../images/banner1.jpg';
+import banner2 from '../../../images/banner2.jpg';
+import banner3 from '../../../images/banner3.jpg';
 
 const Banner = (props) => {
     return (
-        <div className="hero min-h-5/6 bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse sm:flex-row-reverse">
-                <img src={banner} className="max-w-sm rounded-lg shadow-2xl" />
-                <div>
-                    <h1 className="text-5xl font-bold">Your Car Parts!</h1>
-                    <p className="py-6"> Luckily, one of the best places to buy Replacement products is here at CarParts.com. We have a wide selection of Replacement components, including bumper covers, headlights, and so on. Our products are all on-hand and shipped from our strategically located warehouses, so you can receive your orders in no time.</p>
-                    <button className="btn bg-gradient-to-r from-cyan-500 to-blue-500">Get Started</button>
-                </div>
-            </div>
-        </div>
+        <Carousel>
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src={banner1}
+                    alt="First slide"
+                />
+                <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src={banner2}
+                    alt="Second slide"
+                />
+
+                <Carousel.Caption>
+                    <h3>Second slide label</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src={banner3}
+                    alt="Third slide"
+                />
+
+                <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+        </Carousel>
     );
 };
 
