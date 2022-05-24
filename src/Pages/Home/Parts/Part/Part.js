@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
-    const { _id, name, img, description, price, quantity, orderQuantity } = part;
+    const { id, name, img, description, price, quantity, orderQuantity } = part;
     const navigate = useNavigate();
 
-    const stockUpdate = id => {
+    const parchase = id => {
         navigate(`/purchase/${id}`);
     }
     return (
@@ -13,10 +13,10 @@ const Part = ({ part }) => {
             <h2>{name}</h2>
             <img className='img-fluid' src={img} alt="" />
             <h6>Price: $ {price}</h6>
-            <h6>Quantity: {quantity}</h6>
-            <h6>Order Quantity: {orderQuantity}</h6>
+            <h6>Available Quantity: {quantity}</h6>
+            <h6>Minimum Order Quantity: {orderQuantity}</h6>
             <p>{description}</p>
-            <button className='btn btn-primary' onClick={() => stockUpdate(_id)}>PLACE ORDER</button>
+            <button className='btn btn-primary' onClick={() => parchase(id)}>PLACE ORDER</button>
         </div>
     );
 };
