@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
-    const { _id, name, img, description, price, quantity, supplierName, email } = part;
+    const { _id, name, img, description, price, quantity, orderQuantity } = part;
     const navigate = useNavigate();
 
     const stockUpdate = id => {
@@ -14,7 +14,7 @@ const Part = ({ part }) => {
             <img className='img-fluid' src={img} alt="" />
             <h6>Price: $ {price}</h6>
             <h6>Quantity: {quantity}</h6>
-            <h6>Supplier Name: {supplierName}</h6>
+            <h6>Order Quantity: {orderQuantity}</h6>
             <p>{description}</p>
             <button className='btn btn-primary' onClick={() => stockUpdate(_id)}>PLACE ORDER</button>
         </div>
