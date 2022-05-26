@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
-    const { id, name, img, description, price, quantity, orderQuantity } = part;
+    const { _id, name, img, description, price, quantity, orderQuantity } = part;
     const navigate = useNavigate();
 
     const parchase = id => {
@@ -16,7 +16,7 @@ const Part = ({ part }) => {
             <h6>Available Quantity: {quantity}</h6>
             <h6>Minimum Order Quantity: {orderQuantity}</h6>
             <p>{description}</p>
-            <button className='btn btn-primary' onClick={() => parchase(id)}>PLACE ORDER</button>
+            <button className='btn btn-primary' onClick={() => parchase(_id)}>PLACE ORDER</button>
         </div>
     );
 };

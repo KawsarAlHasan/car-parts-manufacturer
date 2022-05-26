@@ -5,8 +5,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../Loding/Loding';
 import SocialLogin from './SocialLogin';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const Login = (props) => {
@@ -86,7 +85,7 @@ const Login = (props) => {
             {erroElement}
             <p>Don't have any account?<Link to="/register" className='text-primary text-decoration-none' onClick={navigateRegister}>Register here</Link></p>
             <p>Forget Password? <button className='btn btn-link text-primary pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</button> </p>
-            <ToastContainer />
+            
             <div className='py-3'>
                 <SocialLogin></SocialLogin>
             </div>
