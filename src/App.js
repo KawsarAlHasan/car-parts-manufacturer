@@ -17,6 +17,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders/MyOrders';
 import AddReview from './Pages/Dashboard/AddReview';
 import AllUsers from './Pages/Dashboard/AllUsers/AllUsers';
+import AddParts from './Pages/Dashboard/AddParts/AddParts';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         }>
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path='addReview' element={<AddReview></AddReview>}></Route>
+          <Route path='addParts' element={<AddParts></AddParts>}></Route>
           <Route path='users' element={<AllUsers></AllUsers>}></Route>
         </Route>
 

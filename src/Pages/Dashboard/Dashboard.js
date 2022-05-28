@@ -13,6 +13,9 @@ const Dashboard = (props) => {
                                 <Nav.Link className='bg-secondary text-light my-3' href='/dashboard'>MY ORDERS</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
+                                <Nav.Link className='bg-secondary text-light mb-3' href='/dashboard/addParts'>ADD PARTS</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
                                 <Nav.Link className='bg-secondary text-light mb-3' href='/dashboard/addReview'>ADD A REVIEW</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
