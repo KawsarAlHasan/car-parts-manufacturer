@@ -18,7 +18,7 @@ const MyPortfolio = (props) => {
                     <div>
                     <h5>Link: <a href='https://warehouse-management-react-app.web.app/'><b>warehouse-management-react-app</b></a></h5>
                     <h5>Link: <a href='https://serene-colden-f0f207.netlify.app/'><b>Mobile Hunter</b></a></h5>
-                    <h5>Link: <a href='https://warehouse-management-react-app.web.app/'><b>warehouse-management-react-app</b></a></h5>
+                    <h5>Link: <a href='https://superlative-empanada-f73c02.netlify.app/'><b>Personal Portfolio website</b></a></h5>
                     </div>
                 </div>
             </div>

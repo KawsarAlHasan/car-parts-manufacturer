@@ -23,6 +23,9 @@ const Header = (props) => {
                     </Nav>
                     <Nav>
                         {
+                            user && <Nav.Link href="/dashboard">DASHBOARD</Nav.Link>
+                        }
+                        {
                             user ? <Nav.Link href="/login" onClick={handleSignOut}>SIGN OUT</Nav.Link>
                                 :
                                 <>

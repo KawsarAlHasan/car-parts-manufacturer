@@ -34,6 +34,8 @@ const Purchase = (props) => {
             parts: purchase.name,
             partsQuantity: purchase.quantity,
             minimumQuantity: purchase.orderQuantity,
+            pImg: purchase.img,
+            pPrice: purchase.price,
             userQuantity: uQuantity,
             userName: name,
             userEmail: email,
@@ -51,10 +53,10 @@ const Purchase = (props) => {
         .then(res => res.json())
         .then(data => {
             if(data.success){
-                toast('Success your purchase!');
+                toast(`Your ${uQuantity} parts purchase is successful`);
             }
             else{
-                toast.error('oh no!')
+                toast.error(`oh no! you are wrong!! You need to purchase between ${partsPurchase.minimumQuantity} and ${partsPurchase.partsQuantity}.`)
             }
         })
     }
