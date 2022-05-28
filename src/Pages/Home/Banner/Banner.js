@@ -14,8 +14,8 @@ const Banner = (props) => {
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>Car Engine</h3>
+                    <p>A car engine is an internal combustion engine</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
