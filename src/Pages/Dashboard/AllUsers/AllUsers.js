@@ -5,7 +5,7 @@ import AllUser from "./AllUser";
 
 
 const AllUsers = (props) => {
-    const { data: users, isLoading } = useQuery('users', () => fetch('http://localhost:5000/user').then(res => res.json()));
+    const { data: users, isLoading } = useQuery('users', () => fetch('https://stark-brushlands-57907.herokuapp.com/user').then(res => res.json()));
 
     if (isLoading) {
         return <Loding></Loding>

@@ -8,7 +8,7 @@ const MyOrder = ({ myOrder }) => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/purchase/${id}`;
+            const url = `https://stark-brushlands-57907.herokuapp.com/purchase/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

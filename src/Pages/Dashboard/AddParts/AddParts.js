@@ -8,7 +8,7 @@ const AddParts = (props) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data);
-        const url = `http://localhost:5000/addParts`;
+        const url = `https://stark-brushlands-57907.herokuapp.com/addParts`;
         fetch(url, {
             method: 'POST',
             headers: {

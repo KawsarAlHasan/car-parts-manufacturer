@@ -10,7 +10,7 @@ const MyOrders = (props) => {
     useEffect(() => {
         const getMyOrders = async() => {
             const email = user.email;
-            const url = `http://localhost:5000/purchase`;
+            const url = `https://stark-brushlands-57907.herokuapp.com/purchase`;
             const {data} = await axios.get(url);
             setMyOrders(data);
         };
