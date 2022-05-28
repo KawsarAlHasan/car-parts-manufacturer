@@ -7,6 +7,7 @@ import Loading from '../Loding/Loding';
 import SocialLogin from './SocialLogin';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
+import useToken from '../Hooks/UseToken';
 
 const Login = (props) => {
     const emailRef = useRef('');
@@ -20,6 +21,8 @@ const Login = (props) => {
     const navigate = useNavigate();
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+    const [token] = useToken(user);
 
     const location = useLocation();
 
@@ -49,7 +52,7 @@ const Login = (props) => {
         navigate('/register');
     }
 
-    if (user) {
+    if (token) {
         navigate(from, {replace: true});
     }
 
