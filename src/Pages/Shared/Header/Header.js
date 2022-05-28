@@ -9,6 +9,7 @@ const Header = (props) => {
 
     const handleSignOut = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken');
     }
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" sticky="top" variant="dark">
