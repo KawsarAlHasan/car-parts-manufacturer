@@ -21,6 +21,9 @@ const Dashboard = (props) => {
                             <Nav.Item>
                                 <Nav.Link className='bg-secondary text-light mb-3' href='/dashboard/users'>ALL USERS</Nav.Link>
                             </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link className='bg-secondary text-light mb-3' href='/dashboard/manageProducts'>MANAGE PRODUCTS</Nav.Link>
+                            </Nav.Item>
                         </Nav>
                     </Col>
                     <Col sm={9}>

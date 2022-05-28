@@ -18,6 +18,7 @@ import MyOrders from './Pages/Dashboard/MyOrders/MyOrders';
 import AddReview from './Pages/Dashboard/AddReview';
 import AllUsers from './Pages/Dashboard/AllUsers/AllUsers';
 import AddParts from './Pages/Dashboard/AddParts/AddParts';
+import ManageProducts from './Pages/Dashboard/ManageProducts/ManageProducts';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path='addReview' element={<AddReview></AddReview>}></Route>
           <Route path='addParts' element={<AddParts></AddParts>}></Route>
           <Route path='users' element={<AllUsers></AllUsers>}></Route>
+          <Route path='manageProducts' element={<ManageProducts></ManageProducts>}></Route>
         </Route>
 
         <Route path='/*' element={<NotFound></NotFound>}></Route>
