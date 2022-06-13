@@ -13,7 +13,7 @@ const Reviews = (props) => {
               <div className="shadow p-3 mb-5 bg-white rounded">
                 <p>Alex Allwood trusts in this mantra as a customer experience specialist and author of Customer Experience is the Brand.</p>
               <img src={person1} className='w-50' alt=""/>
-              <h4>Regina Miles</h4>
+              <h4>Will Jack</h4>
               <h6>Banker</h6>
               </div>
             </div>
@@ -21,7 +21,7 @@ const Reviews = (props) => {
               <div className="shadow p-3 mb-5 bg-white rounded">
                 <p>The basic of business is to stay as close as possible from your customers, understand their behavior, their preferences, </p>
               <img src={person2} className='w-50' alt=""/>
-              <h4>Jone Drake</h4>
+              <h4>Mr. John</h4>
               <h6>Doctor</h6>
               </div>
             </div>
