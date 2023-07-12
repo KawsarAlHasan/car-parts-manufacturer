@@ -8,7 +8,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const Dashboard = (props) => {
   const [user] = useAuthState(auth);
   const [isAdmin] = useAdmin(user?.email);
-  console.log("data", isAdmin);
   return (
     <div className="container">
       <Tab.Container id="left-tabs-example">

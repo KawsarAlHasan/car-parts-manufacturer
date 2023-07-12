@@ -5,7 +5,7 @@ import AllUser from "./AllUser";
 
 const AllUsers = (props) => {
   const { data: users, isLoading } = useQuery("users", () =>
-    fetch("http://localhost:5000/user").then((res) => res.json())
+    fetch("http://localhost:5000/users").then((res) => res.json())
   );
 
   if (isLoading) {
@@ -18,7 +18,7 @@ const AllUsers = (props) => {
         ALL <span className="text-danger"> USERS </span>
       </h1>
       <h4 className="mb-3 text-center">
-        All Users: <span className="text-primary"> {users.length}</span>
+        All Users: <span className="text-primary"> {users?.length}</span>
       </h4>
 
       <Table striped bordered hover>
