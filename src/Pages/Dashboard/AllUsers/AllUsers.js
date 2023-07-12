@@ -1,15 +1,15 @@
-import { Table } from 'react-bootstrap'
-import { useQuery } from 'react-query'
-import Loding from '../../Shared/Loding/Loding'
-import AllUser from './AllUser'
+import { Table } from "react-bootstrap";
+import { useQuery } from "react-query";
+import Loding from "../../Shared/Loding/Loding";
+import AllUser from "./AllUser";
 
 const AllUsers = (props) => {
-  const { data: users, isLoading } = useQuery('users', () =>
-    fetch('https://manufacturer-server-side.onrender.com/user').then((res) => res.json()),
-  )
+  const { data: users, isLoading } = useQuery("users", () =>
+    fetch("http://localhost:5000/user").then((res) => res.json())
+  );
 
   if (isLoading) {
-    return <Loding></Loding>
+    return <Loding></Loding>;
   }
 
   return (
@@ -36,7 +36,7 @@ const AllUsers = (props) => {
         </tbody>
       </Table>
     </div>
-  )
-}
+  );
+};
 
-export default AllUsers
+export default AllUsers;

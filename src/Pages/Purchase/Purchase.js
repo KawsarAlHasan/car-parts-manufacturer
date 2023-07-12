@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import auth from '../../firebase.init'
-import { toast } from 'react-toastify'
+import React, { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import { toast } from "react-toastify";
 
 const Purchase = (props) => {
-  const [user] = useAuthState(auth)
+  const [user] = useAuthState(auth);
 
-  const { purchaseId } = useParams()
+  const { purchaseId } = useParams();
 
-  const [purchase, setPurchase] = useState({})
+  const [purchase, setPurchase] = useState({});
 
   useEffect(() => {
-    const url = `https://manufacturer-server-side.onrender.com/carParts/${purchaseId}`
+    const url = `http://localhost:5000/carParts/${purchaseId}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setPurchase(data))
-  }, [])
+      .then((data) => setPurchase(data));
+  }, []);
 
   const handlePurchase = (even) => {
-    even.preventDefault()
-    const uQuantity = parseInt(even.target.quantity.value)
-    const name = even.target.name.value
-    const email = even.target.email.value
-    const phone = even.target.phone.value
-    const address = even.target.address.value
+    even.preventDefault();
+    const uQuantity = parseInt(even.target.quantity.value);
+    const name = even.target.name.value;
+    const email = even.target.email.value;
+    const phone = even.target.phone.value;
+    const address = even.target.address.value;
 
     const partsPurchase = {
       partsId: purchase._id,
@@ -39,26 +39,26 @@ const Purchase = (props) => {
       userEmail: email,
       userPhone: phone,
       userAddress: address,
-    }
+    };
 
-    fetch('https://manufacturer-server-side.onrender.com/purchase', {
-      method: 'POST',
+    fetch("http://localhost:5000/purchase", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(partsPurchase),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          toast(`Your ${uQuantity} parts purchase is successful`)
+          toast(`Your ${uQuantity} parts purchase is successful`);
         } else {
           toast.error(
-            `oh no! you are wrong!! You need to purchase between ${partsPurchase.minimumQuantity} and ${partsPurchase.partsQuantity}.`,
-          )
+            `oh no! you are wrong!! You need to purchase between ${partsPurchase.minimumQuantity} and ${partsPurchase.partsQuantity}.`
+          );
         }
-      })
-  }
+      });
+  };
 
   return (
     <div className="row container gx-5">
@@ -93,7 +93,7 @@ const Purchase = (props) => {
               className="mb-2"
               name="name"
               type="text"
-              defaultValue={user.displayName || ''}
+              defaultValue={user.displayName || ""}
               placeholder="Enter Your Name"
               required
             />
@@ -126,7 +126,7 @@ const Purchase = (props) => {
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Purchase
+export default Purchase;

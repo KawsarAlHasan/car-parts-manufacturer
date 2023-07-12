@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 const UseParts = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [parts, setParts] = useState([])
+  const [parts, setParts] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true)
-    fetch('https://manufacturer-server-side.onrender.com/carParts/')
+    setIsLoading(true);
+    fetch("http://localhost:5000/carParts/")
       .then((res) => res.json())
       .then((data) => {
-        setParts(data)
-        setIsLoading(false)
-      })
-  }, [])
-  return [parts, isLoading, setParts]
-}
+        setParts(data);
+        setIsLoading(false);
+      });
+  }, []);
+  return [parts, isLoading, setParts];
+};
 
-export default UseParts
+export default UseParts;

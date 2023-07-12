@@ -1,23 +1,23 @@
-import React from 'react'
-import { toast } from 'react-toastify'
+import React from "react";
+import { toast } from "react-toastify";
 
 const MyOrder = ({ myOrder }) => {
-  const { _id, parts, pImg, pPrice, userQuantity } = myOrder
+  const { _id, parts, pImg, pPrice, userQuantity } = myOrder;
 
   const handleDelete = (id) => {
-    const proceed = window.confirm('Are you sure?')
+    const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-server-side.onrender.com/purchase/${id}`
+      const url = `http://localhost:5000/purchase/${id}`;
       fetch(url, {
-        method: 'DELETE',
+        method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
-          window.location.reload(false)
-          toast('Parts Item Delete Successfully!')
-        })
+          window.location.reload(false);
+          toast("Parts Item Delete Successfully!");
+        });
     }
-  }
+  };
 
   return (
     <div className="shadow-lg rounded text-center pb-3">
@@ -29,7 +29,7 @@ const MyOrder = ({ myOrder }) => {
         Parts Delete
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default MyOrder
+export default MyOrder;
