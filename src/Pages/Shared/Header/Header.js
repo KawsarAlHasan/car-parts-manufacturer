@@ -3,16 +3,25 @@ import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import profile from "../../../images/profile-logo.png";
 
 const Header = (props) => {
   const [user] = useAuthState(auth);
+
+  console.log(user);
 
   const handleSignOut = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
   };
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" sticky="top" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="light"
+      sticky="top"
+      variant="light"
+    >
       <Container>
         <Navbar.Brand href="/">
           CAR<span className="text-danger"> PARTS</span>
@@ -25,7 +34,17 @@ const Header = (props) => {
             {user && (
               <>
                 <Nav.Link href="/dashboard">DASHBOARD</Nav.Link>
-                <Nav.Link href="/dashboard/myProfile">MY PROFILE</Nav.Link>
+                <Nav.Link href="/dashboard">
+                  <img
+                    style={{
+                      borderRadius: "15px",
+                      height: "30px",
+                      width: "30px",
+                    }}
+                    src={user?.photoURL || profile}
+                    alt=""
+                  />
+                </Nav.Link>
               </>
             )}
             {user ? (

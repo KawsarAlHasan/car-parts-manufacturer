@@ -14,11 +14,19 @@ const Dashboard = (props) => {
         <Row>
           <Col sm={3}>
             <Nav variant="pills" className="flex-column text-center">
+              <Nav.Item>
+                <Nav.Link
+                  className="bg-secondary text-light  mt-4 mb-3"
+                  href="/dashboard"
+                >
+                  MY PROFILE
+                </Nav.Link>
+              </Nav.Item>
               {isAdmin ? (
                 <>
                   <Nav.Item>
                     <Nav.Link
-                      className="bg-secondary text-light mt-4 mb-3"
+                      className="bg-secondary text-light mb-3"
                       href="/dashboard/users"
                     >
                       ALL USERS
@@ -45,18 +53,10 @@ const Dashboard = (props) => {
                 <>
                   <Nav.Item>
                     <Nav.Link
-                      className="bg-secondary text-light mb-3 mt-4"
+                      className="bg-secondary text-light mb-3"
                       href="/dashboard/myOrders"
                     >
                       MY ORDERS
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link
-                      className="bg-secondary text-light mb-3"
-                      href="/dashboard/myProfile"
-                    >
-                      MY PROFILE
                     </Nav.Link>
                   </Nav.Item>
                 </>

@@ -1,29 +1,73 @@
-import React from 'react';
-import UseParts from '../../Shared/Hooks/UseParts';
-import Loading from '../../Shared/Loding/Loding';
-import Part from './Part/Part';
-import './Parts.css';
-
+import React from "react";
+import UseParts from "../../Shared/Hooks/UseParts";
+import LoadingImage from "../../../images/loading.gif";
+import Part from "./Part/Part";
+import "./Parts.css";
+import { Card, Placeholder } from "react-bootstrap";
 
 const Parts = (props) => {
+  const [parts, isLoading] = UseParts();
 
-    const [parts, isLoading] = UseParts();
+  return (
+    <div>
+      <h1 className="text-center py-4">
+        Parts <span className="text-danger">Items</span>
+      </h1>
 
-    return (
-        <div>
-            <h1 className='text-center py-4'>Parts <span className='text-danger'>Items</span></h1>
-
-            <div className="container parts-container">
-                {isLoading ? <Loading></Loading> :
-                    parts.slice(0, 6).map(part => <Part
-                        key={part._id}
-                        part={part}
-                    ></Part>)
-                }
-            </div>
-
-        </div>
-    );
+      <div className="container parts-container">
+        {isLoading ? (
+          <>
+            <Card style={{ width: "20rem" }}>
+              <Card.Img variant="top" src={LoadingImage} />
+              <Card.Body>
+                <Placeholder as={Card.Title} animation="glow">
+                  <Placeholder xs={6} />
+                </Placeholder>
+                <Placeholder as={Card.Text} animation="glow">
+                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
+                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+                  <Placeholder xs={8} />
+                </Placeholder>
+                <Placeholder.Button variant="primary" xs={6} />
+              </Card.Body>
+            </Card>
+            <Card style={{ width: "20rem" }}>
+              <Card.Img variant="top" src={LoadingImage} />
+              <Card.Body>
+                <Placeholder as={Card.Title} animation="glow">
+                  <Placeholder xs={6} />
+                </Placeholder>
+                <Placeholder as={Card.Text} animation="glow">
+                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
+                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+                  <Placeholder xs={8} />
+                </Placeholder>
+                <Placeholder.Button variant="primary" xs={6} />
+              </Card.Body>
+            </Card>
+            <Card style={{ width: "20rem" }}>
+              <Card.Img variant="top" src={LoadingImage} />
+              <Card.Body>
+                <Placeholder as={Card.Title} animation="glow">
+                  <Placeholder xs={6} />
+                </Placeholder>
+                <Placeholder as={Card.Text} animation="glow">
+                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
+                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+                  <Placeholder xs={8} />
+                </Placeholder>
+                <Placeholder.Button variant="primary" xs={6} />
+              </Card.Body>
+            </Card>
+          </>
+        ) : (
+          parts
+            .slice(0, 6)
+            .map((part) => <Part key={part._id} part={part}></Part>)
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Parts;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Part = ({ part }) => {
@@ -9,16 +10,29 @@ const Part = ({ part }) => {
     navigate(`/purchase/${id}`);
   };
   return (
-    <div className="shadow-lg rounded text-center pb-3">
-      <h2>{name}</h2>
-      <img className="img-fluid" src={img} alt="" />
-      <h6>Price: $ {price}</h6>
-      <h6>Available Quantity: {quantity}</h6>
-      <h6>Minimum Order Quantity: {orderQuantity}</h6>
-      <p>{description}</p>
-      <button className="btn btn-primary" onClick={() => parchase(_id)}>
-        PLACE ORDER
-      </button>
+    <div className="shadow-lg card  pb-3" style={{ borderRadius: "30px" }}>
+      <img
+        style={{ borderRadius: "30px 30px  0 0", height: "300px" }}
+        src={img}
+        alt=""
+      />
+      <div class="card-body">
+        <h5 class="card-title">{name}</h5>
+        <p class="card-text">Price: $ {price}</p>
+        <p class="card-text">Available Quantity: {quantity}</p>
+        <div className="d-flex justify-content-between">
+          <p class="card-text">Minimum Order Quantity: {orderQuantity}</p>
+
+          <Button
+            style={{ marginTop: "-10px" }}
+            variant="primary"
+            size="sm"
+            onClick={() => parchase(_id)}
+          >
+            PLACE ORDER
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

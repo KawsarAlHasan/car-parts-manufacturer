@@ -1,8 +1,8 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const ManageProduct = ({ part }) => {
-  const { _id, name, img, description, price, quantity, orderQuantity } = part;
+const ManageProduct = ({ part, index }) => {
+  const { _id, name, img, quantity } = part;
 
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
@@ -20,17 +20,30 @@ const ManageProduct = ({ part }) => {
   };
 
   return (
-    <div className="shadow-lg rounded text-center pb-3">
-      <h2>{name}</h2>
-      <img className="img-fluid" src={img} alt="" />
-      <h6>Price: $ {price}</h6>
-      <h6>Available Quantity: {quantity}</h6>
-      <h6>Minimum Order Quantity: {orderQuantity}</h6>
+    <tr>
+      <td>{index + 1}</td>
+      <td>
+        <img
+          style={{ borderRadius: "30px", height: "50px", width: "60px" }}
+          src={img}
+          alt=""
+        />
+      </td>
+      <td>{name}</td>
 
-      <button className="btn btn-danger" onClick={() => handleDelete(_id)}>
-        Parts Delete
-      </button>
-    </div>
+      <td>{quantity}</td>
+      <td>
+        <button className="btn btn-primary btn-sm">Edit</button>
+      </td>
+      <td>
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => handleDelete(_id)}
+        >
+          Parts Delete
+        </button>
+      </td>
+    </tr>
   );
 };
 
