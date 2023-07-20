@@ -31,6 +31,7 @@ const Header = (props) => {
           <Nav className="me-auto"></Nav>
           <Nav>
             <Nav.Link href="/">HOME</Nav.Link>
+            <Nav.Link href="/products">ALL PRODUCTS</Nav.Link>
             {user && (
               <>
                 <Nav.Link href="/dashboard">DASHBOARD</Nav.Link>
@@ -54,7 +55,7 @@ const Header = (props) => {
             ) : (
               <>
                 <Nav.Link href="/login">LOGIN</Nav.Link>
-                <Nav.Link href="/signup">REGISTER</Nav.Link>
+                <Nav.Link href="/register">REGISTER</Nav.Link>
               </>
             )}
           </Nav>

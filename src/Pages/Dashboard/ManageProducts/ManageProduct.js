@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ManageProduct = ({ part, index }) => {
+  const navigate = useNavigate();
   const { _id, name, img, quantity } = part;
 
   const handleDelete = (id) => {
@@ -19,6 +21,10 @@ const ManageProduct = ({ part, index }) => {
     }
   };
 
+  const handleViewAndEdit = (id) => {
+    navigate(`viewandedit/${id}`);
+  };
+
   return (
     <tr>
       <td>{index + 1}</td>
@@ -33,7 +39,13 @@ const ManageProduct = ({ part, index }) => {
 
       <td>{quantity}</td>
       <td>
-        <button className="btn btn-primary btn-sm">Edit</button>
+        <button
+          className="btn btn-primary btn-sm"
+          onClick={() => handleViewAndEdit(_id)}
+        >
+          {" "}
+          View and Edit
+        </button>
       </td>
       <td>
         <button

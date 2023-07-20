@@ -40,7 +40,7 @@ const AddParts = (props) => {
           };
           console.log(parts);
           // save doctor
-          const url = `http://localhost:5000/addParts`;
+          const url = `http://localhost:5000/carParts`;
           fetch(url, {
             method: "POST",
             headers: {

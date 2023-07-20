@@ -17,6 +17,8 @@ import AllUsers from "./Pages/Dashboard/AllUsers/AllUsers";
 import AddParts from "./Pages/Dashboard/AddParts/AddParts";
 import ManageProducts from "./Pages/Dashboard/ManageProducts/ManageProducts";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
+import AllProducts from "./Pages/AllProducts/AllProducts";
+import ViewAndEdit from "./Pages/Dashboard/ManageProducts/ViewAndEdit";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route path="/products" element={<AllProducts></AllProducts>}></Route>
 
         <Route
           path="/dashboard"
@@ -46,11 +49,16 @@ function App() {
         >
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
+
           <Route path="addParts" element={<AddParts></AddParts>}></Route>
           <Route path="users" element={<AllUsers></AllUsers>}></Route>
           <Route
             path="manageProducts"
             element={<ManageProducts></ManageProducts>}
+          ></Route>
+          <Route
+            path="manageProducts/viewandedit/:productsId"
+            element={<ViewAndEdit></ViewAndEdit>}
           ></Route>
         </Route>
 
