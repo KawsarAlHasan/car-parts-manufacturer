@@ -4,6 +4,7 @@ import LoadingImage from "../../../images/loading.gif";
 import Part from "./Part/Part";
 import "./Parts.css";
 import { Card, Placeholder } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Parts = (props) => {
   const [parts, isLoading] = UseParts();
@@ -65,6 +66,11 @@ const Parts = (props) => {
             .slice(0, 6)
             .map((part) => <Part key={part._id} part={part}></Part>)
         )}
+      </div>
+      <div className="container my-3 text-end">
+        <Link className="text-decoration-none" to="/products">
+          See All products
+        </Link>
       </div>
     </div>
   );

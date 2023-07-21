@@ -1,47 +1,42 @@
-import React from 'react'
-import { Button, Form } from 'react-bootstrap'
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import auth from '../../../firebase.init'
-import useToken from '../Hooks/UseToken'
-import Loading from '../Loding/Loding'
-import SocialLogin from './SocialLogin'
+import React from "react";
+import { Button, Form } from "react-bootstrap";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
+import useToken from "../Hooks/UseToken";
+import Loading from "../Loading/Loading";
+import SocialLogin from "./SocialLogin";
 
 const Signup = (props) => {
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
+  const [createUserWithEmailAndPassword, user, loading] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-  const [token] = useToken(user)
+  const [token] = useToken(user);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const location = useLocation()
+  const location = useLocation();
 
-  let from = location.state?.from?.pathname || '/'
+  let from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (even) => {
-    even.preventDefault()
-    const name = even.target.name.value
-    const email = even.target.email.value
-    const password = even.target.password.value
+    even.preventDefault();
+    const email = even.target.email.value;
+    const password = even.target.password.value;
 
-    createUserWithEmailAndPassword(email, password)
-  }
+    createUserWithEmailAndPassword(email, password);
+  };
 
   const navigateLogin = () => {
-    navigate('/login')
-  }
+    navigate("/login");
+  };
 
   if (loading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
   if (token) {
-    navigate(from, { replace: true })
+    navigate(from, { replace: true });
   }
 
   return (
@@ -80,7 +75,7 @@ const Signup = (props) => {
         </Button>
       </Form>
       <p>
-        Already have an account?{' '}
+        Already have an account?{" "}
         <Link
           to="/login"
           className="text-primary text-decoration-none"
@@ -93,7 +88,7 @@ const Signup = (props) => {
         <SocialLogin></SocialLogin>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

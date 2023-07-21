@@ -3,14 +3,12 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 const AddParts = (props) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 

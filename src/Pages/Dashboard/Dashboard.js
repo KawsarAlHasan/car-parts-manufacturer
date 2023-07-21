@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Nav, Row, Tab } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import useAdmin from "../../hooks/useAdmin";
+import useAdmin from "../Shared/Hooks/useAdmin";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 

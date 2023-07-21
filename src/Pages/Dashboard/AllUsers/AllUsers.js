@@ -1,7 +1,7 @@
 import { Table } from "react-bootstrap";
 import { useQuery } from "react-query";
-import Loding from "../../Shared/Loding/Loding";
 import AllUser from "./AllUser";
+import Loading from "../../Shared/Loading/Loading";
 
 const AllUsers = (props) => {
   const { data: users, isLoading } = useQuery("users", () =>
@@ -9,7 +9,7 @@ const AllUsers = (props) => {
   );
 
   if (isLoading) {
-    return <Loding></Loding>;
+    return <Loading></Loading>;
   }
 
   return (

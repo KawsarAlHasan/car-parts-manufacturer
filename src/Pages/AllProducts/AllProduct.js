@@ -2,10 +2,9 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const Part = ({ part }) => {
+function AllProduct({ part }) {
   const { _id, name, img, price, quantity, orderQuantity } = part;
   const navigate = useNavigate();
-
   const parchase = (id) => {
     navigate(`/purchase/${id}`);
   };
@@ -34,6 +33,6 @@ const Part = ({ part }) => {
       </div>
     </div>
   );
-};
+}
 
-export default Part;
+export default AllProduct;

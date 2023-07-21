@@ -1,8 +1,8 @@
 import React from "react";
 import UseParts from "../../Shared/Hooks/UseParts";
-import Loading from "../../Shared/Loding/Loding";
 import ManageProduct from "./ManageProduct";
 import { Table } from "react-bootstrap";
+import Loading from "../../Shared/Loading/Loading";
 
 const ManageProducts = (props) => {
   const [parts, isLoading] = UseParts();
@@ -26,7 +26,7 @@ const ManageProducts = (props) => {
         </thead>
         <tbody>
           {isLoading ? (
-            <Loading></Loading>
+            <Loading />
           ) : (
             parts.map((part, index) => (
               <ManageProduct
