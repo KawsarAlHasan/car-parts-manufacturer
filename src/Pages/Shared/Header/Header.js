@@ -4,6 +4,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import profile from "../../../images/profile-logo.png";
+import Logo from "../../../images/20230722_163020.png";
 
 const Header = (props) => {
   const [user] = useAuthState(auth);
@@ -24,7 +25,13 @@ const Header = (props) => {
     >
       <Container>
         <Navbar.Brand href="/">
-          CAR<span className="text-danger"> PARTS</span>
+          <img
+            alt=""
+            src={Logo}
+            width="99"
+            height="35"
+            className="d-inline-block align-top"
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

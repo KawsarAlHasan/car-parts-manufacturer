@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function AllProduct({ part }) {
-  const { _id, name, img, price, quantity, orderQuantity } = part;
+  const { _id, name, img, price, salePrice, quantity, orderQuantity } = part;
   const navigate = useNavigate();
   const parchase = (id) => {
     navigate(`/purchase/${id}`);
@@ -17,7 +17,10 @@ function AllProduct({ part }) {
       />
       <div class="card-body">
         <h5 class="card-title">{name}</h5>
-        <p class="card-text">Price: $ {price}</p>
+        <p class="card-text">
+          Price: $ {price}{" "}
+          <span className="text-decoration-line-through">{salePrice}</span>{" "}
+        </p>
         <p class="card-text">Available Quantity: {quantity}</p>
         <div className="d-flex justify-content-between">
           <p class="card-text">Minimum Order Quantity: {orderQuantity}</p>

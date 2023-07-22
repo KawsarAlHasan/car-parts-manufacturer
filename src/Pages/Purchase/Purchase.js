@@ -13,7 +13,7 @@ const Purchase = (props) => {
   const [purchase, setPurchase] = useState({});
 
   useEffect(() => {
-    const url = `https://manufacturer-server-side.onrender.com/carParts/${purchaseId}`;
+    const url = `http://localhost:5000/carParts/${purchaseId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setPurchase(data));
@@ -41,7 +41,7 @@ const Purchase = (props) => {
       userAddress: address,
     };
 
-    fetch("https://manufacturer-server-side.onrender.com/purchase", {
+    fetch("http://localhost:5000/purchase", {
       method: "POST",
       headers: {
         "content-type": "application/json",
