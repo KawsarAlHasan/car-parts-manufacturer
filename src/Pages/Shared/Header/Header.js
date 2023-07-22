@@ -9,8 +9,6 @@ import Logo from "../../../images/20230722_163020.png";
 const Header = (props) => {
   const [user] = useAuthState(auth);
 
-  console.log(user);
-
   const handleSignOut = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");

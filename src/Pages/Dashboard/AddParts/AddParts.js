@@ -181,19 +181,19 @@ const AddParts = (props) => {
           <div key={`inline-radio`} className="mb-3">
             <Form.Check
               inline
-              label="Man"
+              label="Boy"
               name="group1"
               type="radio"
-              value="Man"
+              value="Boy"
               id={`inline-radio-1`}
               {...register("gender", { required: true })}
             />
             <Form.Check
               inline
-              label="Woman"
+              label="Girl"
               name="group1"
               type="radio"
-              value="Woman"
+              value="Girl"
               id={`inline-radio-2`}
               {...register("gender", { required: true })}
             />
@@ -203,7 +203,7 @@ const AddParts = (props) => {
           <Form.Group className="mb-3">
             <Form.Label>Age</Form.Label>
             <Form.Select {...register("age", { required: true })}>
-              <option value="children">children</option>
+              <option value="Children">children</option>
               <option value="Teenager">Teenager</option>
               <option value="Young">Young</option>
               <option value="Old">Old</option>

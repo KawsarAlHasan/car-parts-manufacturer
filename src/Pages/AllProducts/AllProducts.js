@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UseParts from "../Shared/Hooks/UseParts";
 import LoadingImage from "../../images/loading.gif";
 import "../Home/Parts/Parts.css";
@@ -6,12 +6,15 @@ import { Accordion, Button, Card, Form, Placeholder } from "react-bootstrap";
 import AllProduct from "./AllProduct";
 
 function AllProducts() {
-  const [parts, isLoading] = UseParts();
-  const [value, setValue] = useState("");
-  console.log(value);
+  var [parts, isLoading, setParts] = UseParts();
+  const [searchValue, setSearchValue] = useState("");
   const handleSearch = (even) => {
     even.preventDefault();
   };
+  const filterCategory = (even) => {
+    even.preventDefault();
+  };
+
   return (
     <div className="container">
       <Form
@@ -23,13 +26,14 @@ function AllProducts() {
           placeholder="Product Search..."
           className="w-75"
           aria-label="Search"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
       </Form>
 
       <div class="row">
         <div class="col-md-3">
+          {/* price Range */}
           <Card>
             <Card.Body>
               <Card.Title>Price Range</Card.Title>
@@ -57,9 +61,24 @@ function AllProducts() {
                 <b>Category</b>
               </Accordion.Header>
               <Accordion.Body>
-                <Form.Check id={"category"} label={`john`} />
-                <Form.Check id={"category"} label={`john`} />
-                <Form.Check id={"category"} label={`john`} />
+                <form onSubmit={filterCategory}>
+                  <Form.Check
+                    label="T-Shirt"
+                    name="group1"
+                    type="radio"
+                    value="t-shirt"
+                    onClick={(e) => setSearchValue(e.target.value)}
+                    id={`inline-radio-1`}
+                  />
+                  <Form.Check
+                    label="Jacket"
+                    name="group1"
+                    type="radio"
+                    value="jacket"
+                    onClick={(e) => setSearchValue(e.target.value)}
+                    id={`inline-radio-2`}
+                  />
+                </form>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
@@ -126,7 +145,12 @@ function AllProducts() {
               </>
             ) : (
               parts
-                .filter((part) => part.name.toLowerCase().includes(value))
+                .filter(
+                  (part) =>
+                    part.name.toLowerCase().includes(searchValue) ||
+                    part.gender.toLowerCase().includes(searchValue) ||
+                    part.category.toLowerCase().includes(searchValue)
+                )
                 .map((part) => (
                   <AllProduct key={part._id} part={part}></AllProduct>
                 ))
