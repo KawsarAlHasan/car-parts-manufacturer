@@ -11,8 +11,8 @@ const Parts = (props) => {
 
   return (
     <div>
-      <h1 className="text-center py-4">
-        Parts <span className="text-danger">Items</span>
+      <h1 className="text-center custom-margin-top-10 pb-4">
+        Products <span className="text-danger">Items</span>
       </h1>
 
       <div className="container parts-container">

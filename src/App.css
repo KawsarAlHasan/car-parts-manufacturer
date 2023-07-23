@@ -17,3 +17,18 @@
 .custom-cursor-pointer{
   cursor: pointer;
 }
+
+.custom-margin-top-10{
+  margin-top: 50px;
+}
+
+.dicustomsplay-none{
+  display: block !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  .dicustomsplay-none{
+    display: none !important;
+  }
+}
+
