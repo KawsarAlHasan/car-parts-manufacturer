@@ -29,8 +29,8 @@ function AllProduct({ part }) {
         <h5 class="card-title">{name}</h5>
         <p class="card-text">
           Price:
-          <b style={{ color: "#ef4a23", marginRight: "5px" }}> ${price}</b>
-          <span className="text-decoration-line-through">{salePrice}</span>
+          <b style={{ color: "#ef4a23", marginRight: "5px" }}> ${salePrice}</b>
+          <span className="text-decoration-line-through">{price}</span>
         </p>
         <p class="card-text">Available Quantity: {quantity}</p>
         <p class="card-text">Minimum Order Quantity: {orderQuantity}</p>

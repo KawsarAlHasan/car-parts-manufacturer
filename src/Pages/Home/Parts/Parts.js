@@ -15,7 +15,7 @@ const Parts = (props) => {
         Products <span className="text-danger">Items</span>
       </h1>
 
-      <div className="container parts-container">
+      <div className="container product-container-main">
         {isLoading ? (
           <>
             <Card style={{ width: "20rem" }}>

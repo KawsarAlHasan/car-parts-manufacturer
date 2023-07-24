@@ -2,8 +2,8 @@ import React from "react";
 import { Badge, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const Part = ({ part }) => {
-  const { _id, name, img, price, salePrice, quantity, orderQuantity } = part;
+function ReletedProduct({ product }) {
+  const { _id, name, img, price, salePrice, quantity, orderQuantity } = product;
   const navigate = useNavigate();
   const nPrice = parseInt(price);
   const nSalePrice = parseInt(salePrice);
@@ -15,7 +15,7 @@ const Part = ({ part }) => {
   return (
     <div
       onClick={() => parchase(_id)}
-      className="shadow-lg card custom-card  pb-3"
+      className="shadow-lg card custom-card mb-3 pb-3"
       style={{ borderRadius: "30px" }}
     >
       <img
@@ -42,6 +42,6 @@ const Part = ({ part }) => {
       </div>
     </div>
   );
-};
+}
 
-export default Part;
+export default ReletedProduct;

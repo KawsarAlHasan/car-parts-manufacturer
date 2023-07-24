@@ -4,26 +4,34 @@
     grid-gap: 20px;
 }
 
-.product-container{
+.product-container-main{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 }
 
 /*make inventoryItems responsive*/
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:767px) {
     .parts-container{
         grid-template-columns: repeat(1, 1fr);
     }
-    .product-container{
+    .product-container-main{
         grid-template-columns: repeat(1, 1fr);
     }
 }
-@media (min-width:769px) and (max-width:992px) {
+
+
+@media (min-width:768px) and (max-width:992px) {
     .parts-container{
         grid-template-columns: repeat(2, 1fr);
     }
-    .product-container{
+    .product-container-main{
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width:993px) and (max-width:1200px) {
+    .product-container-main{
+        grid-template-columns: repeat(3, 1fr);
     }
 }

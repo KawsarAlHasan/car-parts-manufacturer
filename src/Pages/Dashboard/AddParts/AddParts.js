@@ -33,12 +33,14 @@ const AddParts = (props) => {
             email: data.email,
             quantity: data.quantity,
             price: data.price,
+            productCode: data.productCode,
             salePrice: data.salePrice,
             orderQuantity: data.orderQuantity,
             description: data.description,
             gender: data.gender,
             age: data.age,
             size: data.size,
+            customize: data.customize,
             colorfamily: data.colorfamily,
             brand: data.brand,
             availability: data.availability,
@@ -84,16 +86,6 @@ const AddParts = (props) => {
             {errors.name && (
               <p className="text-danger">{errors.name?.message}</p>
             )}
-          </Form.Group>
-
-          {/* Category  */}
-          <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
-            <Form.Select {...register("category", { required: true })}>
-              <option value="T-Shirt">T-Shirt</option>
-              <option value="Jacket">Jacket</option>
-              <option value="Pants">Pants</option>
-            </Form.Select>
           </Form.Group>
 
           {/* products image  */}
@@ -178,35 +170,65 @@ const AddParts = (props) => {
           </Form.Group>
 
           {/* gender */}
-          <div key={`inline-radio`} className="mb-3">
-            <Form.Check
-              inline
-              label="Boy"
-              name="group1"
-              type="radio"
-              value="Boy"
-              id={`inline-radio-1`}
-              {...register("gender", { required: true })}
-            />
-            <Form.Check
-              inline
-              label="Girl"
-              name="group1"
-              type="radio"
-              value="Girl"
-              id={`inline-radio-2`}
-              {...register("gender", { required: true })}
-            />
+          <Form.Group>
+            <Form.Label>Gender</Form.Label>
+            <div key={`inline-radio`} className="mb-3">
+              <Form.Check
+                inline
+                label="Men"
+                name="group1"
+                type="radio"
+                value="Men"
+                id={`inline-radio-1`}
+                {...register("gender", { required: true })}
+              />
+              <Form.Check
+                inline
+                label="Woman"
+                name="group1"
+                type="radio"
+                value="Woman"
+                id={`inline-radio-2`}
+                {...register("gender", { required: true })}
+              />
+            </div>
+          </Form.Group>
+
+          {/*age and  product code  */}
+          <div className="d-flex">
+            {/* Age  */}
+            <Form.Group className="mb-3">
+              <Form.Label>Age</Form.Label>
+              <Form.Select {...register("age", { required: true })}>
+                <option value="Children">Children</option>
+                <option value="Young Man">Young Man</option>
+                <option value="Old Man">Old Man</option>
+              </Form.Select>
+            </Form.Group>
+
+            {/* product code  */}
+            <Form.Group className="mb-3 mx-2">
+              <Form.Label>Product Code</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Product Code"
+                {...register("productCode", {
+                  required: "Product Code is required",
+                })}
+              />
+              {errors.productCode && (
+                <p className="text-danger">{errors.productCode?.message}</p>
+              )}
+            </Form.Group>
           </div>
 
-          {/* Age  */}
+          {/* Category  */}
           <Form.Group className="mb-3">
-            <Form.Label>Age</Form.Label>
-            <Form.Select {...register("age", { required: true })}>
-              <option value="Children">children</option>
-              <option value="Teenager">Teenager</option>
-              <option value="Young">Young</option>
-              <option value="Old">Old</option>
+            <Form.Label>Category</Form.Label>
+            <Form.Select {...register("category", { required: true })}>
+              <option value="T-Shirt">T-Shirt</option>
+              <option value="Jacket">Jacket</option>
+              <option value="Pants">Pants</option>
             </Form.Select>
           </Form.Group>
 
@@ -249,8 +271,8 @@ const AddParts = (props) => {
               <div className="col-4">
                 <Form.Control
                   type="text"
-                  placeholder="Size Number"
-                  {...register("size")}
+                  placeholder="Custom Size Number"
+                  {...register("customize")}
                 />
               </div>
             </div>

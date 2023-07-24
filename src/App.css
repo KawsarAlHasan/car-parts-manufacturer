@@ -26,9 +26,35 @@
   display: block !important;
 }
 
-@media only screen and (max-width: 1024px) {
+.custom-img-fluid{
+  height: 450px;
+}
+
+.custom-container{
+  width: 96%;
+}
+
+.costum-margin-right{
+  margin: 2px 0;
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+  .custom-img-fluid{
+    height: 320px;
+    width: 96%;
+  }
+  .custom-img-div{
+    justify-items: center;
+  }
+}
+@media (min-width: 768px) and (max-width: 1440px) {
   .dicustomsplay-none{
     display: none !important;
+  }
+  .custom-img-fluid{
+    height: 450px;
+    width: 97%;
   }
 }
 

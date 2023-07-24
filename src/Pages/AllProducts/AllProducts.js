@@ -9,7 +9,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 function AllProducts() {
-  var [parts, isLoading] = UseParts();
+  const [parts, isLoading] = UseParts();
   const [searchValue, setSearchValue] = useState("");
   const handleSearch = (even) => {
     even.preventDefault();
@@ -23,9 +23,13 @@ function AllProducts() {
   const filterAvailability = (even) => {
     even.preventDefault();
   };
+  const filterAge = (even) => {
+    even.preventDefault();
+  };
 
   const filterProduct = (
     <>
+      {/* price range  */}
       <Card>
         <Card.Body>
           <Card.Title>Price Range</Card.Title>
@@ -47,7 +51,7 @@ function AllProducts() {
         </Card.Body>
       </Card>
 
-      {/* gender  */}
+      {/* category  */}
       <Accordion className="mt-2" defaultActiveKey="0">
         <Accordion.Item eventKey="0">
           <Accordion.Header>
@@ -76,6 +80,7 @@ function AllProducts() {
         </Accordion.Item>
       </Accordion>
 
+      {/* gender */}
       <Accordion className="mt-2" defaultActiveKey="0">
         <Accordion.Item eventKey="0">
           <Accordion.Header>
@@ -84,18 +89,18 @@ function AllProducts() {
           <Accordion.Body>
             <form onSubmit={filterGenter}>
               <Form.Check
-                label="Boy"
+                label="Men"
                 name="group2"
                 type="radio"
-                value="boy"
+                value="men"
                 onClick={(e) => setSearchValue(e.target.value)}
                 id={`inline-radio-101`}
               />
               <Form.Check
-                label="Girl"
+                label="Woman"
                 name="group2"
                 type="radio"
-                value="girl"
+                value="woman"
                 onClick={(e) => setSearchValue(e.target.value)}
                 id={`inline-radio-102`}
               />
@@ -104,6 +109,44 @@ function AllProducts() {
         </Accordion.Item>
       </Accordion>
 
+      {/* age */}
+      <Accordion className="mt-2" defaultActiveKey="0">
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>
+            <b>Age</b>
+          </Accordion.Header>
+          <Accordion.Body>
+            <form onSubmit={filterAge}>
+              <Form.Check
+                label="Children"
+                name="group2"
+                type="radio"
+                value="children"
+                onClick={(e) => setSearchValue(e.target.value)}
+                id={`inline-radio-101`}
+              />
+              <Form.Check
+                label="Young Man"
+                name="group2"
+                type="radio"
+                value="young man"
+                onClick={(e) => setSearchValue(e.target.value)}
+                id={`inline-radio-102`}
+              />
+              <Form.Check
+                label="Old Man"
+                name="group2"
+                type="radio"
+                value="old man"
+                onClick={(e) => setSearchValue(e.target.value)}
+                id={`inline-radio-102`}
+              />
+            </form>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+
+      {/* Availability */}
       <Accordion className="mt-2" defaultActiveKey="0">
         <Accordion.Item eventKey="0">
           <Accordion.Header>
@@ -244,6 +287,7 @@ function AllProducts() {
                   (part) =>
                     part.name.toLowerCase().includes(searchValue) ||
                     part.category.toLowerCase().includes(searchValue) ||
+                    part.age.toLowerCase().includes(searchValue) ||
                     part.gender.toLowerCase().includes(searchValue) ||
                     part.availability.toLowerCase().includes(searchValue)
                 )
