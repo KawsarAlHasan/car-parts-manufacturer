@@ -9,7 +9,7 @@ const MyOrders = (props) => {
   const [myOrders, setMyOrders] = useState([]);
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `https://manufacturer-server-side.onrender.com/purchase`;
+      const url = `http://localhost:5000/purchase?email=${user.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };

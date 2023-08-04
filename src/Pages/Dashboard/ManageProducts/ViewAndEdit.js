@@ -16,7 +16,7 @@ function ViewAndEdit() {
   } = useForm();
 
   const onSubmit = async (updateData) => {
-    const urlLink = `https://manufacturer-server-side.onrender.com/carParts/${productsId}`;
+    const urlLink = `http://localhost:5000/carParts/${productsId}`;
     fetch(urlLink, {
       method: "PUT",
       headers: {
@@ -33,16 +33,16 @@ function ViewAndEdit() {
   };
 
   useEffect(() => {
-    const url = `https://manufacturer-server-side.onrender.com/carParts/${productsId}`;
+    const url = `http://localhost:5000/carParts/${productsId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
   return (
     <div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
             <div
               className="shadow-lg card  pb-3"
               style={{ borderRadius: "30px" }}
@@ -52,16 +52,16 @@ function ViewAndEdit() {
                 src={product.img}
                 alt=""
               />
-              <div class="card-body">
-                <h5 class="card-title">{product.name}</h5>
-                <p class="card-text">
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">
                   <b>Price:</b> $ {product.price}
                 </p>
-                <p class="card-text">
+                <p className="card-text">
                   <b>Available Quantity:</b> {product.quantity}
                 </p>
                 <div className="">
-                  <p class="card-text">
+                  <p className="card-text">
                     <b>Minimum Order Quantity:</b> {product.orderQuantity}
                   </p>
                   <p className="">
@@ -71,7 +71,7 @@ function ViewAndEdit() {
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div className="col-md-6">
             <h1>
               update <span className="text-danger">Parts</span>
             </h1>

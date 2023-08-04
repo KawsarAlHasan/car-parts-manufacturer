@@ -29,7 +29,7 @@ const Purchase = (props) => {
   };
 
   useEffect(() => {
-    const url = `https://manufacturer-server-side.onrender.com/carParts/${purchaseId}`;
+    const url = `http://localhost:5000/carParts/${purchaseId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setPurchase(data));
@@ -50,12 +50,12 @@ const Purchase = (props) => {
       pImg: purchase.img,
       pPrice: purchase.price,
       userQuantity: uQuantity,
-      userEmail: email,
+      email: email,
       amount: amount,
       productCode: purchase.productCode,
     };
 
-    fetch("https://manufacturer-server-side.onrender.com/purchase", {
+    fetch("http://localhost:5000/purchase", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -65,7 +65,7 @@ const Purchase = (props) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          toast(`Your ${uQuantity} parts purchase is successful`);
+          toast(`Your ${uQuantity} Product add to card is successful`);
         } else {
           toast.error(
             `oh no! you are wrong!! You need to purchase between ${partsPurchase.minimumQuantity} and ${partsPurchase.partsQuantity}.`
@@ -144,10 +144,17 @@ const Purchase = (props) => {
               Product Code: <b>{purchase.productCode}</b>
             </h6>
             <h6>
-              Color Family: <b>{purchase.colorfamily}</b>
+              Color Family:{" "}
+              {purchase.colorfamily
+                ? purchase.colorfamily?.map((cf, i) => <b key={i}>{cf}, </b>)
+                : "All Sizes Available"}
             </h6>
             <h6>
-              Size: <b>{purchase.size}</b> <b>{purchase.customize}</b>
+              Size:{" "}
+              {purchase.size
+                ? purchase.size?.map((s, i) => <b key={i}>{s}, </b>)
+                : "All Sizes Available"}{" "}
+              {purchase.customize}
             </h6>
           </div>
           <Form className="mx-4" onSubmit={handlePurchase}>

@@ -7,7 +7,7 @@ const MyOrder = ({ myOrder }) => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-server-side.onrender.com/purchase/${id}`;
+      const url = `http://localhost:5000/purchase/${id}`;
       fetch(url, {
         method: "DELETE",
       })

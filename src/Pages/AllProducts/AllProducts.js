@@ -229,12 +229,12 @@ function AllProducts() {
         </div>
       </div>
 
-      <div class="row">
-        <div class=" d-none d-lg-block col-lg-3">
+      <div className="row">
+        <div className=" d-none d-lg-block col-lg-3">
           {/* filter products */}
           {filterProduct}
         </div>
-        <div class="col-12 col-lg-9 ">
+        <div className="col-12 col-lg-9 ">
           <div className="parts-container">
             {isLoading ? (
               <>

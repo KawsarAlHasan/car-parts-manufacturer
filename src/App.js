@@ -19,6 +19,7 @@ import ManageProducts from "./Pages/Dashboard/ManageProducts/ManageProducts";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import AllProducts from "./Pages/AllProducts/AllProducts";
 import ViewAndEdit from "./Pages/Dashboard/ManageProducts/ViewAndEdit";
+import AddToCard from "./Pages/AddToCard/AddToCard";
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
           element={
             <RequireAuth>
               <Purchase></Purchase>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/addtocard"
+          element={
+            <RequireAuth>
+              <AddToCard></AddToCard>
             </RequireAuth>
           }
         ></Route>

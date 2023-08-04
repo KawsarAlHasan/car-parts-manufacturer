@@ -25,15 +25,15 @@ function AllProduct({ part }) {
       <Badge className="discount" pill bg="primary">
         Save: {discount}
       </Badge>
-      <div class="card-body ">
-        <h5 class="card-title">{name}</h5>
-        <p class="card-text">
+      <div className="card-body ">
+        <h5 className="card-title">{name}</h5>
+        <p className="card-text">
           Price:
           <b style={{ color: "#ef4a23", marginRight: "5px" }}> ${salePrice}</b>
           <span className="text-decoration-line-through">{price}</span>
         </p>
-        <p class="card-text">Available Quantity: {quantity}</p>
-        <p class="card-text">Minimum Order Quantity: {orderQuantity}</p>
+        <p className="card-text">Available Quantity: {quantity}</p>
+        <p className="card-text">Minimum Order Quantity: {orderQuantity}</p>
 
         <Button size="sm" variant="primary">
           PLACE ORDER

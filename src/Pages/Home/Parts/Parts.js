@@ -63,7 +63,7 @@ const Parts = (props) => {
           </>
         ) : (
           parts
-            .slice(0, 6)
+            .slice(0, 8)
             .map((part) => <Part key={part._id} part={part}></Part>)
         )}
       </div>

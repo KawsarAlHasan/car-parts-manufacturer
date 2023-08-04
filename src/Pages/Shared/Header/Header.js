@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import profile from "../../../images/profile-logo.png";
 import Logo from "../../../images/20230722_163020.png";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const [user] = useAuthState(auth);
@@ -35,32 +36,66 @@ const Header = (props) => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
           <Nav>
-            <Nav.Link href="/">HOME</Nav.Link>
-            <Nav.Link href="/products">ALL PRODUCTS</Nav.Link>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <Link class="nav-link" to="/">
+                  HOME
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/products">
+                  ALL PRODUCTS
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link" to="/addtocard">
+                  My Card
+                </Link>
+              </li>
+            </ul>
+
             {user && (
               <>
-                <Nav.Link href="/dashboard">DASHBOARD</Nav.Link>
-                <Nav.Link href="/dashboard">
-                  <img
-                    style={{
-                      borderRadius: "15px",
-                      height: "30px",
-                      width: "30px",
-                    }}
-                    src={user?.photoURL || profile}
-                    alt=""
-                  />
-                </Nav.Link>
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <Link class="nav-link" to="/dashboard">
+                      DASHBOARD
+                    </Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link class="nav-link" to="/dashboard">
+                      <img
+                        style={{
+                          borderRadius: "15px",
+                          height: "30px",
+                          width: "30px",
+                        }}
+                        src={user?.photoURL || profile}
+                        alt=""
+                      />
+                    </Link>
+                  </li>
+                </ul>
               </>
             )}
             {user ? (
-              <Nav.Link href="/login" onClick={handleSignOut}>
-                SIGN OUT
-              </Nav.Link>
+              <li class="nav-item" onClick={handleSignOut}>
+                <Link class="nav-link" to="/login">
+                  SIGN OUT
+                </Link>
+              </li>
             ) : (
               <>
-                <Nav.Link href="/login">LOGIN</Nav.Link>
-                <Nav.Link href="/register">REGISTER</Nav.Link>
+                <li class="nav-item">
+                  <Link class="nav-link" to="/LOGIN">
+                    LOGIN
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link" to="/register">
+                    REGISTER
+                  </Link>
+                </li>
               </>
             )}
           </Nav>
