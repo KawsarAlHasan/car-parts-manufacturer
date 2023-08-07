@@ -9,7 +9,7 @@ const ManageProduct = ({ part, index }) => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/carParts/${id}`;
+      const url = `https://manufacturer-server-side.onrender.com/carParts/${id}`;
       fetch(url, {
         method: "DELETE",
       })

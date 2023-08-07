@@ -47,8 +47,8 @@ const AddParts = (props) => {
             img: imgData.secure_url,
           };
           console.log(parts);
-          // save doctor
-          const url = `http://localhost:5000/carParts`;
+          // save Product
+          const url = `https://manufacturer-server-side.onrender.com/carParts`;
           fetch(url, {
             method: "POST",
             headers: {

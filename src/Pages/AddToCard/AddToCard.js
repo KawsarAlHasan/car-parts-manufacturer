@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Form, Table } from "react-bootstrap";
+import { Card, Form, Table } from "react-bootstrap";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
@@ -15,11 +15,9 @@ function AddToCard() {
   const [user] = useAuthState(auth);
   const [myOrders, setMyOrders] = useState([]);
 
-  const onSubmit = async (data) => {};
-
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `http://localhost:5000/purchase?email=${user?.email}`;
+      const url = `https://manufacturer-server-side.onrender.com/addToCard?email=${user?.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };
@@ -29,7 +27,7 @@ function AddToCard() {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/purchase/${id}`;
+      const url = `https://manufacturer-server-side.onrender.com/addToCard/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -54,6 +52,42 @@ function AddToCard() {
   }
 
   const totalAmount = subTotalAmount + shippingFee;
+
+  const onSubmit = async (data) => {
+    const confirmOrder = {
+      userName: data.userName,
+      email: user?.email,
+      shippingEmail: data.email,
+      phoneNumber: data.phoneNumber,
+      userAddress: data.userAddress,
+      streetAddress: data.streetAddress,
+      airportorShippingPort: data.airportorShippingPort,
+      city: data.city,
+      country: data.country,
+      myOrdersInfo: myOrders,
+      shippingFee: shippingFee,
+      subTotalAmount: subTotalAmount,
+      totalQuantity: totalQuantity,
+      totalAmount: totalAmount,
+    };
+
+    console.log(confirmOrder);
+
+    const url = `https://manufacturer-server-side.onrender.com/orders`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(confirmOrder),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        window.location.reload(false);
+        toast.success(`Your Orders successfully`);
+      });
+  };
 
   return (
     <div className="container my-4">
@@ -129,7 +163,7 @@ function AddToCard() {
             onSubmit={handleSubmit(onSubmit)}
           >
             <h4>01. Personal Details</h4>
-            {/* user name  */}
+            {/* user name  and email */}
             <div className="d-flex">
               <Form.Group className="mb-3">
                 <Form.Label>Your Name</Form.Label>
@@ -147,17 +181,17 @@ function AddToCard() {
                 <Form.Control
                   type="email"
                   placeholder="Your Email"
-                  {...register("userEmail", {
+                  {...register("email", {
                     required: "User Email is required",
                   })}
                 />
-                {errors.userEmail && (
-                  <p className="text-danger">{errors.userEmail?.message}</p>
+                {errors.email && (
+                  <p className="text-danger">{errors.email?.message}</p>
                 )}
               </Form.Group>
             </div>
 
-            {/* Phone Number */}
+            {/* Phone Number and address */}
             <div className="d-flex">
               <Form.Group className="mb-3">
                 <Form.Label>Phone Number</Form.Label>
@@ -188,7 +222,39 @@ function AddToCard() {
             </div>
 
             <h4>02. Shipping Details</h4>
+            {/* streetAddress and airportorShippingPort */}
+            <div className="d-flex">
+              <Form.Group className="mb-3">
+                <Form.Label>Street Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Street Address"
+                  {...register("streetAddress", {
+                    required: "Street Address is required",
+                  })}
+                />
+                {errors.streetAddress && (
+                  <p className="text-danger">{errors.streetAddress?.message}</p>
+                )}
+              </Form.Group>
+              <Form.Group className="mb-3 mx-2">
+                <Form.Label>Airport or Shipping Port</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Airport or Shipping Port"
+                  {...register("airportorShippingPort", {
+                    required: "Airport or Shipping Port is required",
+                  })}
+                />
+                {errors.airportorShippingPort && (
+                  <p className="text-danger">
+                    {errors.airportorShippingPort?.message}
+                  </p>
+                )}
+              </Form.Group>
+            </div>
 
+            {/* city and country */}
             <div className="d-flex">
               <Form.Group className="mb-3">
                 <Form.Label>City</Form.Label>
@@ -217,6 +283,8 @@ function AddToCard() {
                 )}
               </Form.Group>
             </div>
+
+            <h4>03. Payment Method</h4>
 
             {errors.exampleRequired && <span>This field is required</span>}
 

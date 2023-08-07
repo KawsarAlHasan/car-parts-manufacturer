@@ -20,6 +20,7 @@ import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import AllProducts from "./Pages/AllProducts/AllProducts";
 import ViewAndEdit from "./Pages/Dashboard/ManageProducts/ViewAndEdit";
 import AddToCard from "./Pages/AddToCard/AddToCard";
+import MyOrder from "./Pages/Dashboard/MyOrders/MyOrder";
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
           element={
             <RequireAuth>
               <Purchase></Purchase>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/myOrder/:orderId"
+          element={
+            <RequireAuth>
+              <MyOrder></MyOrder>
             </RequireAuth>
           }
         ></Route>

@@ -16,7 +16,7 @@ function ViewAndEdit() {
   } = useForm();
 
   const onSubmit = async (updateData) => {
-    const urlLink = `http://localhost:5000/carParts/${productsId}`;
+    const urlLink = `https://manufacturer-server-side.onrender.com/carParts/${productsId}`;
     fetch(urlLink, {
       method: "PUT",
       headers: {
@@ -33,7 +33,7 @@ function ViewAndEdit() {
   };
 
   useEffect(() => {
-    const url = `http://localhost:5000/carParts/${productsId}`;
+    const url = `https://manufacturer-server-side.onrender.com/carParts/${productsId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data));
