@@ -30,7 +30,7 @@ function AllProducts() {
   const filterProduct = (
     <>
       {/* price range  */}
-      <Card>
+      {/* <Card>
         <Card.Body>
           <Card.Title>Price Range</Card.Title>
           <Form.Control
@@ -49,7 +49,7 @@ function AllProducts() {
             C
           </Button>
         </Card.Body>
-      </Card>
+      </Card> */}
 
       {/* category  */}
       <Accordion className="mt-2" defaultActiveKey="0">

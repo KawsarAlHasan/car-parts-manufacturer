@@ -15,6 +15,10 @@ function AddToCard() {
   const [user] = useAuthState(auth);
   const [myOrders, setMyOrders] = useState([]);
 
+  const today = new Date();
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = today.toLocaleDateString(undefined, options);
+
   useEffect(() => {
     const getMyOrders = async () => {
       const url = `https://manufacturer-server-side.onrender.com/addToCard?email=${user?.email}`;
@@ -69,6 +73,7 @@ function AddToCard() {
       subTotalAmount: subTotalAmount,
       totalQuantity: totalQuantity,
       totalAmount: totalAmount,
+      orderFormattedDate: formattedDate,
     };
 
     console.log(confirmOrder);

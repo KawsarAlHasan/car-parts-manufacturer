@@ -43,7 +43,6 @@ const ManageProduct = ({ part, index }) => {
           className="btn btn-primary btn-sm"
           onClick={() => handleViewAndEdit(_id)}
         >
-          {" "}
           View and Edit
         </button>
       </td>

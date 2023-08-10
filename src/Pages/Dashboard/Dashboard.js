@@ -35,9 +35,17 @@ const Dashboard = (props) => {
                   <Nav.Item>
                     <Nav.Link
                       className="bg-secondary text-light mb-3"
+                      href="/dashboard/manageOrders"
+                    >
+                      MANAGE ORDERS
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      className="bg-secondary text-light mb-3"
                       href="/dashboard/addParts"
                     >
-                      ADD PARTS
+                      ADD PRODUCTS
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>

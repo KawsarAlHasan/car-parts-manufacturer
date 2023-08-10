@@ -21,6 +21,8 @@ import AllProducts from "./Pages/AllProducts/AllProducts";
 import ViewAndEdit from "./Pages/Dashboard/ManageProducts/ViewAndEdit";
 import AddToCard from "./Pages/AddToCard/AddToCard";
 import MyOrder from "./Pages/Dashboard/MyOrders/MyOrder";
+import ManageOrder from "./Pages/Dashboard/ManageOrder/ManageOrder";
+import ViewOrder from "./Pages/Dashboard/ManageOrder/ViewOrder";
 
 function App() {
   return (
@@ -68,15 +70,18 @@ function App() {
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
 
+          <Route path="manageOrders" element={<ManageOrder />}></Route>
+          <Route
+            path="manageOrders/vieworder/:orderId"
+            element={<ViewOrder />}
+          ></Route>
+
           <Route path="addParts" element={<AddParts></AddParts>}></Route>
           <Route path="users" element={<AllUsers></AllUsers>}></Route>
-          <Route
-            path="manageProducts"
-            element={<ManageProducts></ManageProducts>}
-          ></Route>
+          <Route path="manageProducts" element={<ManageProducts />}></Route>
           <Route
             path="manageProducts/viewandedit/:productsId"
-            element={<ViewAndEdit></ViewAndEdit>}
+            element={<ViewAndEdit />}
           ></Route>
         </Route>
 

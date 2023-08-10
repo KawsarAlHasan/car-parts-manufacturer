@@ -40,10 +40,10 @@ const MyOrders = (props) => {
           </tr>
         </thead>
         <tbody>
-          {myOrders.map((myOrder) => (
+          {myOrders?.map((myOrder) => (
             <tr key={myOrder._id}>
               <td>5534</td>
-              <td>13 sept, 2023</td>
+              <td>{myOrder.orderFormattedDate}</td>
               <td>Panding</td>
               <td>{myOrder.totalAmount}</td>
               <td>
