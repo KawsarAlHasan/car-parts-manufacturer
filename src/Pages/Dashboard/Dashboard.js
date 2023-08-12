@@ -4,9 +4,16 @@ import { Outlet } from "react-router-dom";
 import useAdmin from "../Shared/Hooks/useAdmin";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
 const Dashboard = (props) => {
   const [user] = useAuthState(auth);
+
+  const handleSignOut = () => {
+    signOut(auth);
+    localStorage.removeItem("accessToken");
+  };
+
   const [isAdmin] = useAdmin(user?.email);
   return (
     <div className="container">
@@ -69,6 +76,14 @@ const Dashboard = (props) => {
                   </Nav.Item>
                 </>
               )}
+              <Nav.Item onClick={handleSignOut}>
+                <Nav.Link
+                  className="bg-secondary text-light mb-3"
+                  href="/login"
+                >
+                  SIGN OUT
+                </Nav.Link>
+              </Nav.Item>
             </Nav>
           </Col>
           <Col sm={9}>

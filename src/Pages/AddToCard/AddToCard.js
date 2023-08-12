@@ -69,6 +69,7 @@ function AddToCard() {
       city: data.city,
       country: data.country,
       myOrdersInfo: myOrders,
+      status: "Pending",
       shippingFee: shippingFee,
       subTotalAmount: subTotalAmount,
       totalQuantity: totalQuantity,

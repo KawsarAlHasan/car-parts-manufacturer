@@ -23,6 +23,7 @@ import AddToCard from "./Pages/AddToCard/AddToCard";
 import MyOrder from "./Pages/Dashboard/MyOrders/MyOrder";
 import ManageOrder from "./Pages/Dashboard/ManageOrder/ManageOrder";
 import ViewOrder from "./Pages/Dashboard/ManageOrder/ViewOrder";
+import WishList from "./Pages/wishList/WishList";
 
 function App() {
   return (
@@ -50,10 +51,18 @@ function App() {
           }
         ></Route>
         <Route
+          path="/wishlist"
+          element={
+            <RequireAuth>
+              <WishList />
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
           path="/addtocard"
           element={
             <RequireAuth>
-              <AddToCard></AddToCard>
+              <AddToCard />
             </RequireAuth>
           }
         ></Route>

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Table } from "react-bootstrap";
+import { Form, Table } from "react-bootstrap";
 import Loading from "../../Shared/Loading/Loading";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 function ManageOrder() {
   const navigate = useNavigate();
+  const [filterValue, setFilterValue] = useState("");
+  const handleFilter = (even) => {
+    even.preventDefault();
+  };
 
   const { data: manageOrders, isLoading } = useQuery("manageOrders", () =>
     fetch("https://manufacturer-server-side.onrender.com/manageOrders").then(
@@ -21,6 +25,23 @@ function ManageOrder() {
       <h1 className="my-4 text-center">
         Manage <span className="text-danger"> Order </span>
       </h1>
+
+      <div className="d-flex ">
+        <Form
+          className="py-3 d-flex justify-content-center"
+          onSubmit={handleFilter}
+        >
+          <Form.Select
+            onChange={(e) => setFilterValue(e.target.value)}
+            aria-label="Default select example"
+          >
+            <option value="delivered">Delivered</option>
+            <option value="pending">Pending</option>
+            <option value="processing">Processing</option>
+            <option value="cancel">Cancel</option>
+          </Form.Select>
+        </Form>
+      </div>
 
       <Table responsive striped bordered hover>
         <thead>
@@ -38,26 +59,29 @@ function ManageOrder() {
           {isLoading ? (
             <Loading></Loading>
           ) : (
-            manageOrders?.map((manageOrder) => (
-              <tr>
-                {console.log(manageOrder)}
-                <td>5534</td>
-                <td>{manageOrder.orderFormattedDate}</td>
-                <td>{manageOrder.userName}</td>
-                <td>Cash</td>
-                <td>{manageOrder.totalAmount}</td>
-                <td>Pending</td>
+            manageOrders
+              ?.filter((manageOrder) =>
+                manageOrder.status.toLowerCase().includes(filterValue)
+              )
+              .map((manageOrder) => (
+                <tr>
+                  <td>5534</td>
+                  <td>{manageOrder.orderFormattedDate}</td>
+                  <td>{manageOrder.userName}</td>
+                  <td>Cash</td>
+                  <td>{manageOrder.totalAmount}</td>
+                  <td>{manageOrder.status}</td>
 
-                <td>
-                  <button
-                    onClick={() => handleViewOrder(manageOrder._id)}
-                    className="btn btn-sm btn-primary"
-                  >
-                    Details
-                  </button>
-                </td>
-              </tr>
-            ))
+                  <td>
+                    <button
+                      onClick={() => handleViewOrder(manageOrder._id)}
+                      className="btn btn-sm btn-primary"
+                    >
+                      Details
+                    </button>
+                  </td>
+                </tr>
+              ))
           )}
         </tbody>
       </Table>

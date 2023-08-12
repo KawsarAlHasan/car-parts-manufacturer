@@ -44,7 +44,7 @@ const MyOrders = (props) => {
             <tr key={myOrder._id}>
               <td>5534</td>
               <td>{myOrder.orderFormattedDate}</td>
-              <td>Panding</td>
+              <td>{myOrder.status}</td>
               <td>{myOrder.totalAmount}</td>
               <td>
                 <button

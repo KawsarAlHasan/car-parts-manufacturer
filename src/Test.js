@@ -1,46 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { useReactToPrint } from "react-to-print";
+import Invoice from "./Test2";
 
-const ItemList = () => {
-  const [items, setItems] = useState([
-    { id: 1, name: "Item 1", description: "This is the first item" },
-    { id: 2, name: "Item 2", description: "This is the second item" },
-    { id: 3, name: "Item 3", description: "This is the third item" },
-    // ... other items
-  ]);
+const PrintableComponent = ({ order }) => {
+  const invoiceRef = React.useRef();
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredItems, setFilteredItems] = useState(items);
-
-  const handleSearch = () => {
-    const filtered = items.filter(
-      (item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredItems(filtered);
-  };
+  const handlePrint = useReactToPrint({
+    content: () => invoiceRef.current,
+  });
 
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchQuery}
-          onChange={(event) => setSearchQuery(event.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
-
-      <ul>
-        {filteredItems.map((item) => (
-          <li key={item.id}>
-            {item.name} - {item.description}
-          </li>
-        ))}
-      </ul>
+      <Invoice order={order} ref={invoiceRef} />
+      <button onClick={handlePrint}>Print Invoice</button>
     </div>
   );
 };
 
-export default ItemList;
+export default PrintableComponent;
