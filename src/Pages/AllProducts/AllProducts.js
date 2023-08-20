@@ -11,6 +11,8 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 function AllProducts() {
   const [parts, isLoading] = UseParts();
   const [searchValue, setSearchValue] = useState("");
+  let lowercaseValue = searchValue.toLowerCase();
+
   const handleSearch = (even) => {
     even.preventDefault();
   };
@@ -285,11 +287,11 @@ function AllProducts() {
               parts
                 .filter(
                   (part) =>
-                    part.name.toLowerCase().includes(searchValue) ||
-                    part.category.toLowerCase().includes(searchValue) ||
-                    part.age.toLowerCase().includes(searchValue) ||
-                    part.gender.toLowerCase().includes(searchValue) ||
-                    part.availability.toLowerCase().includes(searchValue)
+                    part.name.toLowerCase().includes(lowercaseValue) ||
+                    part.category.toLowerCase().includes(lowercaseValue) ||
+                    part.age.toLowerCase().includes(lowercaseValue) ||
+                    part.gender.toLowerCase().includes(lowercaseValue) ||
+                    part.availability.toLowerCase().includes(lowercaseValue)
                 )
                 .map((part) => (
                   <AllProduct key={part._id} part={part}></AllProduct>

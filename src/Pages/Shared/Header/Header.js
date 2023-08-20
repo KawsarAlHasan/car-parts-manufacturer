@@ -76,7 +76,7 @@ const Header = (props) => {
                   <li className="nav-item">
                     <Link
                       title="My Cart"
-                      className="nav-link custom-card2"
+                      className="nav-link custom-relative"
                       to="/addtocard"
                     >
                       <img

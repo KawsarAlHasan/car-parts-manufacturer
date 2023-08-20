@@ -66,6 +66,7 @@ const Purchase = (props) => {
       .then((data) => {
         if (data.success) {
           toast(`Your ${uQuantity} Product add to card is successful`);
+          window.location.reload(false);
         } else {
           toast.error(
             `oh no! you are wrong!! You need to purchase between ${partsPurchase.minimumQuantity} and ${partsPurchase.partsQuantity}.`

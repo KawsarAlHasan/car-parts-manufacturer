@@ -15,7 +15,13 @@
   position: absolute;
 }
 
-.custom-card2{
+.costum-camera{
+  margin-top: 114px;
+  margin-left: -45px;
+  position: absolute;
+}
+
+.custom-relative{
   position: relative;
 }
 
