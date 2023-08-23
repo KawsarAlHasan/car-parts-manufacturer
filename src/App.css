@@ -59,6 +59,10 @@
   margin-right: 5px;
 }
 
+.costum-left36{
+  margin-left: 36px !important;
+}
+
 @media only screen and (max-width: 767px) {
   .custom-img-fluid{
     height: 320px;

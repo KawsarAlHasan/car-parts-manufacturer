@@ -61,22 +61,74 @@ function AllProducts() {
           </Accordion.Header>
           <Accordion.Body>
             <form onSubmit={filterCategory}>
-              <Form.Check
-                label="T-Shirt"
-                name="group1"
-                type="radio"
-                value="t-shirt"
-                onClick={(e) => setSearchValue(e.target.value)}
-                id={`inline-radio-1`}
-              />
-              <Form.Check
-                label="Jacket"
-                name="group1"
-                type="radio"
-                value="jacket"
-                onClick={(e) => setSearchValue(e.target.value)}
-                id={`inline-radio-2`}
-              />
+              <div className="d-flex">
+                <Form.Check
+                  label="Pant"
+                  name="group1"
+                  type="radio"
+                  value="pant"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-1`}
+                />
+                <Form.Check
+                  className="costum-left36"
+                  label="Shirt"
+                  name="group1"
+                  type="radio"
+                  value="shirt"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-1`}
+                />
+              </div>
+              <div className="d-flex">
+                <Form.Check
+                  label="Jacket"
+                  name="group1"
+                  type="radio"
+                  value="jacket"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-2`}
+                />
+
+                <Form.Check
+                  className="mx-4"
+                  label="T-Shirt"
+                  name="group1"
+                  type="radio"
+                  value="t-shirt"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-1`}
+                />
+              </div>
+              <div className="d-flex">
+                <Form.Check
+                  label="Punjabi"
+                  name="group1"
+                  type="radio"
+                  value="punjabi"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-2`}
+                />
+                <Form.Check
+                  className="mx-3"
+                  label="Three Pieces"
+                  name="group1"
+                  type="radio"
+                  value="three pieces"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-2`}
+                />
+              </div>
+              <div className="d-flex">
+                <Form.Check
+                  label="Sharee/Benarasi"
+                  name="group1"
+                  type="radio"
+                  value="sharee benarasi"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-2`}
+                />
+              </div>
             </form>
           </Accordion.Body>
         </Accordion.Item>
@@ -90,22 +142,44 @@ function AllProducts() {
           </Accordion.Header>
           <Accordion.Body>
             <form onSubmit={filterGenter}>
-              <Form.Check
-                label="Men"
-                name="group2"
-                type="radio"
-                value="men"
-                onClick={(e) => setSearchValue(e.target.value)}
-                id={`inline-radio-101`}
-              />
-              <Form.Check
-                label="Woman"
-                name="group2"
-                type="radio"
-                value="woman"
-                onClick={(e) => setSearchValue(e.target.value)}
-                id={`inline-radio-102`}
-              />
+              <div className="d-flex">
+                <Form.Check
+                  label="Men's"
+                  name="group2"
+                  type="radio"
+                  value="men's"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-101`}
+                />
+                <Form.Check
+                  className="mx-3"
+                  label="Women's"
+                  name="group2"
+                  type="radio"
+                  value="women's"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-102`}
+                />
+              </div>
+              <div className="d-flex">
+                <Form.Check
+                  label="Boy's"
+                  name="group2"
+                  type="radio"
+                  value="boy's"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-102`}
+                />
+                <Form.Check
+                  className="mx-3"
+                  label="Girl's"
+                  name="group2"
+                  type="radio"
+                  value="girl's"
+                  onClick={(e) => setSearchValue(e.target.value)}
+                  id={`inline-radio-102`}
+                />
+              </div>
             </form>
           </Accordion.Body>
         </Accordion.Item>
