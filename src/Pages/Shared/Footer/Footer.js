@@ -10,7 +10,7 @@ const Footer = (props) => {
 
         <div className="ms-5">
           <a
-            href="https://web.facebook.com/kawsar.alhasan.58/"
+            href="https://www.facebook.com/profile.php?id=100064110279251"
             className="me-4 text-reset"
           >
             <i className="fab fa-facebook-f"></i>
@@ -55,9 +55,9 @@ const Footer = (props) => {
               <h6 className="text-uppercase fw-bold mb-4">
                 <i className="fas fa-gem me-3"></i>Company name
               </h6>
+              <h6>Two Star Fashion</h6>
               <p>
-                Programming Hero <br />
-                Complete Web Development Course with Jhankar Mahbub
+                International BD <br /> Dhaka, Bangladesh
               </p>
             </div>
 
@@ -112,17 +112,19 @@ const Footer = (props) => {
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
               <p>
-                <i className="fas fa-home me-3"></i> Dhaka, Bangladesh
+                <i className="fas fa-home me-3"></i>Mirpur 12, Pallobi,
+                Dhaka-1216 Bangladesh
               </p>
               <p>
                 <i className="fas fa-envelope me-3"></i>
-                kawsaralhasan.420@gmail.com
+                buying.qa.arif1991@gmail.com <br />
+                twostarfashionbdghoraghat@outlook.com
               </p>
               <p>
-                <i className="fas fa-phone me-3"></i> + 01 234 567 88
+                <i className="fas fa-phone me-3"></i> +8801715021185
               </p>
               <p>
-                <i className="fas fa-print me-3"></i> + 01 234 567 89
+                <i className="fas fa-phone me-3"></i> +8801911640511
               </p>
             </div>
           </div>

@@ -24,11 +24,17 @@ import MyOrder from "./Pages/Dashboard/MyOrders/MyOrder";
 import ManageOrder from "./Pages/Dashboard/ManageOrder/ManageOrder";
 import ViewOrder from "./Pages/Dashboard/ManageOrder/ViewOrder";
 import WishList from "./Pages/wishList/WishList";
+// import MiniNavbar from "./Pages/Shared/Header/MiniNavbar";
+// import Test from "./Test";
+import Pants from "./Pages/category/Pants";
 
 function App() {
   return (
     <div>
+      {/* <Test /> */}
       <Header></Header>
+      {/* <MiniNavbar></MiniNavbar> */}
+
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
@@ -67,6 +73,7 @@ function App() {
           }
         ></Route>
         <Route path="/products" element={<AllProducts></AllProducts>}></Route>
+        <Route path="/pants/pants" element={<Pants />}></Route>
 
         <Route
           path="/dashboard"

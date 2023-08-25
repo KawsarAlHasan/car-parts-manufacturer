@@ -72,15 +72,15 @@ const AddParts = (props) => {
     <div>
       <div className="  my-3">
         <h1>
-          Add <span className="text-danger">Car Parts</span>
+          Add <span className="text-danger">Product</span>
         </h1>
         <form className="d-flex flex-column" onSubmit={handleSubmit(onSubmit)}>
           {/* products name  */}
           <Form.Group className="mb-3">
-            <Form.Label>Parts Name</Form.Label>
+            <Form.Label>Product Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Parts Name"
+              placeholder="Product Name"
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -90,10 +90,10 @@ const AddParts = (props) => {
 
           {/* products image  */}
           <Form.Group className="mb-3">
-            <Form.Label>Parts Image</Form.Label>
+            <Form.Label>Product Image</Form.Label>
             <Form.Control
               type="file"
-              placeholder="Parts Image"
+              placeholder="Product Image"
               {...register("image", { required: "Image is required" })}
             />
             {errors.image && (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Button } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function AllProduct({ part }) {
@@ -23,21 +23,22 @@ function AllProduct({ part }) {
         alt=""
       />
       <Badge className="discount" pill bg="primary">
-        Save: {discount}
+        Save:{" "}
+        <span style={{ fontSize: "15px", fontWeight: "1000" }}>&#2547;</span>
+        {discount}
       </Badge>
       <div className="card-body ">
         <h5 className="card-title">{name}</h5>
         <p className="card-text">
           Price:
-          <b style={{ color: "#ef4a23", marginRight: "5px" }}> ${salePrice}</b>
+          <b style={{ color: "#ef4a23", marginRight: "5px" }}>
+            <span className="taka">&#2547;</span>
+            {salePrice}
+          </b>
           <span className="text-decoration-line-through">{price}</span>
         </p>
         <p className="card-text">Available Quantity: {quantity}</p>
         <p className="card-text">Minimum Order Quantity: {orderQuantity}</p>
-
-        <Button size="sm" variant="primary">
-          PLACE ORDER
-        </Button>
       </div>
     </div>
   );

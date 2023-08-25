@@ -1,20 +1,30 @@
-import React from "react";
-import { useReactToPrint } from "react-to-print";
-import Invoice from "./Test2";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const PrintableComponent = ({ order }) => {
-  const invoiceRef = React.useRef();
-
-  const handlePrint = useReactToPrint({
-    content: () => invoiceRef.current,
-  });
+function Test() {
+  const searchHandle = (event) => {
+    console.warn(event.target.value);
+  };
 
   return (
     <div>
-      <Invoice order={order} ref={invoiceRef} />
-      <button onClick={handlePrint}>Print Invoice</button>
+      <input
+        type="text"
+        onChange={searchHandle}
+        placeholder="Search products..."
+      />
+      <input
+      // ... input field ...
+      />
+      <ul>
+        {/* {searchResults.map((product) => (
+          <li key={product.id}>
+            {product.name} - {product.description}
+          </li>
+        ))} */}
+      </ul>
     </div>
   );
-};
+}
 
-export default PrintableComponent;
+export default Test;

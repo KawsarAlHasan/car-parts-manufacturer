@@ -35,10 +35,6 @@ function ReletedProduct({ product }) {
         </p>
         <p className="card-text">Available Quantity: {quantity}</p>
         <p className="card-text">Minimum Order Quantity: {orderQuantity}</p>
-
-        <Button size="sm" variant="primary">
-          PLACE ORDER
-        </Button>
       </div>
     </div>
   );
