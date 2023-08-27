@@ -32,77 +32,82 @@ function App() {
   return (
     <div>
       {/* <Test /> */}
-      <Header></Header>
+      <div>
+        <Header></Header>
+      </div>
+
       {/* <MiniNavbar></MiniNavbar> */}
 
-      <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
-        <Route path="login" element={<Login></Login>}></Route>
-        <Route path="register" element={<Register></Register>}></Route>
+      <div className="c-mt">
+        <Routes>
+          <Route path="/" element={<Home></Home>}></Route>
+          <Route path="login" element={<Login></Login>}></Route>
+          <Route path="register" element={<Register></Register>}></Route>
 
-        <Route
-          path="/purchase/:purchaseId"
-          element={
-            <RequireAuth>
-              <Purchase></Purchase>
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path="/myOrder/:orderId"
-          element={
-            <RequireAuth>
-              <MyOrder></MyOrder>
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path="/wishlist"
-          element={
-            <RequireAuth>
-              <WishList />
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path="/addtocard"
-          element={
-            <RequireAuth>
-              <AddToCard />
-            </RequireAuth>
-          }
-        ></Route>
-        <Route path="/products" element={<AllProducts></AllProducts>}></Route>
-        <Route path="/pants/pants" element={<Pants />}></Route>
-
-        <Route
-          path="/dashboard"
-          element={
-            <RequireAuth>
-              <Dashboard></Dashboard>
-            </RequireAuth>
-          }
-        >
-          <Route index element={<MyProfile></MyProfile>}></Route>
-          <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
-
-          <Route path="manageOrders" element={<ManageOrder />}></Route>
           <Route
-            path="manageOrders/vieworder/:orderId"
-            element={<ViewOrder />}
+            path="/purchase/:purchaseId"
+            element={
+              <RequireAuth>
+                <Purchase></Purchase>
+              </RequireAuth>
+            }
           ></Route>
-
-          <Route path="addParts" element={<AddParts></AddParts>}></Route>
-          <Route path="users" element={<AllUsers></AllUsers>}></Route>
-          <Route path="manageProducts" element={<ManageProducts />}></Route>
           <Route
-            path="manageProducts/viewandedit/:productsId"
-            element={<ViewAndEdit />}
+            path="/myOrder/:orderId"
+            element={
+              <RequireAuth>
+                <MyOrder></MyOrder>
+              </RequireAuth>
+            }
           ></Route>
-        </Route>
+          <Route
+            path="/wishlist"
+            element={
+              <RequireAuth>
+                <WishList />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="/addtocard"
+            element={
+              <RequireAuth>
+                <AddToCard />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route path="/products" element={<AllProducts></AllProducts>}></Route>
+          <Route path="/pants/pants" element={<Pants />}></Route>
 
-        <Route path="/*" element={<NotFound></NotFound>}></Route>
-      </Routes>
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard></Dashboard>
+              </RequireAuth>
+            }
+          >
+            <Route index element={<MyProfile></MyProfile>}></Route>
+            <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
+
+            <Route path="manageOrders" element={<ManageOrder />}></Route>
+            <Route
+              path="manageOrders/vieworder/:orderId"
+              element={<ViewOrder />}
+            ></Route>
+
+            <Route path="addParts" element={<AddParts></AddParts>}></Route>
+            <Route path="users" element={<AllUsers></AllUsers>}></Route>
+            <Route path="manageProducts" element={<ManageProducts />}></Route>
+            <Route
+              path="manageProducts/viewandedit/:productsId"
+              element={<ViewAndEdit />}
+            ></Route>
+          </Route>
+
+          <Route path="/*" element={<NotFound></NotFound>}></Route>
+        </Routes>
+      </div>
       <Footer></Footer>
       <ToastContainer />
     </div>

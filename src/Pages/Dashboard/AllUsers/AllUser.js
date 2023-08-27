@@ -6,7 +6,7 @@ const AllUser = ({ user }) => {
   const { email } = user;
 
   const handleMakeAdmin = (id) => {
-    fetch(`https://manufacturer-server-side.onrender.com/users/admin/${id}`, {
+    fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

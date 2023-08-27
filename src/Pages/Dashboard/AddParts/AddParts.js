@@ -48,7 +48,7 @@ const AddParts = (props) => {
           };
           console.log(parts);
           // save Product
-          const url = `https://manufacturer-server-side.onrender.com/carParts`;
+          const url = `http://localhost:5000/carParts`;
           fetch(url, {
             method: "POST",
             headers: {

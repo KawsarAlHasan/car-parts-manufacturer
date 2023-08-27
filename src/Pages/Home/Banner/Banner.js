@@ -10,7 +10,7 @@ import cs4 from "../../../images/retail-black-friday-small-banner-4-opt.jpg";
 
 const Banner = (props) => {
   return (
-    <div className="container mt-2">
+    <div className="container mt-2 c-z-index">
       <div style={{ height: "75%" }} className="row">
         <div className="col-lg-9">
           <Carousel>

@@ -1,30 +1,25 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-function Test() {
-  const searchHandle = (event) => {
-    console.warn(event.target.value);
+function ScrollComponent() {
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
   };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div>
-      <input
-        type="text"
-        onChange={searchHandle}
-        placeholder="Search products..."
-      />
-      <input
-      // ... input field ...
-      />
-      <ul>
-        {/* {searchResults.map((product) => (
-          <li key={product.id}>
-            {product.name} - {product.description}
-          </li>
-        ))} */}
-      </ul>
+      <h1>Scroll Component</h1>
+      <p>Scroll Y position: {scrollY}px</p>
     </div>
   );
 }
 
-export default Test;
+export default ScrollComponent;
