@@ -24,19 +24,14 @@ import MyOrder from "./Pages/Dashboard/MyOrders/MyOrder";
 import ManageOrder from "./Pages/Dashboard/ManageOrder/ManageOrder";
 import ViewOrder from "./Pages/Dashboard/ManageOrder/ViewOrder";
 import WishList from "./Pages/wishList/WishList";
-// import MiniNavbar from "./Pages/Shared/Header/MiniNavbar";
-// import Test from "./Test";
 import Pants from "./Pages/category/Pants";
 
 function App() {
   return (
     <div>
-      {/* <Test /> */}
       <div>
         <Header></Header>
       </div>
-
-      {/* <MiniNavbar></MiniNavbar> */}
 
       <div className="c-mt">
         <Routes>

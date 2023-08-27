@@ -30,6 +30,7 @@ const AddParts = (props) => {
           const parts = {
             name: data.name,
             category: data.category,
+            subcategory: data.subcategory,
             email: data.email,
             quantity: data.quantity,
             price: data.price,
@@ -48,7 +49,7 @@ const AddParts = (props) => {
           };
           console.log(parts);
           // save Product
-          const url = `http://localhost:5000/carParts`;
+          const url = `https://manufacturer-server-side.onrender.com/carParts`;
           fetch(url, {
             method: "POST",
             headers: {
@@ -226,7 +227,15 @@ const AddParts = (props) => {
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
             <Form.Select {...register("category", { required: true })}>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Select {...register("subcategory", { required: true })}>
               <option value="T-Shirt">T-Shirt</option>
+              <option value="Shirt">Shirt</option>
               <option value="Jacket">Jacket</option>
               <option value="Pants">Pants</option>
             </Form.Select>

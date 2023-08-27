@@ -12,7 +12,9 @@ function ManageOrder() {
   };
 
   const { data: manageOrders, isLoading } = useQuery("manageOrders", () =>
-    fetch("http://localhost:5000/manageOrders").then((res) => res.json())
+    fetch("https://manufacturer-server-side.onrender.com/manageOrders").then(
+      (res) => res.json()
+    )
   );
 
   const handleViewOrder = (id) => {

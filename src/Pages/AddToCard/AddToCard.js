@@ -21,7 +21,7 @@ function AddToCard() {
 
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `http://localhost:5000/addToCard?email=${user?.email}`;
+      const url = `https://manufacturer-server-side.onrender.com/addToCard?email=${user?.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };
@@ -31,7 +31,7 @@ function AddToCard() {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/addToCard/${id}`;
+      const url = `https://manufacturer-server-side.onrender.com/addToCard/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -79,7 +79,7 @@ function AddToCard() {
 
     console.log(confirmOrder);
 
-    const url = `http://localhost:5000/orders`;
+    const url = `https://manufacturer-server-side.onrender.com/orders`;
     fetch(url, {
       method: "POST",
       headers: {

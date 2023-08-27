@@ -7,5 +7,5 @@ test("renders learn react link", () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-// http://localhost:5000
-// http://localhost:5000
+// https://manufacturer-server-side.onrender.com
+// https://manufacturer-server-side.onrender.com

@@ -35,7 +35,7 @@ const Header = (props) => {
 
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `http://localhost:5000/addToCard?email=${user?.email}`;
+      const url = `https://manufacturer-server-side.onrender.com/addToCard?email=${user?.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };

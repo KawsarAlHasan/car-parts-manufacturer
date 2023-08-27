@@ -13,7 +13,7 @@ function MyOrder() {
   console.log(order);
 
   useEffect(() => {
-    const url = `http://localhost:5000/orders/${orderId}`;
+    const url = `https://manufacturer-server-side.onrender.com/orders/${orderId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrder(data));
