@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import axios from "axios";
 
-function ScrollComponent() {
-  const [scrollY, setScrollY] = useState(0);
-
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-  };
-
+function Test() {
+  const [myOrders, setMyOrders] = useState([]);
+  console.log(myOrders);
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const getMyOrders = async () => {
+      const url = `https://manufacturer-server-side.onrender.com/clothes?subCategory=pants`;
+      const { data } = await axios.get(url);
+      setMyOrders(data);
     };
+    getMyOrders();
   }, []);
-
   return (
-    <div>
-      <h1>Scroll Component</h1>
-      <p>Scroll Y position: {scrollY}px</p>
+    <div className="w-50">
+      {/* <Carousel>
+        <div style={{ width: "300px" }}>
+          <img src="https://res.cloudinary.com/daizkkv04/image/upload/v1690075068/t6fzcynqmdomxuiuzfbu.jpg" />
+        </div>
+        <div style={{ width: "300px" }}>
+          <img src="https://res.cloudinary.com/daizkkv04/image/upload/v1690112942/wv9iqyhraqf7r53gfulu.jpg" />
+        </div>
+        <div style={{ width: "300px" }}>
+          <img src="https://res.cloudinary.com/daizkkv04/image/upload/v1690138826/hq6mhznbiujkglfksqwl.jpg" />
+        </div>
+      </Carousel> */}
     </div>
   );
 }
 
-export default ScrollComponent;
+export default Test;

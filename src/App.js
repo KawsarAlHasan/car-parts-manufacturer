@@ -24,7 +24,12 @@ import MyOrder from "./Pages/Dashboard/MyOrders/MyOrder";
 import ManageOrder from "./Pages/Dashboard/ManageOrder/ManageOrder";
 import ViewOrder from "./Pages/Dashboard/ManageOrder/ViewOrder";
 import WishList from "./Pages/wishList/WishList";
-import Pants from "./Pages/category/Pants";
+import Clothes from "./Pages/category/Clothes";
+import SubCategory from "./Pages/subCategory/SubCategory";
+import MiniNavber from "./Pages/Shared/Header/MiniNavber";
+import Test from "./Test";
+import AddCategory from "./Pages/Dashboard/AddCategory/AddCategory";
+import AddSubCategory from "./Pages/Dashboard/AddCategory/AddSubCategory";
 
 function App() {
   return (
@@ -34,6 +39,8 @@ function App() {
       </div>
 
       <div className="c-mt">
+        {/* <Test></Test> */}
+        <MiniNavber />
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="login" element={<Login></Login>}></Route>
@@ -72,8 +79,13 @@ function App() {
             }
           ></Route>
           <Route path="/products" element={<AllProducts></AllProducts>}></Route>
-          <Route path="/pants/pants" element={<Pants />}></Route>
 
+          {/* clothes start */}
+          <Route path="/clothes" element={<Clothes />}></Route>
+          <Route path="/clothes/:subcategory" element={<SubCategory />}></Route>
+          {/* clothes end */}
+
+          {/* dashboard */}
           <Route
             path="/dashboard"
             element={
@@ -92,6 +104,11 @@ function App() {
             ></Route>
 
             <Route path="addParts" element={<AddParts></AddParts>}></Route>
+            <Route path="addCategory" element={<AddCategory />}></Route>
+            <Route
+              path="addCategory/subcategory/:subCategoryId"
+              element={<AddSubCategory />}
+            ></Route>
             <Route path="users" element={<AllUsers></AllUsers>}></Route>
             <Route path="manageProducts" element={<ManageProducts />}></Route>
             <Route

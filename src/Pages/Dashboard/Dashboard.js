@@ -58,6 +58,14 @@ const Dashboard = (props) => {
                   <Nav.Item>
                     <Nav.Link
                       className="bg-secondary text-light mb-3"
+                      href="/dashboard/addCategory"
+                    >
+                      ADD CATEGORY
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      className="bg-secondary text-light mb-3"
                       href="/dashboard/manageProducts"
                     >
                       MANAGE PRODUCTS

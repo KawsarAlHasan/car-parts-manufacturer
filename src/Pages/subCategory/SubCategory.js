@@ -1,22 +1,32 @@
-import React, { useState } from "react";
-import UseParts from "../Shared/Hooks/UseParts";
-import LoadingImage from "../../images/loading.gif";
-import "../Home/Parts/Parts.css";
-import { Accordion, Card, Form, Placeholder } from "react-bootstrap";
-import AllProduct from "./AllProduct";
+import React, { useEffect, useState } from "react";
+import { Accordion, Badge, Form } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../Shared/Loading/Loading";
 
-function AllProducts() {
-  const [parts, isLoading] = UseParts();
+function SubCategory() {
+  const { subcategory } = useParams();
   const [searchValue, setSearchValue] = useState("");
   let lowercaseValue = searchValue.toLowerCase();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(
+      `https://manufacturer-server-side.onrender.com/clothes?subCategory=${subcategory}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setIsLoading(false);
+      });
+  }, [subcategory]);
 
   const handleSearch = (even) => {
-    even.preventDefault();
-  };
-  const filterCategory = (even) => {
     even.preventDefault();
   };
   const filterGenter = (even) => {
@@ -31,109 +41,6 @@ function AllProducts() {
 
   const filterProduct = (
     <>
-      {/* price range  */}
-      {/* <Card>
-        <Card.Body>
-          <Card.Title>Price Range</Card.Title>
-          <Form.Control
-            className="d-inline"
-            type="number"
-            placeholder="min"
-            style={{ width: "40%", marginRight: "5px" }}
-          />
-          <Form.Control
-            className="d-inline"
-            type="number"
-            placeholder="max"
-            style={{ width: "40%", marginRight: "5px" }}
-          />
-          <Button className="d-inline" variant="primary">
-            C
-          </Button>
-        </Card.Body>
-      </Card> */}
-
-      {/* category  */}
-      <Accordion className="mt-2" defaultActiveKey="0">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>
-            <b>Category</b>
-          </Accordion.Header>
-          <Accordion.Body>
-            <form onSubmit={filterCategory}>
-              <div className="d-flex">
-                <Form.Check
-                  label="Pant"
-                  name="group1"
-                  type="radio"
-                  value="pant"
-                  onClick={(e) => setSearchValue(e.target.value)}
-                  id={`inline-radio-1`}
-                />
-                <Form.Check
-                  className="costum-left36"
-                  label="Shirt"
-                  name="group1"
-                  type="radio"
-                  value="shirt"
-                  onClick={(e) => setSearchValue(e.target.value)}
-                  id={`inline-radio-1`}
-                />
-              </div>
-              <div className="d-flex">
-                <Form.Check
-                  label="Jacket"
-                  name="group1"
-                  type="radio"
-                  value="jacket"
-                  onClick={(e) => setSearchValue(e.target.value)}
-                  id={`inline-radio-2`}
-                />
-
-                <Form.Check
-                  className="mx-4"
-                  label="T-Shirt"
-                  name="group1"
-                  type="radio"
-                  value="t-shirt"
-                  onClick={(e) => setSearchValue(e.target.value)}
-                  id={`inline-radio-1`}
-                />
-              </div>
-              <div className="d-flex">
-                <Form.Check
-                  label="Punjabi"
-                  name="group1"
-                  type="radio"
-                  value="punjabi"
-                  onClick={(e) => setSearchValue(e.target.value)}
-                  id={`inline-radio-2`}
-                />
-                <Form.Check
-                  className="mx-3"
-                  label="Three Pieces"
-                  name="group1"
-                  type="radio"
-                  value="three pieces"
-                  onClick={(e) => setSearchValue(e.target.value)}
-                  id={`inline-radio-2`}
-                />
-              </div>
-              <div className="d-flex">
-                <Form.Check
-                  label="Sharee/Benarasi"
-                  name="group1"
-                  type="radio"
-                  value="sharee benarasi"
-                  onClick={(e) => setSearchValue(e.target.value)}
-                  id={`inline-radio-2`}
-                />
-              </div>
-            </form>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-
       {/* gender */}
       <Accordion className="mt-2" defaultActiveKey="0">
         <Accordion.Item eventKey="0">
@@ -253,6 +160,11 @@ function AllProducts() {
     </>
   );
 
+  const navigate = useNavigate();
+  const parchase = (id) => {
+    navigate(`/purchase/${id}`);
+  };
+
   return (
     <div className="container">
       {/* search input */}
@@ -264,7 +176,7 @@ function AllProducts() {
           >
             <Form.Control
               type="search"
-              placeholder="Product Search..."
+              placeholder={`${subcategory} Search...`}
               className="w-75"
               aria-label="Search"
               value={searchValue}
@@ -314,61 +226,62 @@ function AllProducts() {
           <div className="parts-container">
             {isLoading ? (
               <>
-                <Card style={{ width: "20rem" }}>
-                  <Card.Img variant="top" src={LoadingImage} />
-                  <Card.Body>
-                    <Placeholder as={Card.Title} animation="glow">
-                      <Placeholder xs={6} />
-                    </Placeholder>
-                    <Placeholder as={Card.Text} animation="glow">
-                      <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                      <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                      <Placeholder xs={8} />
-                    </Placeholder>
-                    <Placeholder.Button variant="primary" xs={6} />
-                  </Card.Body>
-                </Card>
-                <Card style={{ width: "20rem" }}>
-                  <Card.Img variant="top" src={LoadingImage} />
-                  <Card.Body>
-                    <Placeholder as={Card.Title} animation="glow">
-                      <Placeholder xs={6} />
-                    </Placeholder>
-                    <Placeholder as={Card.Text} animation="glow">
-                      <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                      <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                      <Placeholder xs={8} />
-                    </Placeholder>
-                    <Placeholder.Button variant="primary" xs={6} />
-                  </Card.Body>
-                </Card>
-                <Card style={{ width: "20rem" }}>
-                  <Card.Img variant="top" src={LoadingImage} />
-                  <Card.Body>
-                    <Placeholder as={Card.Title} animation="glow">
-                      <Placeholder xs={6} />
-                    </Placeholder>
-                    <Placeholder as={Card.Text} animation="glow">
-                      <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                      <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                      <Placeholder xs={8} />
-                    </Placeholder>
-                    <Placeholder.Button variant="primary" xs={6} />
-                  </Card.Body>
-                </Card>
+                <Loading />
               </>
+            ) : products.length === 0 ? (
+              <h2 className="text-center">
+                Sorry, we can not find this product 😞
+              </h2>
             ) : (
-              parts
+              products
                 .filter(
-                  (part) =>
-                    part.name.toLowerCase().includes(lowercaseValue) ||
-                    part.category.toLowerCase().includes(lowercaseValue) ||
-                    part.age.toLowerCase().includes(lowercaseValue) ||
-                    part.gender.toLowerCase().includes(lowercaseValue) ||
-                    part.availability.toLowerCase().includes(lowercaseValue)
+                  (product) =>
+                    product.name.toLowerCase().includes(lowercaseValue) ||
+                    product.age.toLowerCase().includes(lowercaseValue) ||
+                    product.gender.toLowerCase().includes(lowercaseValue) ||
+                    product.availability.toLowerCase().includes(lowercaseValue)
                 )
-                .map((part) => (
-                  <AllProduct key={part._id} part={part}></AllProduct>
+                .map((product) => (
+                  <div
+                    onClick={() => parchase(product._id)}
+                    className="shadow-lg card custom-card  pb-3"
+                    style={{ borderRadius: "30px" }}
+                  >
+                    <img
+                      style={{
+                        borderRadius: "30px 30px  0 0",
+                        height: "300px",
+                      }}
+                      src={product.img}
+                      alt=""
+                    />
+                    <Badge className="discount" pill bg="primary">
+                      Save:{" "}
+                      <span style={{ fontSize: "15px", fontWeight: "1000" }}>
+                        &#2547;
+                      </span>
+                      455
+                    </Badge>
+                    <div className="card-body ">
+                      <h5 className="card-title">{product.name}</h5>
+                      <p className="card-text">
+                        Price:
+                        <b style={{ color: "#ef4a23", marginRight: "5px" }}>
+                          <span className="taka">&#2547;</span>
+                          {product.salePrice}
+                        </b>
+                        <span className="text-decoration-line-through">
+                          {product.price}
+                        </span>
+                      </p>
+                      <p className="card-text">
+                        Available Quantity: {product.quantity}
+                      </p>
+                      <p className="card-text">
+                        Minimum Order Quantity: {product.orderQuantity}
+                      </p>
+                    </div>
+                  </div>
                 ))
             )}
           </div>
@@ -378,4 +291,4 @@ function AllProducts() {
   );
 }
 
-export default AllProducts;
+export default SubCategory;
