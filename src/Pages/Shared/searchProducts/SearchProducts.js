@@ -40,6 +40,7 @@ function SearchProducts({ inputValue }) {
                   (part) =>
                     part.name.toLowerCase().includes(lowercaseValue) ||
                     part.category.toLowerCase().includes(lowercaseValue) ||
+                    part.subcategory.toLowerCase().includes(lowercaseValue) ||
                     part.age.toLowerCase().includes(lowercaseValue) ||
                     part.gender.toLowerCase().includes(lowercaseValue) ||
                     part.availability.toLowerCase().includes(lowercaseValue)

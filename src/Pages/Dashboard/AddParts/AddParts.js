@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Form from "react-bootstrap/Form";
+import { useQuery } from "react-query";
 
 const AddParts = (props) => {
   const {
@@ -11,6 +12,16 @@ const AddParts = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [selectedCategory, setSelectCategory] = useState("");
+  const handleSelectCategory = (event) => {
+    setSelectCategory(event.target.value);
+  };
+
+  const [selectedSubCategory, setSelectSubCategory] = useState("");
+  const handleSubSelectCategory = (event) => {
+    setSelectSubCategory(event.target.value);
+  };
 
   const onSubmit = async (data) => {
     const image = data.image[0];
@@ -41,8 +52,9 @@ const AddParts = (props) => {
             gender: data.gender,
             age: data.age,
             size: data.size,
-            customize: data.customize,
+            customSize: data.customSize,
             colorfamily: data.colorfamily,
+            cColorfamily: data.cColorfamily,
             brand: data.brand,
             availability: data.availability,
             img: imgData.secure_url,
@@ -67,6 +79,32 @@ const AddParts = (props) => {
         }
       });
   };
+
+  const {
+    data: category,
+    isLoading,
+    refetch,
+  } = useQuery("category", () =>
+    fetch("https://manufacturer-server-side.onrender.com/category").then(
+      (res) => res.json()
+    )
+  );
+
+  const [subcategory, setSubCategory] = useState([]);
+  const [isLoading2, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(
+      `https://manufacturer-server-side.onrender.com/subcategory/search?category=${selectedCategory}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+        setSubCategory(data);
+        setIsLoading(false);
+      });
+  }, [selectedCategory]);
 
   const [user] = useAuthState(auth);
   return (
@@ -176,19 +214,37 @@ const AddParts = (props) => {
             <div key={`inline-radio`} className="mb-3">
               <Form.Check
                 inline
-                label="Men"
+                label="Men's"
                 name="group1"
                 type="radio"
-                value="Men"
+                value="Men's"
                 id={`inline-radio-1`}
                 {...register("gender", { required: true })}
               />
               <Form.Check
                 inline
-                label="Woman"
+                label="Women's"
                 name="group1"
                 type="radio"
-                value="Woman"
+                value="Women's"
+                id={`inline-radio-2`}
+                {...register("gender", { required: true })}
+              />
+              <Form.Check
+                inline
+                label="Boy's"
+                name="group1"
+                type="radio"
+                value="Boy's"
+                id={`inline-radio-2`}
+                {...register("gender", { required: true })}
+              />
+              <Form.Check
+                inline
+                label="Girl's"
+                name="group1"
+                type="radio"
+                value="Girl's"
                 id={`inline-radio-2`}
                 {...register("gender", { required: true })}
               />
@@ -223,23 +279,40 @@ const AddParts = (props) => {
             </Form.Group>
           </div>
 
-          {/* Category  */}
-          <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
-            <Form.Select {...register("category", { required: true })}>
-              <option value="Electronics">Electronics</option>
-              <option value="Fashion">Fashion</option>
-            </Form.Select>
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Category</Form.Label>
-            <Form.Select {...register("subcategory", { required: true })}>
-              <option value="T-Shirt">T-Shirt</option>
-              <option value="Shirt">Shirt</option>
-              <option value="Jacket">Jacket</option>
-              <option value="Pants">Pants</option>
-            </Form.Select>
-          </Form.Group>
+          {/* category and sub category  */}
+          <div className="d-flex">
+            <Form.Group className="mb-3">
+              <Form.Label>Category</Form.Label>
+              <Form.Select
+                {...register("category")}
+                value={selectedCategory}
+                onChange={handleSelectCategory}
+              >
+                <option value="">Select an Category</option>
+                {category?.map((ctg) => (
+                  <option key={ctg._id} value={ctg.category}>
+                    {ctg.category}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3 mx-3">
+              <Form.Label>Sub Category</Form.Label>
+              <Form.Select
+                {...register("subcategory")}
+                value={selectedSubCategory}
+                onChange={handleSubSelectCategory}
+              >
+                <option value="">Select an Sub Category</option>
+                {subcategory?.map((sCtg) => (
+                  <option key={sCtg._id} value={sCtg.subcategory}>
+                    {sCtg.subcategory}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          </div>
 
           {/* size  */}
           <Form.Group className="mb-3">
@@ -281,7 +354,7 @@ const AddParts = (props) => {
                 <Form.Control
                   type="text"
                   placeholder="Custom Size Number"
-                  {...register("customize")}
+                  {...register("customSize")}
                 />
               </div>
             </div>
@@ -291,7 +364,7 @@ const AddParts = (props) => {
           <Form.Group className="mb-3">
             <Form.Label>Color Family</Form.Label>
             <div className="row">
-              <div className="col-4">
+              <div className="col-3">
                 <Form.Check
                   className="mx-2"
                   {...register("colorfamily")}
@@ -314,7 +387,7 @@ const AddParts = (props) => {
                   label={"Green"}
                 />
               </div>
-              <div className="col-4">
+              <div className="col-3">
                 <Form.Check
                   className="mx-2"
                   {...register("colorfamily")}
@@ -337,7 +410,7 @@ const AddParts = (props) => {
                   label={"Black"}
                 />
               </div>
-              <div className="col-4">
+              <div className="col-3">
                 <Form.Check
                   className="mx-2"
                   {...register("colorfamily")}
@@ -361,6 +434,12 @@ const AddParts = (props) => {
                 />
               </div>
             </div>
+            <Form.Control
+              className="w-50"
+              type="text"
+              placeholder="Custom Color..."
+              {...register("cColorfamily")}
+            />
           </Form.Group>
 
           {/* availability and brand  */}

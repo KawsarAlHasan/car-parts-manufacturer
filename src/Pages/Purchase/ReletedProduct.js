@@ -15,7 +15,7 @@ function ReletedProduct({ product }) {
   return (
     <div
       onClick={() => parchase(_id)}
-      className="shadow-lg card custom-card mb-3 pb-3"
+      className="shadow-lg card custom-card mb-3 pb-3 w-75"
       style={{ borderRadius: "30px" }}
     >
       <img

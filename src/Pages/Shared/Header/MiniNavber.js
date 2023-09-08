@@ -171,9 +171,6 @@ function MiniNavber() {
             <Link class="coustom-mini-nav" to="/aboutUs">
               About Us
             </Link>
-            <Link class="coustom-mini-nav" to="/contactUs">
-              Contact Us
-            </Link>
             <Link class="coustom-mini-nav" to="/privacyPolicy">
               Privacy Policy
             </Link>

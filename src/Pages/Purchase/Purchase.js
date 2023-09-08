@@ -5,9 +5,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { toast } from "react-toastify";
 import UseParts from "../Shared/Hooks/UseParts";
-import LoadingImage from "../../images/loading.gif";
 import ReletedProduct from "./ReletedProduct";
 import RatingsReviews from "./RatingsReviews";
+import Loading from "../Shared/Loading/Loading";
 
 const Purchase = (props) => {
   const [parts, isLoading] = UseParts();
@@ -35,7 +35,7 @@ const Purchase = (props) => {
       .then((data) => setPurchase(data));
   }, [purchaseId]);
 
-  const categoryFilter = purchase.category;
+  let lowercaseValue = purchase?.subcategory.toLowerCase();
 
   const handlePurchase = (even) => {
     even.preventDefault();
@@ -104,6 +104,14 @@ const Purchase = (props) => {
               pill
               bg="success"
             >
+              Sub Category: {purchase.subcategory}
+            </Badge>
+            <Badge
+              className="px-3 py-2 costum-margin-right"
+              inline
+              pill
+              bg="success"
+            >
               Brand: {purchase.brand}
             </Badge>
             <Badge
@@ -148,7 +156,8 @@ const Purchase = (props) => {
               Color Family:{" "}
               {purchase.colorfamily
                 ? purchase.colorfamily?.map((cf, i) => <b key={i}>{cf}, </b>)
-                : "All Sizes Available"}
+                : "All Colors Available"}
+              {purchase.cColorfamily}
             </h6>
             <h6>
               Size:{" "}
@@ -218,29 +227,15 @@ const Purchase = (props) => {
             Related <span className="text-danger">Products</span>
           </h2>
           {isLoading ? (
-            <>
-              <Card style={{ width: "20rem" }}>
-                <Card.Img variant="top" src={LoadingImage} />
-                <Card.Body>
-                  <Placeholder as={Card.Title} animation="glow">
-                    <Placeholder xs={6} />
-                  </Placeholder>
-                  <Placeholder as={Card.Text} animation="glow">
-                    <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                    <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                    <Placeholder xs={8} />
-                  </Placeholder>
-                  <Placeholder.Button variant="primary" xs={6} />
-                </Card.Body>
-              </Card>
-            </>
+            <Loading />
           ) : (
             parts
               .filter(
-                (product) =>
-                  product.name.toLowerCase().includes(categoryFilter) ||
-                  product.category.includes(categoryFilter)
+                (part) =>
+                  part.name.toLowerCase().includes(lowercaseValue) ||
+                  part.subcategory.toLowerCase().includes(lowercaseValue)
               )
+              .slice(0, 10)
               .map((product) => (
                 <ReletedProduct
                   key={product._id}

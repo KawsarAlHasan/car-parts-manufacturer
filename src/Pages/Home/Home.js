@@ -18,8 +18,8 @@ const Home = (props) => {
           activities are open and operationa
         </marquee>
       </div>
-      <Category />
       <Parts></Parts>
+      <Category />
       <BusinessSummary></BusinessSummary>
       <Reviews></Reviews>
       <LatestNews></LatestNews>
