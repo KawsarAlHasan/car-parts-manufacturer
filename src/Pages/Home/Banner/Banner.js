@@ -10,7 +10,7 @@ import cs4 from "../../../images/retail-black-friday-small-banner-4-opt.jpg";
 
 const Banner = (props) => {
   return (
-    <div className="container mt-2 c-z-index">
+    <div className="container mt-2">
       <div style={{ height: "75%" }} className="row">
         <div className="col-lg-9">
           <Carousel>
@@ -39,10 +39,10 @@ const Banner = (props) => {
             </Carousel.Item>
           </Carousel>
         </div>
-        <div className="col-lg-3">
-          <h1 className="text-center mt-5 pb-4">
+        <div className="col-lg-3 d-none d-lg-block">
+          <h2 className="text-center mt-5 pb-4">
             Cooming <span className="text-danger">Soon...</span>
-          </h1>
+          </h2>
           <div className="row">
             <div className="col-6">
               <img src={cs1} className="img-fluid" alt="" />

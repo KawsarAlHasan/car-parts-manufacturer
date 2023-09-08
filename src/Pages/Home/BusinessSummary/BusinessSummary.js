@@ -3,9 +3,9 @@ import React from "react";
 const BusinessSummary = (props) => {
   return (
     <div className="text-center">
-      <h1 className="py-4">
+      <h2 className="py-4">
         Millions <span className="text-danger">Business Trust</span> Us
-      </h1>
+      </h2>
       <div className="product-container-main container gap-3">
         <div className="shadow">
           <i className="fa-solid fa-users fa-4x text-info m-4 mx-5"></i>

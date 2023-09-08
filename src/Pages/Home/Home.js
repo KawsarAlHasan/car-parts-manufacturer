@@ -5,6 +5,7 @@ import Faqs from "./Faqs/Faqs";
 import LatestNews from "./LatestNews/LatestNews";
 import Parts from "./Parts/Parts";
 import Reviews from "./Reviews/Reviews";
+import Category from "./category/Category";
 
 const Home = (props) => {
   return (
@@ -17,6 +18,7 @@ const Home = (props) => {
           activities are open and operationa
         </marquee>
       </div>
+      <Category />
       <Parts></Parts>
       <BusinessSummary></BusinessSummary>
       <Reviews></Reviews>

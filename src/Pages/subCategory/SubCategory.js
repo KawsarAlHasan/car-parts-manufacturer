@@ -176,7 +176,7 @@ function SubCategory() {
           >
             <Form.Control
               type="search"
-              placeholder={`${subcategory} Search...`}
+              placeholder={`Only ${subcategory} Search...`}
               className="w-75"
               aria-label="Search"
               value={searchValue}

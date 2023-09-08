@@ -11,9 +11,10 @@ const Parts = (props) => {
 
   return (
     <div>
-      <h1 className="text-center custom-margin-top-10 pb-4">
-        Products <span className="text-danger">Items</span>
-      </h1>
+      <h2 className="text-center custom-margin-top-10">
+        Featured <span className="text-danger">Products</span>
+      </h2>
+      <h6 className="text-center mb-4">Check & Get Your Desired Product!</h6>
 
       <div className="container product-container-main">
         {isLoading ? (
@@ -63,7 +64,7 @@ const Parts = (props) => {
           </>
         ) : (
           parts
-            .slice(0, 8)
+            .slice(0, 10)
             .map((part) => <Part key={part._id} part={part}></Part>)
         )}
       </div>

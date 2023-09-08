@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./Pages/Home/Home";
@@ -30,21 +30,34 @@ import MiniNavber from "./Pages/Shared/Header/MiniNavber";
 import Test from "./Test";
 import AddCategory from "./Pages/Dashboard/AddCategory/AddCategory";
 import AddSubCategory from "./Pages/Dashboard/AddCategory/AddSubCategory";
+import { useState } from "react";
+import SearchProducts from "./Pages/Shared/searchProducts/SearchProducts";
 
 function App() {
+  const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState("");
+  const handleSearch = (searchTerm) => {
+    setInputValue(searchTerm);
+    if (searchTerm.length >= 0) {
+      navigate("/search-products");
+    }
+  };
   return (
     <div>
       <div>
-        <Header></Header>
+        {/* <Test onSearch={handleSearch}></Test> */}
+        <Header onSearch={handleSearch}></Header>
       </div>
-
-      <div className="c-mt">
-        {/* <Test></Test> */}
+      <div>
         <MiniNavber />
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="login" element={<Login></Login>}></Route>
           <Route path="register" element={<Register></Register>}></Route>
+          <Route
+            path="search-products"
+            element={<SearchProducts inputValue={inputValue}></SearchProducts>}
+          ></Route>
 
           <Route
             path="/purchase/:purchaseId"

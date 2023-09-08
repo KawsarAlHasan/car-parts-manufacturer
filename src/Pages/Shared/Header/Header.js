@@ -1,12 +1,4 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Container,
-  Form,
-  InputGroup,
-  Nav,
-  Navbar,
-} from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import profile from "../../../images/profile-logo.png";
@@ -14,21 +6,37 @@ import Logo from "../../../images/20230722_163020.png";
 import searchImage from "../../../images/search-512.png";
 import heart from "../../../images/icon/heart-regular.svg";
 import cart from "../../../images/icon/cart-shopping-solid.svg";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { useForm } from "react-hook-form";
-import UseParts from "../Hooks/UseParts";
-import SearchProducts from "./SearchProducts";
+import "./Header.css";
 
-const Header = (props) => {
-  const [parts, isLoading] = UseParts();
-  const [searchValue, setSearchValue] = useState("");
+const Header = ({ onSearch }) => {
+  const [isSticky, setIsSticky] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+
   const [user] = useAuthState(auth);
 
   const [myOrders, setMyOrders] = useState([]);
@@ -42,92 +50,54 @@ const Header = (props) => {
     getMyOrders();
   }, [user]);
 
-  const onSubmit = (data) => {
-    const key = data.name;
-    let lowercaseValue = key.toLowerCase();
-    const products = (
-      <div className="container">
-        <div className="product-container-main">
-          {parts
-            .filter(
-              (part) =>
-                part.name.toLowerCase().includes(lowercaseValue) ||
-                part.category.toLowerCase().includes(lowercaseValue) ||
-                part.age.toLowerCase().includes(lowercaseValue) ||
-                part.gender.toLowerCase().includes(lowercaseValue) ||
-                part.availability.toLowerCase().includes(lowercaseValue)
-            )
-            .map((part) => (
-              <div className="" key={part._id}>
-                {console.log(part)}
-                <SearchProducts part={part}></SearchProducts>
-              </div>
-            ))}
-        </div>
-      </div>
-    );
-    setSearchValue(products);
+  const [isToggled, setIsToggled] = useState(false);
+
+  const toggleButton = () => {
+    setIsToggled(!isToggled);
   };
 
   return (
     <div className="sticky-element">
-      <Navbar
-        fixed="top"
-        collapseOnSelect
-        expand="lg"
-        bg="light"
-        variant="light"
-      >
-        <Container>
-          <Navbar.Brand href="/">
-            <img
-              alt=""
-              src={Logo}
-              width="99"
-              height="35"
-              className="d-inline-block align-top"
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto"></Nav>
-            <Nav>
-              <Form inline onSubmit={handleSubmit(onSubmit)}>
-                <InputGroup>
-                  <Form.Control
-                    type="text"
-                    placeholder="Search Product"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                    {...register("name", { required: "required" })}
-                  />
-                  <Button type="submit">
-                    <img
-                      style={{ height: "21px", width: "21px" }}
-                      src={searchImage}
-                      alt=""
-                    />
-                  </Button>
-                </InputGroup>
-              </Form>
+      <div className="c-w-100">
+        <div className={` ${isSticky ? "sticky" : ""}`}>
+          <div className="container">
+            <nav className="c-navbar">
+              <div className="c-navbar-brand">
+                <a href="/">
+                  <img alt="" src={Logo} className="c-navbar-logo" />
+                </a>
+              </div>
+              <ul className="c-navbar-nav mt-3">
+                {user && (
+                  <>
+                    <form
+                      className="search-input-container mx-2 d-none d-md-block"
+                      onSubmit={handleSubmit2}
+                    >
+                      <input
+                        type="text"
+                        placeholder="Search"
+                        className="search-input"
+                        value={searchTerm}
+                        onChange={handleInputChange}
+                      />
 
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link" href="/">
-                    HOME
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/products">
-                    ALL PRODUCTS
-                  </a>
-                </li>
-              </ul>
-
-              {user && (
-                <>
-                  <ul className="navbar-nav">
-                    <li className="nav-item">
+                      <img
+                        className="search-icon"
+                        style={{ height: "21px", width: "21px" }}
+                        src={searchImage}
+                        alt=""
+                      />
+                    </form>
+                    <div className="d-md-none mx-2">
+                      <img
+                        onClick={toggleButton}
+                        style={{ height: "30px", width: "30px" }}
+                        src={searchImage}
+                        alt=""
+                      />
+                    </div>
+                    <li className="d-none d-lg-block">
                       <a
                         title="Wish List"
                         className="nav-link"
@@ -143,7 +113,7 @@ const Header = (props) => {
                         />
                       </a>
                     </li>
-                    <li className="nav-item">
+                    <li className="">
                       <a
                         title="My Cart"
                         className="nav-link custom-relative"
@@ -162,8 +132,7 @@ const Header = (props) => {
                         </p>
                       </a>
                     </li>
-
-                    <li className="nav-item">
+                    <li>
                       <a
                         title="My Profile"
                         className="nav-link"
@@ -180,28 +149,76 @@ const Header = (props) => {
                         />
                       </a>
                     </li>
-                  </ul>
-                </>
-              )}
-              {!user && (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/LOGIN">
-                      LOGIN
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/register">
-                      REGISTER
-                    </Link>
-                  </li>
-                </>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      {searchValue ? <div className="fixed-element">{searchValue}</div> : ""}
+                  </>
+                )}
+                {!user && (
+                  <>
+                    <form
+                      className="search-input-container mx-2 d-none d-md-block"
+                      onSubmit={handleSubmit2}
+                    >
+                      <input
+                        type="text"
+                        placeholder="Search Products..."
+                        className="search-input"
+                        value={searchTerm}
+                        onChange={handleInputChange}
+                      />
+
+                      <img
+                        className="search-icon"
+                        style={{ height: "21px", width: "21px" }}
+                        src={searchImage}
+                        alt=""
+                      />
+                    </form>
+
+                    <div className="d-md-none mx-2">
+                      <img
+                        onClick={toggleButton}
+                        style={{ height: "30px", width: "30px" }}
+                        src={searchImage}
+                        alt=""
+                      />
+                    </div>
+
+                    <li>
+                      <a className="nav-link" href="/login">
+                        LOGIN
+                      </a>
+                    </li>
+                    <li>
+                      <a className="nav-link" href="/register">
+                        REGISTER
+                      </a>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </nav>
+          </div>
+          {isToggled && (
+            <form
+              className="search-input-container mx-2"
+              onSubmit={handleSubmit2}
+            >
+              <input
+                type="text"
+                placeholder="Search Products..."
+                className="search-input"
+                value={searchTerm}
+                onChange={handleInputChange}
+              />
+              <img
+                className="search-icon"
+                style={{ height: "21px", width: "21px" }}
+                src={searchImage}
+                alt=""
+              />
+            </form>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

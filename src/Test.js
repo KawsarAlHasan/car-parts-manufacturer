@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import axios from "axios";
+// SearchForm.js
+import React, { useState } from "react";
 
-function Test() {
-  const [myOrders, setMyOrders] = useState([]);
-  console.log(myOrders);
-  useEffect(() => {
-    const getMyOrders = async () => {
-      const url = `https://manufacturer-server-side.onrender.com/clothes?subCategory=pants`;
-      const { data } = await axios.get(url);
-      setMyOrders(data);
-    };
-    getMyOrders();
-  }, []);
+function SearchForm({ onSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+
   return (
-    <div className="w-50">
-      {/* <Carousel>
-        <div style={{ width: "300px" }}>
-          <img src="https://res.cloudinary.com/daizkkv04/image/upload/v1690075068/t6fzcynqmdomxuiuzfbu.jpg" />
-        </div>
-        <div style={{ width: "300px" }}>
-          <img src="https://res.cloudinary.com/daizkkv04/image/upload/v1690112942/wv9iqyhraqf7r53gfulu.jpg" />
-        </div>
-        <div style={{ width: "300px" }}>
-          <img src="https://res.cloudinary.com/daizkkv04/image/upload/v1690138826/hq6mhznbiujkglfksqwl.jpg" />
-        </div>
-      </Carousel> */}
-    </div>
+    <form className="search-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
+      <button type="submit">Search</button>
+    </form>
   );
 }
 
-export default Test;
+export default SearchForm;

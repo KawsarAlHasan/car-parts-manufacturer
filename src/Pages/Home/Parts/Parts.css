@@ -6,8 +6,12 @@
 
 .product-container-main{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
+}
+
+.c-m-0{
+    margin: 0 !important;
 }
 
 /*make inventoryItems responsive*/
@@ -16,7 +20,7 @@
         grid-template-columns: repeat(1, 1fr);
     }
     .product-container-main{
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -26,12 +30,12 @@
         grid-template-columns: repeat(2, 1fr);
     }
     .product-container-main{
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (min-width:993px) and (max-width:1200px) {
     .product-container-main{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }

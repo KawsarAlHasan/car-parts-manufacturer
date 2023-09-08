@@ -83,9 +83,9 @@ const Purchase = (props) => {
         </div>
 
         <div className="col-md-6 my-3">
-          <h1 className="text-center">
+          <h2 className="text-center">
             Product <span className="text-danger">Details</span>
-          </h1>
+          </h2>
           <div className="mx-4">
             <h4>
               Name: <b>{purchase.name}</b>
