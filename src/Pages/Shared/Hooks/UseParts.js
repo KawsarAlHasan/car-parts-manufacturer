@@ -4,6 +4,7 @@ const UseParts = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [parts, setParts] = useState([]);
+  const products = [...parts].reverse();
 
   useEffect(() => {
     setIsLoading(true);
@@ -14,7 +15,7 @@ const UseParts = () => {
         setIsLoading(false);
       });
   }, []);
-  return [parts, isLoading, setParts];
+  return [products, isLoading, setParts];
 };
 
 export default UseParts;

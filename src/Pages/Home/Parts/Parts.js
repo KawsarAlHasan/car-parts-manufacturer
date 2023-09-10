@@ -1,13 +1,12 @@
 import React from "react";
 import UseParts from "../../Shared/Hooks/UseParts";
-import LoadingImage from "../../../images/loading.gif";
 import Part from "./Part/Part";
 import "./Parts.css";
-import { Card, Placeholder } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 
 const Parts = (props) => {
-  const [parts, isLoading] = UseParts();
+  const [products, isLoading] = UseParts();
 
   return (
     <div>
@@ -18,54 +17,11 @@ const Parts = (props) => {
 
       <div className="container product-container-main">
         {isLoading ? (
-          <>
-            <Card style={{ width: "20rem" }}>
-              <Card.Img variant="top" src={LoadingImage} />
-              <Card.Body>
-                <Placeholder as={Card.Title} animation="glow">
-                  <Placeholder xs={6} />
-                </Placeholder>
-                <Placeholder as={Card.Text} animation="glow">
-                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                  <Placeholder xs={8} />
-                </Placeholder>
-                <Placeholder.Button variant="primary" xs={6} />
-              </Card.Body>
-            </Card>
-            <Card style={{ width: "20rem" }}>
-              <Card.Img variant="top" src={LoadingImage} />
-              <Card.Body>
-                <Placeholder as={Card.Title} animation="glow">
-                  <Placeholder xs={6} />
-                </Placeholder>
-                <Placeholder as={Card.Text} animation="glow">
-                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                  <Placeholder xs={8} />
-                </Placeholder>
-                <Placeholder.Button variant="primary" xs={6} />
-              </Card.Body>
-            </Card>
-            <Card style={{ width: "20rem" }}>
-              <Card.Img variant="top" src={LoadingImage} />
-              <Card.Body>
-                <Placeholder as={Card.Title} animation="glow">
-                  <Placeholder xs={6} />
-                </Placeholder>
-                <Placeholder as={Card.Text} animation="glow">
-                  <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                  <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                  <Placeholder xs={8} />
-                </Placeholder>
-                <Placeholder.Button variant="primary" xs={6} />
-              </Card.Body>
-            </Card>
-          </>
+          <Loading />
         ) : (
-          parts
+          products
             .slice(0, 10)
-            .map((part) => <Part key={part._id} part={part}></Part>)
+            .map((product) => <Part key={product._id} part={product}></Part>)
         )}
       </div>
       <div className="container my-3 text-end">

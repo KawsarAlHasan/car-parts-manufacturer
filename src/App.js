@@ -45,9 +45,9 @@ function App() {
   return (
     <div>
       <div>
-        {/* <Test onSearch={handleSearch}></Test> */}
         <Header onSearch={handleSearch}></Header>
       </div>
+      {/* <Test></Test> */}
       <div>
         <MiniNavber />
         <Routes>

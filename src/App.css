@@ -188,3 +188,9 @@
   background-color: rgb(58, 142, 58);
 }
 
+
+.cursor-not-allowed{
+cursor: not-allowed;
+}
+
+

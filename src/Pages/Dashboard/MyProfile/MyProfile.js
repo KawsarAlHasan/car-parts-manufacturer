@@ -4,7 +4,7 @@ import auth from "../../../firebase.init";
 import profile from "../../../images/profile-logo.png";
 import camera from "../../../images/camera.png";
 import nobody from "../../../images/nobody.png";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 const MyProfile = (props) => {
@@ -39,9 +39,11 @@ const MyProfile = (props) => {
       );
       const urlData = await res.json();
       setUploadingImg(false);
+      window.location.reload(false);
       return urlData.url;
     } catch (error) {
       setUploadingImg(false);
+      window.location.reload(false);
       console.log(error);
     }
   }
@@ -53,19 +55,21 @@ const MyProfile = (props) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // if (!image ) return alert("Please upload your profile picture");
     const url1 = await uploadImage(image);
     const url = url1 || user.photoURL;
-    await updateProfile({ displayName: data.name, photoURL: url });
+    await updateProfile({ photoURL: url });
   };
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  console.log(user);
+
   return (
     <div>
-      <div className="custom-relative">
+      <div className="text-center custom-relative mt-2">
         <img
           src={user.photoURL || profile}
           style={{
@@ -87,50 +91,54 @@ const MyProfile = (props) => {
         />
       </div>
 
-      <p>{user.displayName}</p>
-
-      {/* test  */}
-      <>
-        <Modal show={show} onHide={handleClose} animation={false}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Update Profile Image</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <img
-                style={{
-                  borderRadius: "75px",
-                  height: "150px",
-                  width: "150px",
-                }}
-                src={imagePreview || user.photoURL || nobody}
-                alt="nobody"
-                className=""
-              />
-              <input
-                type="file"
-                accept="image/png, image/jpg, image/jpeg"
-                onChange={validateImg}
-              />
-
-              <input
-                {...register("name", { required: true })}
-                type="text"
-                placeholder="Your Name"
-              />
-              {errors.name && (
-                <span className="text-error">Name is required</span>
-              )}
-            </Modal.Body>
-            <Modal.Footer>
+      <Modal show={show} onHide={handleClose} animation={false}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Update Profile Image</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <img
+              style={{
+                borderRadius: "75px",
+                height: "150px",
+                width: "150px",
+              }}
+              src={imagePreview || user.photoURL || nobody}
+              alt="nobody"
+              className=""
+            />
+            <input
+              type="file"
+              accept="image/png, image/jpg, image/jpeg"
+              onChange={validateImg}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            {uploadingImg ? (
+              <Button className="cursor-not-allowed" variant="primary" disabled>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Loading...
+              </Button>
+            ) : (
               <Button type="submit" variant="primary">
                 Save Changes
               </Button>
-            </Modal.Footer>
-          </form>
-        </Modal>
-      </>
-      {/* test  */}
+            )}
+          </Modal.Footer>
+        </form>
+      </Modal>
+
+      <div className="container mt-2">
+        <h5>Name: {user?.displayName}</h5>
+        <h5>Email: {user?.email}</h5>
+        <h5>Phone: {user?.phoneNumber ? user?.phoneNumber : "No Number"}</h5>
+      </div>
     </div>
   );
 };

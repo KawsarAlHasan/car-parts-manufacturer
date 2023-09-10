@@ -8,6 +8,7 @@ import heart from "../../../images/icon/heart-regular.svg";
 import cart from "../../../images/icon/cart-shopping-solid.svg";
 import axios from "axios";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = ({ onSearch }) => {
   const [isSticky, setIsSticky] = useState(false);
@@ -63,9 +64,9 @@ const Header = ({ onSearch }) => {
           <div className="container">
             <nav className="c-navbar">
               <div className="c-navbar-brand">
-                <a href="/">
+                <Link to="/">
                   <img alt="" src={Logo} className="c-navbar-logo" />
-                </a>
+                </Link>
               </div>
               <ul className="c-navbar-nav mt-3">
                 {user && (
@@ -97,11 +98,11 @@ const Header = ({ onSearch }) => {
                         alt=""
                       />
                     </div>
-                    <li className="d-none d-lg-block">
-                      <a
+                    <li>
+                      <Link
                         title="Wish List"
                         className="nav-link"
-                        href="/wishlist"
+                        to="/wishlist"
                       >
                         <img
                           style={{
@@ -111,13 +112,13 @@ const Header = ({ onSearch }) => {
                           src={heart}
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </li>
                     <li className="">
-                      <a
+                      <Link
                         title="My Cart"
                         className="nav-link custom-relative"
-                        href="/addtocard"
+                        to="/addtocard"
                       >
                         <img
                           style={{
@@ -130,13 +131,13 @@ const Header = ({ onSearch }) => {
                         <p className="navbar-indicator">
                           {myOrders?.length === 0 ? 0 : myOrders?.length}
                         </p>
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         title="My Profile"
                         className="nav-link"
-                        href="/dashboard"
+                        to="/dashboard"
                       >
                         <img
                           style={{
@@ -147,7 +148,7 @@ const Header = ({ onSearch }) => {
                           src={user?.photoURL || profile}
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </li>
                   </>
                 )}
@@ -183,14 +184,14 @@ const Header = ({ onSearch }) => {
                     </div>
 
                     <li>
-                      <a className="nav-link" href="/login">
+                      <Link className="nav-link" to="/login">
                         LOGIN
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a className="nav-link" href="/register">
+                      <Link className="nav-link" to="/register">
                         REGISTER
-                      </a>
+                      </Link>
                     </li>
                   </>
                 )}

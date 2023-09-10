@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Offcanvas } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function MiniNavber() {
@@ -8,60 +8,12 @@ function MiniNavber() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const categoryoption = (
-    <div className="">
-      <div class="hover-trigger">
-        Clothes/Fashion
-        <div class="mini-navbar">
-          <Link to="/clothes/Pants">Pants</Link>
-          <Link to="/clothes/Shirt">Shirt</Link>
-          <Link to="/clothes/Jacket">Jacket</Link>
-          <Link to="/clothes/T-Shirt">T-Shirt</Link>
-          <Link to="/clothes/Polo Shirt">Polo Shirt</Link>
-          <Link to="/clothes/Panjabi">Panjabi</Link>
-          <Link to="/clothes/Benarosi">Benarosi</Link>
-          <Link to="/clothes/Three Piece">Three Piece</Link>
-          <Link to="/clothes/Two Piece">Two Piece</Link>
-          <Link to="/clothes/One Piece">One Piece</Link>
-          <Link to="/clothes/Lehenga">Lehenga</Link>
-        </div>
-      </div>
-      <div class="hover-trigger">
-        Shoes
-        <div class="mini-navbar">
-          <a href="#">Boys Wear</a>
-          <a href="#">Girls Wear</a>
-          <a href="#">Gents Wear</a>
-          <a href="#">Ladies Wear</a>
-          <a href="#">Kids Wear</a>
-        </div>
-      </div>
-      <div class="hover-trigger">
-        Electronics
-        <div class="mini-navbar">
-          <a href="#">Mobile</a>
-          <a href="#">LED TV</a>
-          <a href="#">Smart TV</a>
-        </div>
-      </div>
-      <div class="hover-trigger">
-        Health/Beauty
-        <div class="mini-navbar">
-          <a href="#">Hair Oil</a>
-          <a href="#">Shoap</a>
-          <a href="#">White Cream</a>
-          <a href="#">Body Spray</a>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div>
       <div className=" custom-mini">
         <div className="container d-flex justify-content-between">
           <div>
-            <div className="d-lg-none">
+            <div className="d-block d-lg-none">
               <div class="coustom-mini-nav" onClick={handleShow}>
                 Category
               </div>
@@ -91,11 +43,11 @@ function MiniNavber() {
                     <div class="hover-trigger">
                       Shoes
                       <div class="mini-navbar">
-                        <a href="#">Boys Wear</a>
-                        <a href="#">Girls Wear</a>
-                        <a href="#">Gents Wear</a>
-                        <a href="#">Ladies Wear</a>
-                        <a href="#">Kids Wear</a>
+                        <a href="#">Boys</a>
+                        <a href="#">Girls</a>
+                        <a href="#">Gents</a>
+                        <a href="#">Ladies</a>
+                        <a href="#">Kids</a>
                       </div>
                     </div>
                     <div class="hover-trigger">
@@ -169,10 +121,13 @@ function MiniNavber() {
           </div>
           <div>
             <Link class="coustom-mini-nav" to="/aboutUs">
-              About Us
+              About
+            </Link>
+            <Link class="coustom-mini-nav" to="/contact">
+              Contact
             </Link>
             <Link class="coustom-mini-nav" to="/privacyPolicy">
-              Privacy Policy
+              Privacy
             </Link>
           </div>
         </div>

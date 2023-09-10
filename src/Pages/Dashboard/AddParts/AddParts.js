@@ -481,7 +481,11 @@ const AddParts = (props) => {
 
           {errors.exampleRequired && <span>This field is required</span>}
 
-          <input className="btn btn-primary" value="Add Parts" type="submit" />
+          <input
+            className="btn btn-primary"
+            value="Add Product"
+            type="submit"
+          />
         </form>
       </div>
     </div>

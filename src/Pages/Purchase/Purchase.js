@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Badge, Button, Card, Form, Placeholder } from "react-bootstrap";
+import { Badge, Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
@@ -11,6 +11,7 @@ import Loading from "../Shared/Loading/Loading";
 
 const Purchase = (props) => {
   const [parts, isLoading] = UseParts();
+  console.log(parts);
   const [user] = useAuthState(auth);
 
   const { purchaseId } = useParams();
@@ -34,8 +35,6 @@ const Purchase = (props) => {
       .then((res) => res.json())
       .then((data) => setPurchase(data));
   }, [purchaseId]);
-
-  let lowercaseValue = purchase?.subcategory.toLowerCase();
 
   const handlePurchase = (even) => {
     even.preventDefault();
@@ -74,6 +73,9 @@ const Purchase = (props) => {
         }
       });
   };
+
+  let nameFilter = purchase?.name;
+  let subCategoryFilter = purchase?.subcategory;
 
   return (
     <div className="">
@@ -231,9 +233,9 @@ const Purchase = (props) => {
           ) : (
             parts
               .filter(
-                (part) =>
-                  part.name.toLowerCase().includes(lowercaseValue) ||
-                  part.subcategory.toLowerCase().includes(lowercaseValue)
+                (product) =>
+                  product.name.includes(nameFilter) ||
+                  product.subcategory.includes(subCategoryFilter)
               )
               .slice(0, 10)
               .map((product) => (
