@@ -27,11 +27,13 @@ import WishList from "./Pages/wishList/WishList";
 import Clothes from "./Pages/category/Clothes";
 import SubCategory from "./Pages/subCategory/SubCategory";
 import MiniNavber from "./Pages/Shared/Header/MiniNavber";
-import Test from "./Test";
 import AddCategory from "./Pages/Dashboard/AddCategory/AddCategory";
 import AddSubCategory from "./Pages/Dashboard/AddCategory/AddSubCategory";
 import { useState } from "react";
 import SearchProducts from "./Pages/Shared/searchProducts/SearchProducts";
+import MenuIcon from "./component/MenuIcon";
+import UpComing from "./Pages/Dashboard/upComing/UpComing";
+// import Test from "./Test";
 
 function App() {
   const navigate = useNavigate();
@@ -47,9 +49,12 @@ function App() {
       <div>
         <Header onSearch={handleSearch}></Header>
       </div>
-      {/* <Test></Test> */}
+      <MenuIcon />
       <div>
         <MiniNavber />
+
+        {/* <Test></Test> */}
+
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="login" element={<Login></Login>}></Route>
@@ -109,6 +114,7 @@ function App() {
           >
             <Route index element={<MyProfile></MyProfile>}></Route>
             <Route path="myOrders" element={<MyOrders></MyOrders>}></Route>
+            <Route path="upComingItems" element={<UpComing />}></Route>
 
             <Route path="manageOrders" element={<ManageOrder />}></Route>
             <Route

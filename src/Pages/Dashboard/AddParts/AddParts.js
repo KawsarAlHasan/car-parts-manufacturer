@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Form from "react-bootstrap/Form";
 import { useQuery } from "react-query";
+import LoadingButton from "../../../component/LoadingButton";
 
 const AddParts = (props) => {
   const {
@@ -23,7 +24,10 @@ const AddParts = (props) => {
     setSelectSubCategory(event.target.value);
   };
 
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+
   const onSubmit = async (data) => {
+    setIsSubmitLoading(true);
     const image = data.image[0];
 
     const formData = new FormData();
@@ -72,7 +76,7 @@ const AddParts = (props) => {
           })
             .then((res) => res.json())
             .then((result) => {
-              console.log(result);
+              setIsSubmitLoading(false);
               window.location.reload(false);
               toast.success(`${data.name} is added successfully`);
             });
@@ -481,11 +485,15 @@ const AddParts = (props) => {
 
           {errors.exampleRequired && <span>This field is required</span>}
 
-          <input
-            className="btn btn-primary"
-            value="Add Product"
-            type="submit"
-          />
+          {isSubmitLoading ? (
+            <LoadingButton />
+          ) : (
+            <input
+              className="btn btn-primary"
+              value="Add Product"
+              type="submit"
+            />
+          )}
         </form>
       </div>
     </div>

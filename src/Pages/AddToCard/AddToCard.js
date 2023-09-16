@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
 function AddToCard() {
+  document.title = "Add to Card || Two Star Fashion";
+
   const {
     register,
     handleSubmit,
@@ -76,8 +78,6 @@ function AddToCard() {
       totalAmount: totalAmount,
       orderFormattedDate: formattedDate,
     };
-
-    console.log(confirmOrder);
 
     const url = `https://manufacturer-server-side.onrender.com/orders`;
     fetch(url, {

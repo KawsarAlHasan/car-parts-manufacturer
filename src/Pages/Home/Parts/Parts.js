@@ -20,7 +20,7 @@ const Parts = (props) => {
           <Loading />
         ) : (
           products
-            .slice(0, 10)
+            .slice(0, 15)
             .map((product) => <Part key={product._id} part={product}></Part>)
         )}
       </div>

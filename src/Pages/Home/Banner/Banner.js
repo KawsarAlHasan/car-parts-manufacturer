@@ -3,12 +3,16 @@ import { Carousel } from "react-bootstrap";
 import banner1 from "../../../images/banner2.jpg";
 import banner2 from "../../../images/banner4.jpg";
 import banner3 from "../../../images/banner5.jpg";
-import cs1 from "../../../images/glasses-category-img-2.jpg";
-import cs2 from "../../../images/retail-black-friday-small-banner-2-opt.jpg";
-import cs3 from "../../../images/retail-black-friday-small-banner-1-opt.jpg";
-import cs4 from "../../../images/retail-black-friday-small-banner-4-opt.jpg";
+import { useQuery } from "react-query";
+import Loading from "../../Shared/Loading/Loading";
 
 const Banner = (props) => {
+  const { data: upComing, isLoading } = useQuery("upComing", () =>
+    fetch("https://manufacturer-server-side.onrender.com/upComing").then(
+      (res) => res.json()
+    )
+  );
+
   return (
     <div className="container mt-2">
       <div style={{ height: "75%" }} className="row">
@@ -44,22 +48,16 @@ const Banner = (props) => {
             Cooming <span className="text-danger">Soon...</span>
           </h2>
           <div className="row">
-            <div className="col-6">
-              <img src={cs1} className="img-fluid" alt="" />
-              <h6 className="text-center mb-3">Sun Glasses</h6>
-            </div>
-            <div className="col-6">
-              <img src={cs2} className="img-fluid" alt="" />
-              <h6 className="text-center mb-3">Sun Glasses</h6>
-            </div>
-            <div className="col-6">
-              <img src={cs3} className="img-fluid" alt="" />
-              <h6 className="text-center mb-3">Sun Glasses</h6>
-            </div>
-            <div className="col-6">
-              <img src={cs4} className="img-fluid" alt="" />
-              <h6 className="text-center mb-3">Sun Glasses</h6>
-            </div>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              upComing.slice(0, 4).map((uCng) => (
+                <div key={uCng._id} className="col-6">
+                  <img src={uCng.img} className="img-fluid" alt="" />
+                  <h6 className="text-center mb-3">{uCng.name}</h6>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

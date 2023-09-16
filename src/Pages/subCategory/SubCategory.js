@@ -26,6 +26,8 @@ function SubCategory() {
       });
   }, [subcategory]);
 
+  document.title = `${subcategory} || Two Star Fashion`;
+
   const handleSearch = (even) => {
     even.preventDefault();
   };

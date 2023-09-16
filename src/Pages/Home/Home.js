@@ -8,6 +8,7 @@ import Reviews from "./Reviews/Reviews";
 import Category from "./category/Category";
 
 const Home = (props) => {
+  document.title = "Two Star Fashion";
   return (
     <div>
       <Banner></Banner>

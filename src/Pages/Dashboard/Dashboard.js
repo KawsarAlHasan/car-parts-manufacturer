@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Nav, Offcanvas, Row, Tab } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../Shared/Hooks/useAdmin";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -74,6 +74,14 @@ const Dashboard = (props) => {
               MANAGE PRODUCTS
             </Nav.Link>
           </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              className="bg-secondary text-light mb-3"
+              href="/dashboard/upComingItems"
+            >
+              UP COMING ITEMS
+            </Nav.Link>
+          </Nav.Item>
         </>
       ) : (
         <>
@@ -115,7 +123,81 @@ const Dashboard = (props) => {
         </div>
         <Row>
           <Col sm={3} className="d-none d-md-block">
-            {options}
+            <Nav variant="pills" className="flex-column text-center">
+              <Nav.Item>
+                <Link className="c-dashboard" to="/dashboard">
+                  <Nav.Link className="bg-secondary text-light  mt-4 mb-3">
+                    MY PROFILE
+                  </Nav.Link>
+                </Link>
+              </Nav.Item>
+              {isAdmin ? (
+                <>
+                  <Nav.Item>
+                    <Link className="c-dashboard" to="/dashboard/users">
+                      <Nav.Link className="bg-secondary text-light mb-3">
+                        ALL USERS
+                      </Nav.Link>
+                    </Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link className="c-dashboard" to="/dashboard/manageOrders">
+                      <Nav.Link className="bg-secondary text-light mb-3">
+                        MANAGE ORDERS
+                      </Nav.Link>
+                    </Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link className="c-dashboard" to="/dashboard/addParts">
+                      <Nav.Link className="bg-secondary text-light mb-3">
+                        ADD PRODUCTS
+                      </Nav.Link>
+                    </Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link className="c-dashboard" to="/dashboard/addCategory">
+                      <Nav.Link className="bg-secondary text-light mb-3">
+                        ADD CATEGORY
+                      </Nav.Link>
+                    </Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link
+                      className="c-dashboard"
+                      to="/dashboard/manageProducts"
+                    >
+                      <Nav.Link className="bg-secondary text-light mb-3">
+                        MANAGE PRODUCTS
+                      </Nav.Link>
+                    </Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Link className="c-dashboard" to="/dashboard/upComingItems">
+                      <Nav.Link className="bg-secondary text-light mb-3">
+                        UP COMING ITEMS
+                      </Nav.Link>
+                    </Link>
+                  </Nav.Item>
+                </>
+              ) : (
+                <>
+                  <Nav.Item>
+                    <Link className="c-dashboard" to="/dashboard/myOrders">
+                      <Nav.Link className="bg-secondary text-light mb-3">
+                        MY ORDERS
+                      </Nav.Link>
+                    </Link>
+                  </Nav.Item>
+                </>
+              )}
+              <Nav.Item onClick={handleSignOut}>
+                <Link className="c-dashboard" to="/login">
+                  <Nav.Link className="bg-secondary text-light mb-3">
+                    SIGN OUT
+                  </Nav.Link>
+                </Link>
+              </Nav.Item>
+            </Nav>
           </Col>
           <Col sm={9}>
             <Outlet></Outlet>

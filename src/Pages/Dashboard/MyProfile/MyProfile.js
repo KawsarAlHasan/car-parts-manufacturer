@@ -8,6 +8,8 @@ import { Button, Modal, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 const MyProfile = (props) => {
+  document.title = "My Profile || Two Star Fashion";
+
   const [user] = useAuthState(auth);
   const [updateProfile] = useUpdateProfile(auth);
   const [image, setImage] = useState(null);
@@ -49,7 +51,6 @@ const MyProfile = (props) => {
   }
 
   const {
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -64,8 +65,6 @@ const MyProfile = (props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  console.log(user);
 
   return (
     <div>

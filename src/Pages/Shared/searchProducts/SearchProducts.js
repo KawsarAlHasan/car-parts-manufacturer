@@ -33,23 +33,27 @@ function SearchProducts({ inputValue }) {
     <div>
       <div className="container">
         <div className="product-container-main">
-          {parts.length === 0
-            ? console.log("hello")
-            : parts
-                .filter(
-                  (part) =>
-                    part.name.toLowerCase().includes(lowercaseValue) ||
-                    part.category.toLowerCase().includes(lowercaseValue) ||
-                    part.subcategory.toLowerCase().includes(lowercaseValue) ||
-                    part.age.toLowerCase().includes(lowercaseValue) ||
-                    part.gender.toLowerCase().includes(lowercaseValue) ||
-                    part.availability.toLowerCase().includes(lowercaseValue)
-                )
-                .map((part) => (
-                  <div className="" key={part._id}>
-                    <SearchProduct part={part}></SearchProduct>
-                  </div>
-                ))}
+          {parts.length === 0 ? (
+            <h2 className="text-center">
+              Sorry, we can not find this product 😞
+            </h2>
+          ) : (
+            parts
+              .filter(
+                (part) =>
+                  part.name.toLowerCase().includes(lowercaseValue) ||
+                  part.category.toLowerCase().includes(lowercaseValue) ||
+                  part.subcategory.toLowerCase().includes(lowercaseValue) ||
+                  part.age.toLowerCase().includes(lowercaseValue) ||
+                  part.gender.toLowerCase().includes(lowercaseValue) ||
+                  part.availability.toLowerCase().includes(lowercaseValue)
+              )
+              .map((part) => (
+                <div className="" key={part._id}>
+                  <SearchProduct part={part}></SearchProduct>
+                </div>
+              ))
+          )}
         </div>
       </div>
     </div>

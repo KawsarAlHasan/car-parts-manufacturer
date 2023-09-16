@@ -1,0 +1,13 @@
+.custom-fixed{
+    position: fixed;
+    z-index: 1;
+    top: 45%;
+    left: 0;
+  }
+
+.menu{
+    max-width: 100px;
+    cursor: pointer;
+    border: 1px solid red;
+}
+

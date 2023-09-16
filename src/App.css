@@ -193,4 +193,9 @@
 cursor: not-allowed;
 }
 
+.c-dashboard{
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+}
 

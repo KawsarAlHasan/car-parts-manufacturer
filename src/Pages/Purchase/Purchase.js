@@ -17,6 +17,7 @@ const Purchase = (props) => {
   const { purchaseId } = useParams();
 
   const [purchase, setPurchase] = useState({});
+  document.title = `${purchase?.name} || Two Star Fashion`;
 
   const [orderQuantity, setOrderQuantity] = useState("");
 
