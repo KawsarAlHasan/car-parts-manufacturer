@@ -21,6 +21,25 @@ const AllUser = ({ user }) => {
       });
   };
 
+  const handleDeleteAdmin = (id) => {
+    fetch(
+      `https://manufacturer-server-side.onrender.com/users/admin/delete/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("Make admin successful.");
+          window.location.reload(false);
+        }
+      });
+  };
+
   return (
     <tr>
       <td>{email}</td>
@@ -40,8 +59,12 @@ const AllUser = ({ user }) => {
         )}
       </td>
       <td>
-        <Button variant="danger" size="sm">
-          Delete User
+        <Button
+          variant="danger"
+          size="sm"
+          onClick={() => handleDeleteAdmin(user._id)}
+        >
+          Delete Admin
         </Button>
       </td>
     </tr>

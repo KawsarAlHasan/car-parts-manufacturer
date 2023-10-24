@@ -6,6 +6,7 @@ import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import menuicon from "../../images/app-menu.png";
+import Loading from "../Shared/Loading/Loading";
 
 const Dashboard = (props) => {
   const [user] = useAuthState(auth);
@@ -15,7 +16,7 @@ const Dashboard = (props) => {
     localStorage.removeItem("accessToken");
   };
 
-  const [isAdmin] = useAdmin(user?.email);
+  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
 
   const [show, setShow] = useState(false);
 
@@ -32,7 +33,9 @@ const Dashboard = (props) => {
           MY PROFILE
         </Nav.Link>
       </Nav.Item>
-      {isAdmin ? (
+      {isAdminLoading ? (
+        <Loading />
+      ) : isAdmin ? (
         <>
           <Nav.Item>
             <Nav.Link

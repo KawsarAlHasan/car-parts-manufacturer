@@ -5,9 +5,12 @@ import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 function AddToCard() {
   document.title = "Add to Card || Two Star Fashion";
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -89,8 +92,16 @@ function AddToCard() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
-        window.location.reload(false);
+        if (result.acknowledged === true) {
+          myOrders.map((mOs) => {
+            const url = `https://manufacturer-server-side.onrender.com/addToCard/${mOs._id}`;
+            fetch(url, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((data) => {});
+          });
+        }
         toast.success(`Your Orders successfully`);
       });
   };

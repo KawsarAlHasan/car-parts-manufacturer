@@ -13,7 +13,7 @@ const Home = (props) => {
     <div>
       <Banner></Banner>
       <div className="container my-4">
-        <marquee class="styled-marquee" behavior="scroll" direction="left">
+        <marquee className="styled-marquee" behavior="scroll" direction="left">
           25th August Friday, our all outlets are open except Chattogram
           Agrabad, Khulna, Rangpur & Rajshahi outlets. Additionally, our online
           activities are open and operationa

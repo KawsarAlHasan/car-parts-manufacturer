@@ -3,7 +3,7 @@ import logo from "../../../images/20230722_163020.png";
 import { useParams } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
-function MyOrder() {
+function SuccessOrder() {
   const { orderId } = useParams();
   const [order, setOrder] = useState({});
 
@@ -134,4 +134,4 @@ function MyOrder() {
   );
 }
 
-export default MyOrder;
+export default SuccessOrder;

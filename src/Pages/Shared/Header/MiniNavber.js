@@ -14,7 +14,7 @@ function MiniNavber() {
         <div className="container d-flex justify-content-between">
           <div>
             <div className="d-block d-lg-none">
-              <div class="coustom-mini-nav" onClick={handleShow}>
+              <div className="coustom-mini-nav" onClick={handleShow}>
                 Category
               </div>
 
@@ -24,47 +24,51 @@ function MiniNavber() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                   <div className="">
-                    <div class="hover-trigger">
+                    <div className="hover-trigger">
                       Clothes/Fashion
-                      <div class="mini-navbar">
-                        <a href="/clothes/Pants">Pants</a>
-                        <a href="/clothes/Shirt">Shirt</a>
-                        <a href="/clothes/Jacket">Jacket</a>
-                        <a href="/clothes/T-Shirt">T-Shirt</a>
-                        <a href="/clothes/Polo Shirt">Polo Shirt</a>
-                        <a href="/clothes/Panjabi">Panjabi</a>
-                        <a href="/clothes/Benarosi">Benarosi</a>
-                        <a href="/clothes/Three Piece">Three Piece</a>
-                        <a href="/clothes/Two Piece">Two Piece</a>
-                        <a href="/clothes/One Piece">One Piece</a>
-                        <a href="/clothes/Lehenga">Lehenga</a>
+                      <div className="mini-navbar">
+                        <a href="/products/clothes/Pant">Pant</a>
+                        <a href="/products/clothes/Shirt">Shirt</a>
+                        <a href="/products/clothes/Jacket">Jacket</a>
+                        <a href="/products/clothes/T-Shirt">T-Shirt</a>
+                        <a href="/products/clothes/Polo Shirt">Polo Shirt</a>
+                        <a href="/products/clothes/Panjabi">Panjabi</a>
+                        <a href="/products/clothes/Benarosi">Benarosi</a>
+                        <a href="/products/clothes/Three Piece">Three Piece</a>
+                        <a href="/products/clothes/Two Piece">Two Piece</a>
+                        <a href="/products/clothes/One Piece">One Piece</a>
+                        <a href="/products/clothes/Lehenga">Lehenga</a>
                       </div>
                     </div>
-                    <div class="hover-trigger">
+                    <div className="hover-trigger">
                       Shoes
-                      <div class="mini-navbar">
-                        <a href="#">Boys</a>
-                        <a href="#">Girls</a>
-                        <a href="#">Gents</a>
-                        <a href="#">Ladies</a>
-                        <a href="#">Kids</a>
+                      <div className="mini-navbar">
+                        <a href="/products/shoes/Boys">Boys</a>
+                        <a href="/products/shoes/Girls">Girls</a>
+                        <a href="/products/shoes/Gents">Gents</a>
+                        <a href="/products/shoes/Ladies">Ladies</a>
+                        <a href="/products/shoes/Kids">Kids</a>
                       </div>
                     </div>
-                    <div class="hover-trigger">
+                    <div className="hover-trigger">
                       Electronics
-                      <div class="mini-navbar">
-                        <a href="#">Mobile</a>
-                        <a href="#">LED TV</a>
-                        <a href="#">Smart TV</a>
+                      <div className="mini-navbar">
+                        <a href="/products/electronics/Mobile">Mobile</a>
+                        <a href="/products/electronics/LED TV">LED TV</a>
+                        <a href="/products/electronics/Smart TV">Smart TV</a>
                       </div>
                     </div>
-                    <div class="hover-trigger">
+                    <div className="hover-trigger">
                       Health/Beauty
-                      <div class="mini-navbar">
-                        <a href="#">Hair Oil</a>
-                        <a href="#">Shoap</a>
-                        <a href="#">White Cream</a>
-                        <a href="#">Body Spray</a>
+                      <div className="mini-navbar">
+                        <a href="/products/Health-Beauty/Hair Oil">Hair Oil</a>
+                        <a href="/products/Health-Beauty/Shoap">Shoap</a>
+                        <a href="/products/Health-Beauty/White Cream">
+                          White Cream
+                        </a>
+                        <a href="/products/Health-Beauty/Body Spray">
+                          Body Spray
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -73,60 +77,64 @@ function MiniNavber() {
             </div>
             <div className="d-none d-lg-block">
               <div className="">
-                <div class="hover-trigger">
+                <div className="hover-trigger">
                   Clothes/Fashion
-                  <div class="mini-navbar">
-                    <Link to="/clothes/Pants">Pants</Link>
-                    <Link to="/clothes/Shirt">Shirt</Link>
-                    <Link to="/clothes/Jacket">Jacket</Link>
-                    <Link to="/clothes/T-Shirt">T-Shirt</Link>
-                    <Link to="/clothes/Polo Shirt">Polo Shirt</Link>
-                    <Link to="/clothes/Panjabi">Panjabi</Link>
-                    <Link to="/clothes/Benarosi">Benarosi</Link>
-                    <Link to="/clothes/Three Piece">Three Piece</Link>
-                    <Link to="/clothes/Two Piece">Two Piece</Link>
-                    <Link to="/clothes/One Piece">One Piece</Link>
-                    <Link to="/clothes/Lehenga">Lehenga</Link>
+                  <div className="mini-navbar">
+                    <Link to="/products/clothes/Pant">Pant</Link>
+                    <Link to="/products/clothes/Shirt">Shirt</Link>
+                    <Link to="/products/clothes/Jacket">Jacket</Link>
+                    <Link to="/products/clothes/T-Shirt">T-Shirt</Link>
+                    <Link to="/products/clothes/Polo Shirt">Polo Shirt</Link>
+                    <Link to="/products/clothes/Panjabi">Panjabi</Link>
+                    <Link to="/products/clothes/Benarosi">Benarosi</Link>
+                    <Link to="/products/clothes/Three Piece">Three Piece</Link>
+                    <Link to="/products/clothes/Two Piece">Two Piece</Link>
+                    <Link to="/products/clothes/One Piece">One Piece</Link>
+                    <Link to="/products/clothes/Lehenga">Lehenga</Link>
                   </div>
                 </div>
-                <div class="hover-trigger">
+                <div className="hover-trigger">
                   Shoes
-                  <div class="mini-navbar">
-                    <a href="#">Boys Wear</a>
-                    <a href="#">Girls Wear</a>
-                    <a href="#">Gents Wear</a>
-                    <a href="#">Ladies Wear</a>
-                    <a href="#">Kids Wear</a>
+                  <div className="mini-navbar">
+                    <Link to="/products/shoes/Boys">Boys</Link>
+                    <Link to="/products/shoes/Girls">Girls</Link>
+                    <Link to="/products/shoes/Gents">Gents</Link>
+                    <Link to="/products/shoes/Ladies">Ladies</Link>
+                    <Link to="/products/shoes/Kids">Kids</Link>
                   </div>
                 </div>
-                <div class="hover-trigger">
+                <div className="hover-trigger">
                   Electronics
-                  <div class="mini-navbar">
-                    <a href="#">Mobile</a>
-                    <a href="#">LED TV</a>
-                    <a href="#">Smart TV</a>
+                  <div className="mini-navbar">
+                    <Link to="/products/electronics/Mobile">Mobile</Link>
+                    <Link to="/products/electronics/LED TV">LED TV</Link>
+                    <Link to="/products/electronics/Smart TV">Smart TV</Link>
                   </div>
                 </div>
-                <div class="hover-trigger">
+                <div className="hover-trigger">
                   Health/Beauty
-                  <div class="mini-navbar">
-                    <a href="#">Hair Oil</a>
-                    <a href="#">Shoap</a>
-                    <a href="#">White Cream</a>
-                    <a href="#">Body Spray</a>
+                  <div className="mini-navbar">
+                    <Link to="/products/Health-Beauty/Hair Oil">Hair Oil</Link>
+                    <Link to="/products/Health-Beauty/Shoap">Shoap</Link>
+                    <Link to="/products/Health-Beauty/White Cream">
+                      White Cream
+                    </Link>
+                    <Link to="/products/Health-Beauty/Body Spray">
+                      Body Spray
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div>
-            <Link class="coustom-mini-nav" to="/aboutUs">
+            <Link className="coustom-mini-nav" to="/aboutUs">
               About
             </Link>
-            <Link class="coustom-mini-nav" to="/contact">
+            <Link className="coustom-mini-nav" to="/contact">
               Contact
             </Link>
-            <Link class="coustom-mini-nav" to="/privacyPolicy">
+            <Link className="coustom-mini-nav" to="/privacyPolicy">
               Privacy
             </Link>
           </div>

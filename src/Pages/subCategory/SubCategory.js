@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 
 function SubCategory() {
-  const { subcategory } = useParams();
+  const { categoryId, subcategory } = useParams();
   const [searchValue, setSearchValue] = useState("");
   let lowercaseValue = searchValue.toLowerCase();
   const [isLoading, setIsLoading] = useState(false);

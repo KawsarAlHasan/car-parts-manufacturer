@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { Rating } from "react-simple-star-rating";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-import userPic from "../images/profile-logo.png";
 
 function ReviewsPost() {
   const [user] = useAuthState(auth);
@@ -20,6 +19,9 @@ function ReviewsPost() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const userPic =
+    "https://res.cloudinary.com/daizkkv04/image/upload/v1695101649/gpgh0jwdnh69bkvy3fyh.png";
 
   const onSubmit = async (data) => {
     const result = {

@@ -33,7 +33,15 @@ function SearchProducts({ inputValue }) {
     <div>
       <div className="container">
         <div className="product-container-main">
-          {parts.length === 0 ? (
+          {parts.filter(
+            (part) =>
+              part.name.toLowerCase().includes(lowercaseValue) ||
+              part.category.toLowerCase().includes(lowercaseValue) ||
+              part.subcategory.toLowerCase().includes(lowercaseValue) ||
+              part.age.toLowerCase().includes(lowercaseValue) ||
+              part.gender.toLowerCase().includes(lowercaseValue) ||
+              part.availability.toLowerCase().includes(lowercaseValue)
+          ).length === 0 ? (
             <h2 className="text-center">
               Sorry, we can not find this product 😞
             </h2>

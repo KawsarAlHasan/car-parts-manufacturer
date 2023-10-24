@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import UseParts from "../Shared/Hooks/UseParts";
-import LoadingImage from "../../images/loading.gif";
 import "../Home/Parts/Parts.css";
-import { Accordion, Card, Form, Placeholder } from "react-bootstrap";
+import { Accordion, Form } from "react-bootstrap";
 import AllProduct from "./AllProduct";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Loading from "../Shared/Loading/Loading";
 
 function AllProducts() {
   const [parts, isLoading] = UseParts();
@@ -294,10 +294,7 @@ function AllProducts() {
                       Product Filter
                     </Offcanvas.Title>
                   </Offcanvas.Header>
-                  <Offcanvas.Body>
-                    {/* filter products */}
-                    {filterProduct}
-                  </Offcanvas.Body>
+                  <Offcanvas.Body>{filterProduct}</Offcanvas.Body>
                 </Navbar.Offcanvas>
               </Container>
             </Navbar>
@@ -306,57 +303,22 @@ function AllProducts() {
       </div>
 
       <div className="row">
-        <div className=" d-none d-lg-block col-lg-3">
-          {/* filter products */}
-          {filterProduct}
-        </div>
+        <div className=" d-none d-lg-block col-lg-3">{filterProduct}</div>
         <div className="col-12 col-lg-9 ">
           <div className="parts-container">
             {isLoading ? (
-              <>
-                <Card style={{ width: "20rem" }}>
-                  <Card.Img variant="top" src={LoadingImage} />
-                  <Card.Body>
-                    <Placeholder as={Card.Title} animation="glow">
-                      <Placeholder xs={6} />
-                    </Placeholder>
-                    <Placeholder as={Card.Text} animation="glow">
-                      <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                      <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                      <Placeholder xs={8} />
-                    </Placeholder>
-                    <Placeholder.Button variant="primary" xs={6} />
-                  </Card.Body>
-                </Card>
-                <Card style={{ width: "20rem" }}>
-                  <Card.Img variant="top" src={LoadingImage} />
-                  <Card.Body>
-                    <Placeholder as={Card.Title} animation="glow">
-                      <Placeholder xs={6} />
-                    </Placeholder>
-                    <Placeholder as={Card.Text} animation="glow">
-                      <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                      <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                      <Placeholder xs={8} />
-                    </Placeholder>
-                    <Placeholder.Button variant="primary" xs={6} />
-                  </Card.Body>
-                </Card>
-                <Card style={{ width: "20rem" }}>
-                  <Card.Img variant="top" src={LoadingImage} />
-                  <Card.Body>
-                    <Placeholder as={Card.Title} animation="glow">
-                      <Placeholder xs={6} />
-                    </Placeholder>
-                    <Placeholder as={Card.Text} animation="glow">
-                      <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                      <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                      <Placeholder xs={8} />
-                    </Placeholder>
-                    <Placeholder.Button variant="primary" xs={6} />
-                  </Card.Body>
-                </Card>
-              </>
+              <Loading />
+            ) : parts.filter(
+                (part) =>
+                  part.name.toLowerCase().includes(lowercaseValue) ||
+                  part.category.toLowerCase().includes(lowercaseValue) ||
+                  part.age.toLowerCase().includes(lowercaseValue) ||
+                  part.gender.toLowerCase().includes(lowercaseValue) ||
+                  part.availability.toLowerCase().includes(lowercaseValue)
+              ).length === 0 ? (
+              <h2 className="text-center">
+                Sorry, we can not find this product 😞
+              </h2>
             ) : (
               parts
                 .filter(

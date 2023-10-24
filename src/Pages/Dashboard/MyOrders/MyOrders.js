@@ -18,8 +18,6 @@ const MyOrders = (props) => {
     getMyOrders();
   }, [user]);
 
-  console.log(myOrders);
-
   const navigateOrder = (id) => {
     navigate(`/myOrder/${id}`);
   };

@@ -1,48 +1,47 @@
 import React from "react";
-import person1 from "../../../images/person 1.png";
-import person2 from "../../../images/person 2.png";
-import person3 from "../../../images/person 3.png";
+import { useQuery } from "react-query";
+import Loading from "../../Shared/Loading/Loading";
+import { Link } from "react-router-dom";
 
 const Reviews = (props) => {
+  const { data: reviews, isLoading } = useQuery("reviews", () =>
+    fetch("https://manufacturer-server-side.onrender.com/reviews").then((res) =>
+      res.json()
+    )
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const wsReviews = [...reviews].reverse();
+
   return (
     <div className="container">
       <h2 className="text-center py-4">
         Re<span className="text-danger">views</span>
       </h2>
+
       <div className="row">
-        <div className="col-md-4 text-center">
-          <div className="shadow p-3 mb-5 bg-white rounded">
-            <p>
-              Alex Allwood trusts in this mantra as a customer experience
-              specialist and author of Customer Experience is the Brand.
-            </p>
-            <img src={person1} className="w-50" alt="" />
-            <h4>Will Jack</h4>
-            <h6>Banker</h6>
+        {wsReviews?.slice(0, 4).map((review) => (
+          <div key={review._id} className="col-md-3 text-center">
+            <div className="shadow p-3 mb-5 bg-white rounded">
+              <p>
+                {review?.userReview.length <= 130
+                  ? review?.userReview
+                  : review?.userReview.slice(0, 130) + "..."}
+              </p>
+              <img src={review.userImage} className="w-50" alt="" />
+              <h4>{review.userName}</h4>
+              <p>rating: {review.rating}</p>
+            </div>
           </div>
-        </div>
-        <div className="col-md-4 text-center">
-          <div className="shadow p-3 mb-5 bg-white rounded">
-            <p>
-              The basic of business is to stay as close as possible from your
-              customers, understand their behavior, their preferences,{" "}
-            </p>
-            <img src={person2} className="w-50" alt="" />
-            <h4>Mr. John</h4>
-            <h6>Doctor</h6>
-          </div>
-        </div>
-        <div className="col-md-4 text-center">
-          <div className="shadow p-3 mb-5 bg-white rounded">
-            <p>
-              In an interview, Julie Rice discussed how she wanted WeWork to
-              have the same sentiment as SoulCycle about its members .
-            </p>
-            <img src={person3} className="w-50" alt="" />
-            <h4>Cret Yater</h4>
-            <h6>Footballer</h6>
-          </div>
-        </div>
+        ))}
+      </div>
+      <div className="container my-3 text-end">
+        <Link className="text-decoration-none" to="/allReviews">
+          See All Reviews
+        </Link>
       </div>
     </div>
   );

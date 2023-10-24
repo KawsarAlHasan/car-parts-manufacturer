@@ -27,8 +27,8 @@ const AllUsers = (props) => {
         <thead>
           <tr>
             <th>Email</th>
-            <th>Make Admi</th>
-            <th>Delete User</th>
+            <th>Make Admin</th>
+            <th>Delete Admin</th>
           </tr>
         </thead>
         <tbody>

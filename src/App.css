@@ -199,3 +199,8 @@ cursor: not-allowed;
   font-weight: 700;
 }
 
+
+
+.container1{
+  z-index: 0;
+}

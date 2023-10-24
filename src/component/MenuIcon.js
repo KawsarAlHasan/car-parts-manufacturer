@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Modal } from "react-bootstrap";
 import "./Component.css";
 import emailLogo from "../images/email.png";
+import reviewLogo from "../images/review.png";
 import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -45,25 +46,46 @@ function MenuIcon() {
     <div className="custom-fixed">
       {user ? (
         <>
-          <div onClick={handleEmailShow} className="d-flex menu">
-            <span className="d-none d-lg-block">Email </span>
-            <img width="30px" className="mx-2" src={emailLogo} alt="" />
+          <div onClick={handleEmailShow} className="menu">
+            <img
+              title="Email"
+              width="30px"
+              className="mx-2"
+              src={emailLogo}
+              alt=""
+            />
           </div>
           <div className="mt-2">
-            <div onClick={handleReviewsShow} className="d-flex">
-              <span className="d-none d-lg-block">Review </span> Review
+            <div onClick={handleReviewsShow} className="menu">
+              <img
+                title="Review"
+                width="30px"
+                className="mx-2"
+                src={reviewLogo}
+                alt=""
+              />
             </div>
           </div>
         </>
       ) : (
         <>
           <Link className="d-flex" to="/login">
-            <span className="d-none d-lg-block">Email </span>
-            <img width="30px" className="mx-2" src={emailLogo} alt="" />
+            <img
+              title="Email"
+              width="30px"
+              className="mx-2"
+              src={emailLogo}
+              alt=""
+            />
           </Link>
           <Link className="d-flex" to="/login">
-            <span className="d-none d-lg-block">Review </span>
-            <img width="30px" className="mx-2" src={emailLogo} alt="" />
+            <img
+              title="Review"
+              width="30px"
+              className="mx-2"
+              src={reviewLogo}
+              alt=""
+            />
           </Link>
         </>
       )}

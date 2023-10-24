@@ -24,7 +24,6 @@ import MyOrder from "./Pages/Dashboard/MyOrders/MyOrder";
 import ManageOrder from "./Pages/Dashboard/ManageOrder/ManageOrder";
 import ViewOrder from "./Pages/Dashboard/ManageOrder/ViewOrder";
 import WishList from "./Pages/wishList/WishList";
-import Clothes from "./Pages/category/Clothes";
 import SubCategory from "./Pages/subCategory/SubCategory";
 import MiniNavber from "./Pages/Shared/Header/MiniNavber";
 import AddCategory from "./Pages/Dashboard/AddCategory/AddCategory";
@@ -33,7 +32,6 @@ import { useState } from "react";
 import SearchProducts from "./Pages/Shared/searchProducts/SearchProducts";
 import MenuIcon from "./component/MenuIcon";
 import UpComing from "./Pages/Dashboard/upComing/UpComing";
-// import Test from "./Test";
 
 function App() {
   const navigate = useNavigate();
@@ -52,8 +50,6 @@ function App() {
       <MenuIcon />
       <div>
         <MiniNavber />
-
-        {/* <Test></Test> */}
 
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
@@ -98,10 +94,10 @@ function App() {
           ></Route>
           <Route path="/products" element={<AllProducts></AllProducts>}></Route>
 
-          {/* clothes start */}
-          <Route path="/clothes" element={<Clothes />}></Route>
-          <Route path="/clothes/:subcategory" element={<SubCategory />}></Route>
-          {/* clothes end */}
+          <Route
+            path="products/:categoryId/:subcategory"
+            element={<SubCategory />}
+          ></Route>
 
           {/* dashboard */}
           <Route
