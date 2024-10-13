@@ -5,9 +5,9 @@ import Loading from "../../Shared/Loading/Loading";
 
 const AllUsers = (props) => {
   const { data: users, isLoading } = useQuery("users", () =>
-    fetch("https://manufacturer-server-side.onrender.com/users").then((res) =>
-      res.json()
-    )
+    fetch(
+      "https://manufacturer-website-server-side-y96m.vercel.app/users"
+    ).then((res) => res.json())
   );
 
   if (isLoading) {

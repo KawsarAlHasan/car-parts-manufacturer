@@ -11,7 +11,7 @@ const MyOrders = (props) => {
   const [myOrders, setMyOrders] = useState([]);
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `https://manufacturer-server-side.onrender.com/orders?email=${user.email}`;
+      const url = `https://manufacturer-website-server-side-y96m.vercel.app/orders?email=${user.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };

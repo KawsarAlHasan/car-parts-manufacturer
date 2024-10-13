@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 const Reviews = (props) => {
   const { data: reviews, isLoading } = useQuery("reviews", () =>
-    fetch("https://manufacturer-server-side.onrender.com/reviews").then((res) =>
-      res.json()
-    )
+    fetch(
+      "https://manufacturer-website-server-side-y96m.vercel.app/reviews"
+    ).then((res) => res.json())
   );
 
   if (isLoading) {

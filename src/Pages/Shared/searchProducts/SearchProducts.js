@@ -9,7 +9,7 @@ function SearchProducts({ inputValue }) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://manufacturer-server-side.onrender.com/carParts")
+    fetch("https://manufacturer-website-server-side-y96m.vercel.app/carParts")
       .then((res) => res.json())
       .then((data) => {
         setParts(data);

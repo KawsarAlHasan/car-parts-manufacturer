@@ -17,7 +17,7 @@ function SubCategory() {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://manufacturer-server-side.onrender.com/clothes?subCategory=${subcategory}`
+      `https://manufacturer-website-server-side-y96m.vercel.app/clothes?subCategory=${subcategory}`
     )
       .then((res) => res.json())
       .then((data) => {

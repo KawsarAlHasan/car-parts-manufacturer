@@ -10,7 +10,7 @@ function ViewOrder() {
 
   const [orderProducts, setOrderProducts] = useState({});
   useEffect(() => {
-    const url = `https://manufacturer-server-side.onrender.com/manageOrders/${orderId}`;
+    const url = `https://manufacturer-website-server-side-y96m.vercel.app/manageOrders/${orderId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrderProducts(data));
@@ -23,7 +23,7 @@ function ViewOrder() {
   } = useForm();
 
   const onSubmit = async (updateData) => {
-    const urlLink = `https://manufacturer-server-side.onrender.com/manageOrders/${orderId}`;
+    const urlLink = `https://manufacturer-website-server-side-y96m.vercel.app/manageOrders/${orderId}`;
     fetch(urlLink, {
       method: "PUT",
       headers: {

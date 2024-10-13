@@ -6,12 +6,15 @@ const AllUser = ({ user }) => {
   const { email } = user;
 
   const handleMakeAdmin = (id) => {
-    fetch(`https://manufacturer-server-side.onrender.com/users/admin/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://manufacturer-website-server-side-y96m.vercel.app/users/admin/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -23,7 +26,7 @@ const AllUser = ({ user }) => {
 
   const handleDeleteAdmin = (id) => {
     fetch(
-      `https://manufacturer-server-side.onrender.com/users/admin/delete/${id}`,
+      `https://manufacturer-website-server-side-y96m.vercel.app/users/admin/delete/${id}`,
       {
         method: "PUT",
         headers: {

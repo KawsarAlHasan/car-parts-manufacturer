@@ -30,7 +30,7 @@ function ReviewsPost() {
       userReview: data.userReview,
       userImage: user?.photoURL || userPic,
     };
-    fetch("https://manufacturer-server-side.onrender.com/reviews", {
+    fetch("https://manufacturer-website-server-side-y96m.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

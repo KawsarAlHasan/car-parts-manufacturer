@@ -16,7 +16,7 @@ function AddSubCategory() {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://manufacturer-server-side.onrender.com/category/${subCategoryId}`
+      `https://manufacturer-website-server-side-y96m.vercel.app/category/${subCategoryId}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -36,13 +36,16 @@ function AddSubCategory() {
       subcategory: data.subcategory,
       category: ctgry.category,
     };
-    fetch("https://manufacturer-server-side.onrender.com/subcategory", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(result),
-    })
+    fetch(
+      "https://manufacturer-website-server-side-y96m.vercel.app/subcategory",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(result),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
@@ -58,7 +61,7 @@ function AddSubCategory() {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://manufacturer-server-side.onrender.com/subcategory/search?category=${categoryname}`
+      `https://manufacturer-website-server-side-y96m.vercel.app/subcategory/search?category=${categoryname}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -75,7 +78,7 @@ function AddSubCategory() {
     console.log(id);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-server-side.onrender.com/subcategory/${id}`;
+      const url = `https://manufacturer-website-server-side-y96m.vercel.app/subcategory/${id}`;
       fetch(url, {
         method: "DELETE",
       })

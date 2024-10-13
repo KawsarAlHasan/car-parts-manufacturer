@@ -26,7 +26,7 @@ function AddToCard() {
 
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `https://manufacturer-server-side.onrender.com/addToCard?email=${user?.email}`;
+      const url = `https://manufacturer-website-server-side-y96m.vercel.app/addToCard?email=${user?.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };
@@ -36,7 +36,7 @@ function AddToCard() {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-server-side.onrender.com/addToCard/${id}`;
+      const url = `https://manufacturer-website-server-side-y96m.vercel.app/addToCard/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -82,7 +82,7 @@ function AddToCard() {
       orderFormattedDate: formattedDate,
     };
 
-    const url = `https://manufacturer-server-side.onrender.com/orders`;
+    const url = `https://manufacturer-website-server-side-y96m.vercel.app/orders`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -94,7 +94,7 @@ function AddToCard() {
       .then((result) => {
         if (result.acknowledged === true) {
           myOrders.map((mOs) => {
-            const url = `https://manufacturer-server-side.onrender.com/addToCard/${mOs._id}`;
+            const url = `https://manufacturer-website-server-side-y96m.vercel.app/addToCard/${mOs._id}`;
             fetch(url, {
               method: "DELETE",
             })

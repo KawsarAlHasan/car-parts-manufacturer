@@ -8,7 +8,7 @@ function SuccessOrder() {
   const [order, setOrder] = useState({});
 
   useEffect(() => {
-    const url = `https://manufacturer-server-side.onrender.com/orders/${orderId}`;
+    const url = `https://manufacturer-website-server-side-y96m.vercel.app/orders/${orderId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrder(data));

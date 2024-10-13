@@ -4,7 +4,9 @@ function useAdmin(email) {
   const [isAdmin, setIsAdmin] = useState("");
   const [isAdminLoading, setIsAdminLoading] = useState(true);
   useEffect(() => {
-    fetch(`https://manufacturer-server-side.onrender.com/users/admin/${email}`)
+    fetch(
+      `https://manufacturer-website-server-side-y96m.vercel.app/users/admin/${email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setIsAdmin(data.isAdmin);

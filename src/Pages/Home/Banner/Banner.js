@@ -8,9 +8,9 @@ import Loading from "../../Shared/Loading/Loading";
 
 const Banner = (props) => {
   const { data: upComing, isLoading } = useQuery("upComing", () =>
-    fetch("https://manufacturer-server-side.onrender.com/upComing").then(
-      (res) => res.json()
-    )
+    fetch(
+      "https://manufacturer-website-server-side-y96m.vercel.app/upComing"
+    ).then((res) => res.json())
   );
 
   // const [upComing, setUpComing] = useState('')

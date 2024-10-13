@@ -9,7 +9,7 @@ const ManageProduct = ({ part, index }) => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-server-side.onrender.com/carParts/${id}`;
+      const url = `https://manufacturer-website-server-side-y96m.vercel.app/carParts/${id}`;
       fetch(url, {
         method: "DELETE",
       })
