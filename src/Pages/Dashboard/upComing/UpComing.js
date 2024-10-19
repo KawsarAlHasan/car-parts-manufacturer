@@ -40,7 +40,7 @@ function UpComing() {
             img: imgData.secure_url,
           };
           // save Product
-          const url = `https://manufacturer-website-server-side-y96m.vercel.app/upComing`;
+          const url = `https://manufacturer-website-server-side-l833.onrender.com/upComing`;
           fetch(url, {
             method: "POST",
             headers: {
@@ -61,7 +61,7 @@ function UpComing() {
 
   const { data: upComing, isLoading } = useQuery("upComing", () =>
     fetch(
-      "https://manufacturer-website-server-side-y96m.vercel.app/upComing"
+      "https://manufacturer-website-server-side-l833.onrender.com/upComing"
     ).then((res) => res.json())
   );
 
@@ -72,7 +72,7 @@ function UpComing() {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-website-server-side-y96m.vercel.app/upComing/${id}`;
+      const url = `https://manufacturer-website-server-side-l833.onrender.com/upComing/${id}`;
       fetch(url, {
         method: "DELETE",
       })

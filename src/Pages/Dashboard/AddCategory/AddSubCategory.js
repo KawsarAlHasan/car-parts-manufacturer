@@ -16,7 +16,7 @@ function AddSubCategory() {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://manufacturer-website-server-side-y96m.vercel.app/category/${subCategoryId}`
+      `https://manufacturer-website-server-side-l833.onrender.com/category/${subCategoryId}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -37,7 +37,7 @@ function AddSubCategory() {
       category: ctgry.category,
     };
     fetch(
-      "https://manufacturer-website-server-side-y96m.vercel.app/subcategory",
+      "https://manufacturer-website-server-side-l833.onrender.com/subcategory",
       {
         method: "POST",
         headers: {
@@ -61,7 +61,7 @@ function AddSubCategory() {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://manufacturer-website-server-side-y96m.vercel.app/subcategory/search?category=${categoryname}`
+      `https://manufacturer-website-server-side-l833.onrender.com/subcategory/search?category=${categoryname}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -78,7 +78,7 @@ function AddSubCategory() {
     console.log(id);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-website-server-side-y96m.vercel.app/subcategory/${id}`;
+      const url = `https://manufacturer-website-server-side-l833.onrender.com/subcategory/${id}`;
       fetch(url, {
         method: "DELETE",
       })

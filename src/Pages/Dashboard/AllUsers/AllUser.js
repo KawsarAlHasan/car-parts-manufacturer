@@ -7,7 +7,7 @@ const AllUser = ({ user }) => {
 
   const handleMakeAdmin = (id) => {
     fetch(
-      `https://manufacturer-website-server-side-y96m.vercel.app/users/admin/${id}`,
+      `https://manufacturer-website-server-side-l833.onrender.com/users/admin/${id}`,
       {
         method: "PUT",
         headers: {
@@ -26,7 +26,7 @@ const AllUser = ({ user }) => {
 
   const handleDeleteAdmin = (id) => {
     fetch(
-      `https://manufacturer-website-server-side-y96m.vercel.app/users/admin/delete/${id}`,
+      `https://manufacturer-website-server-side-l833.onrender.com/users/admin/delete/${id}`,
       {
         method: "PUT",
         headers: {

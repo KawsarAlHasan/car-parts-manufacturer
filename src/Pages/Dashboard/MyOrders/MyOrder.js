@@ -8,7 +8,7 @@ function MyOrder() {
   const [order, setOrder] = useState({});
 
   useEffect(() => {
-    const url = `https://manufacturer-website-server-side-y96m.vercel.app/orders/${orderId}`;
+    const url = `https://manufacturer-website-server-side-l833.onrender.com/orders/${orderId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrder(data));

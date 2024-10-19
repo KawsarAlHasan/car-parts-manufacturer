@@ -9,7 +9,7 @@ import Loading from "../../Shared/Loading/Loading";
 const Banner = (props) => {
   const { data: upComing, isLoading } = useQuery("upComing", () =>
     fetch(
-      "https://manufacturer-website-server-side-y96m.vercel.app/upComing"
+      "https://manufacturer-website-server-side-l833.onrender.com/upComing"
     ).then((res) => res.json())
   );
 

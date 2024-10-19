@@ -13,7 +13,7 @@ function ManageOrder() {
 
   const { data: manageOrders, isLoading } = useQuery("manageOrders", () =>
     fetch(
-      "https://manufacturer-website-server-side-y96m.vercel.app/manageOrders"
+      "https://manufacturer-website-server-side-l833.onrender.com/manageOrders"
     ).then((res) => res.json())
   );
 

@@ -44,7 +44,7 @@ const Header = ({ onSearch }) => {
 
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `https://manufacturer-website-server-side-y96m.vercel.app/addToCard?email=${user?.email}`;
+      const url = `https://manufacturer-website-server-side-l833.onrender.com/addToCard?email=${user?.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };

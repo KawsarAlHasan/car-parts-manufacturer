@@ -31,7 +31,7 @@ const Purchase = (props) => {
   };
 
   useEffect(() => {
-    const url = `https://manufacturer-website-server-side-y96m.vercel.app/carParts/${purchaseId}`;
+    const url = `https://manufacturer-website-server-side-l833.onrender.com/carParts/${purchaseId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setPurchase(data));
@@ -56,7 +56,7 @@ const Purchase = (props) => {
     };
 
     fetch(
-      "https://manufacturer-website-server-side-y96m.vercel.app/addToCard",
+      "https://manufacturer-website-server-side-l833.onrender.com/addToCard",
       {
         method: "POST",
         headers: {

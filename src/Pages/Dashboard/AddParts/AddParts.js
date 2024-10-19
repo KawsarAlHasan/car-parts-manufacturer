@@ -65,7 +65,7 @@ const AddParts = (props) => {
           };
           console.log(parts);
           // save Product
-          const url = `https://manufacturer-website-server-side-y96m.vercel.app/carParts`;
+          const url = `https://manufacturer-website-server-side-l833.onrender.com/carParts`;
           fetch(url, {
             method: "POST",
             headers: {
@@ -90,7 +90,7 @@ const AddParts = (props) => {
     refetch,
   } = useQuery("category", () =>
     fetch(
-      "https://manufacturer-website-server-side-y96m.vercel.app/category"
+      "https://manufacturer-website-server-side-l833.onrender.com/category"
     ).then((res) => res.json())
   );
 
@@ -100,7 +100,7 @@ const AddParts = (props) => {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://manufacturer-website-server-side-y96m.vercel.app/subcategory/search?category=${selectedCategory}`
+      `https://manufacturer-website-server-side-l833.onrender.com/subcategory/search?category=${selectedCategory}`
     )
       .then((res) => res.json())
       .then((data) => {

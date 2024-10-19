@@ -7,5 +7,5 @@ test("renders learn react link", () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-// https://manufacturer-website-server-side-y96m.vercel.app
-// https://manufacturer-website-server-side-y96m.vercel.app
+// https://manufacturer-website-server-side-l833.onrender.com
+// https://manufacturer-website-server-side-l833.onrender.com

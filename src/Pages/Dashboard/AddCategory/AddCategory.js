@@ -15,13 +15,16 @@ function AddCategory() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    fetch("https://manufacturer-website-server-side-y96m.vercel.app/category", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "https://manufacturer-website-server-side-l833.onrender.com/category",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
@@ -39,7 +42,7 @@ function AddCategory() {
     refetch,
   } = useQuery("category", () =>
     fetch(
-      "https://manufacturer-website-server-side-y96m.vercel.app/category"
+      "https://manufacturer-website-server-side-l833.onrender.com/category"
     ).then((res) => res.json())
   );
 
@@ -51,7 +54,7 @@ function AddCategory() {
     console.log(id);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-website-server-side-y96m.vercel.app/category/${id}`;
+      const url = `https://manufacturer-website-server-side-l833.onrender.com/category/${id}`;
       fetch(url, {
         method: "DELETE",
       })

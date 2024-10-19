@@ -5,7 +5,7 @@ function useAdmin(email) {
   const [isAdminLoading, setIsAdminLoading] = useState(true);
   useEffect(() => {
     fetch(
-      `https://manufacturer-website-server-side-y96m.vercel.app/users/admin/${email}`
+      `https://manufacturer-website-server-side-l833.onrender.com/users/admin/${email}`
     )
       .then((res) => res.json())
       .then((data) => {

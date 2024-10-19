@@ -7,7 +7,7 @@ const useToken = (user) => {
     const currentUser = { email: email };
     if (email) {
       fetch(
-        `https://manufacturer-website-server-side-y96m.vercel.app/user/${email}`,
+        `https://manufacturer-website-server-side-l833.onrender.com/user/${email}`,
         {
           method: "PUT",
           headers: {

@@ -30,13 +30,16 @@ function ReviewsPost() {
       userReview: data.userReview,
       userImage: user?.photoURL || userPic,
     };
-    fetch("https://manufacturer-website-server-side-y96m.vercel.app/reviews", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(result),
-    })
+    fetch(
+      "https://manufacturer-website-server-side-l833.onrender.com/reviews",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(result),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
