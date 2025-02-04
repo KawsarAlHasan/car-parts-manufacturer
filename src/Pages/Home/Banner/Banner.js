@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Carousel } from "react-bootstrap";
 import banner1 from "../../../images/banner2.jpg";
 import banner2 from "../../../images/banner4.jpg";
@@ -8,9 +8,7 @@ import Loading from "../../Shared/Loading/Loading";
 
 const Banner = (props) => {
   const { data: upComing, isLoading } = useQuery("upComing", () =>
-    fetch(
-      "https://manufacturer-website-server-side-l833.onrender.com/upComing"
-    ).then((res) => res.json())
+    fetch("http://localhost:5000/upComing").then((res) => res.json())
   );
 
   // const [upComing, setUpComing] = useState('')

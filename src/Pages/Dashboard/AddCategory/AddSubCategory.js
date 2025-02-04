@@ -15,9 +15,7 @@ function AddSubCategory() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      `https://manufacturer-website-server-side-l833.onrender.com/category/${subCategoryId}`
-    )
+    fetch(`http://localhost:5000/category/${subCategoryId}`)
       .then((res) => res.json())
       .then((data) => {
         setCategory(data);
@@ -36,16 +34,13 @@ function AddSubCategory() {
       subcategory: data.subcategory,
       category: ctgry.category,
     };
-    fetch(
-      "https://manufacturer-website-server-side-l833.onrender.com/subcategory",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(result),
-      }
-    )
+    fetch("http://localhost:5000/subcategory", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(result),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
@@ -60,9 +55,7 @@ function AddSubCategory() {
   const [subcategory, setSubCategory] = useState([]);
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      `https://manufacturer-website-server-side-l833.onrender.com/subcategory/search?category=${categoryname}`
-    )
+    fetch(`http://localhost:5000/subcategory/search?category=${categoryname}`)
       .then((res) => res.json())
       .then((data) => {
         setSubCategory(data);
@@ -78,7 +71,7 @@ function AddSubCategory() {
     console.log(id);
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://manufacturer-website-server-side-l833.onrender.com/subcategory/${id}`;
+      const url = `http://localhost:5000/subcategory/${id}`;
       fetch(url, {
         method: "DELETE",
       })

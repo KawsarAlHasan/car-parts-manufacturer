@@ -31,7 +31,7 @@ const Purchase = (props) => {
   };
 
   useEffect(() => {
-    const url = `https://manufacturer-website-server-side-l833.onrender.com/carParts/${purchaseId}`;
+    const url = `http://localhost:5000/carParts/${purchaseId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setPurchase(data));
@@ -55,16 +55,13 @@ const Purchase = (props) => {
       productCode: purchase.productCode,
     };
 
-    fetch(
-      "https://manufacturer-website-server-side-l833.onrender.com/addToCard",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(partsPurchase),
-      }
-    )
+    fetch("http://localhost:5000/addToCard", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(partsPurchase),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

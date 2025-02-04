@@ -65,7 +65,7 @@ const AddParts = (props) => {
           };
           console.log(parts);
           // save Product
-          const url = `https://manufacturer-website-server-side-l833.onrender.com/carParts`;
+          const url = `http://localhost:5000/carParts`;
           fetch(url, {
             method: "POST",
             headers: {
@@ -89,9 +89,7 @@ const AddParts = (props) => {
     isLoading,
     refetch,
   } = useQuery("category", () =>
-    fetch(
-      "https://manufacturer-website-server-side-l833.onrender.com/category"
-    ).then((res) => res.json())
+    fetch("http://localhost:5000/category").then((res) => res.json())
   );
 
   const [subcategory, setSubCategory] = useState([]);
@@ -100,7 +98,7 @@ const AddParts = (props) => {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://manufacturer-website-server-side-l833.onrender.com/subcategory/search?category=${selectedCategory}`
+      `http://localhost:5000/subcategory/search?category=${selectedCategory}`
     )
       .then((res) => res.json())
       .then((data) => {

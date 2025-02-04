@@ -1,18 +1,22 @@
 import { Table } from "react-bootstrap";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import AllUser from "./AllUser";
 import Loading from "../../Shared/Loading/Loading";
 
-const AllUsers = (props) => {
+const AllUsers = () => {
+  const queryClient = useQueryClient();
+
   const { data: users, isLoading } = useQuery("users", () =>
-    fetch(
-      "https://manufacturer-website-server-side-l833.onrender.com/users"
-    ).then((res) => res.json())
+    fetch("http://localhost:8088/users").then((res) => res.json())
   );
 
   if (isLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
+
+  const refetchUsers = () => {
+    queryClient.invalidateQueries("users");
+  };
 
   return (
     <div>
@@ -20,7 +24,7 @@ const AllUsers = (props) => {
         ALL <span className="text-danger"> USERS </span>
       </h1>
       <h4 className="mb-3 text-center">
-        All Users: <span className="text-primary"> {users?.length}</span>
+        All Users: <span className="text-primary">{users?.length}</span>
       </h4>
 
       <Table striped bordered hover>
@@ -33,7 +37,7 @@ const AllUsers = (props) => {
         </thead>
         <tbody>
           {users.map((user) => (
-            <AllUser key={user._id} user={user}></AllUser>
+            <AllUser key={user._id} user={user} refetchUsers={refetchUsers} />
           ))}
         </tbody>
       </Table>

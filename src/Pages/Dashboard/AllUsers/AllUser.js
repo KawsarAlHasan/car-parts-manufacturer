@@ -1,46 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const AllUser = ({ user }) => {
+const AllUser = ({ user, refetchUsers }) => {
   const { email } = user;
+  const [makeAdminLoading, setMakeAdminLoading] = useState(false);
+  const [deleteAdminLoading, setDeleteAdminLoading] = useState(false);
 
-  const handleMakeAdmin = (id) => {
-    fetch(
-      `https://manufacturer-website-server-side-l833.onrender.com/users/admin/${id}`,
-      {
+  const handleMakeAdmin = async (id) => {
+    setMakeAdminLoading(true);
+    try {
+      const res = await fetch(`http://localhost:8088/users/admin/${id}`, {
         method: "PUT",
         headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Make admin successful.");
-          window.location.reload(false);
-        }
       });
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success("Make admin successful.");
+        refetchUsers();
+      } else {
+        toast.error(data.message || "Failed to make admin.");
+      }
+    } catch (error) {
+      toast.error("An error occurred.");
+    }
+    setMakeAdminLoading(false);
   };
 
-  const handleDeleteAdmin = (id) => {
-    fetch(
-      `https://manufacturer-website-server-side-l833.onrender.com/users/admin/delete/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          toast.success("Make admin successful.");
-          window.location.reload(false);
+  const handleDeleteAdmin = async (id) => {
+    setDeleteAdminLoading(true);
+    try {
+      const res = await fetch(
+        `http://localhost:8088/users/admin/delete/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
         }
-      });
+      );
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success("Admin role removed.");
+        refetchUsers(); // ইউজার লিস্ট রিফ্রেশ করুন
+      } else {
+        toast.error(data.message || "Failed to remove admin.");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred.");
+    } finally {
+      setDeleteAdminLoading(false);
+    }
   };
 
   return (
@@ -48,7 +65,7 @@ const AllUser = ({ user }) => {
       <td>{email}</td>
       <td>
         {user?.role === "admin" ? (
-          <Button disabled={true} size="sm">
+          <Button disabled size="sm">
             Make Admin
           </Button>
         ) : (
@@ -56,19 +73,27 @@ const AllUser = ({ user }) => {
             variant="primary"
             size="sm"
             onClick={() => handleMakeAdmin(user._id)}
+            disabled={makeAdminLoading}
           >
-            Make Admin
+            {makeAdminLoading ? "Loading..." : "Make Admin"}
           </Button>
         )}
       </td>
       <td>
-        <Button
-          variant="danger"
-          size="sm"
-          onClick={() => handleDeleteAdmin(user._id)}
-        >
-          Delete Admin
-        </Button>
+        {user?.role === "admin" ? (
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={() => handleDeleteAdmin(user._id)}
+            disabled={deleteAdminLoading}
+          >
+            {deleteAdminLoading ? "Loading..." : "Remove Admin"}
+          </Button>
+        ) : (
+          <Button variant="danger" size="sm" disabled>
+            Remove Admin
+          </Button>
+        )}
       </td>
     </tr>
   );

@@ -4,18 +4,18 @@ const useToken = (user) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     const email = user?.user?.email;
+
+    // https://manufacturer-website-server-side-l833.onrender.com
+
     const currentUser = { email: email };
     if (email) {
-      fetch(
-        `https://manufacturer-website-server-side-l833.onrender.com/user/${email}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        }
-      )
+      fetch(`http://localhost:8088/users/update/${email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(currentUser),
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log("data", data);

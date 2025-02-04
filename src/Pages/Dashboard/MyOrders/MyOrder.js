@@ -8,7 +8,7 @@ function MyOrder() {
   const [order, setOrder] = useState({});
 
   useEffect(() => {
-    const url = `https://manufacturer-website-server-side-l833.onrender.com/orders/${orderId}`;
+    const url = `http://localhost:5000/orders/${orderId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setOrder(data));

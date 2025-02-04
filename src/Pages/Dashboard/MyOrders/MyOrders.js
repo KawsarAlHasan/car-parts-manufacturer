@@ -11,7 +11,7 @@ const MyOrders = (props) => {
   const [myOrders, setMyOrders] = useState([]);
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `https://manufacturer-website-server-side-l833.onrender.com/orders?email=${user.email}`;
+      const url = `http://localhost:5000/orders?email=${user.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };
