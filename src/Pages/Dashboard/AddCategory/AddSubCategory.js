@@ -15,7 +15,7 @@ function AddSubCategory() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:5000/category/${subCategoryId}`)
+    fetch(`http://localhost:8088/category/${subCategoryId}`)
       .then((res) => res.json())
       .then((data) => {
         setCategory(data);

@@ -89,7 +89,7 @@ const AddParts = (props) => {
     isLoading,
     refetch,
   } = useQuery("category", () =>
-    fetch("http://localhost:5000/category").then((res) => res.json())
+    fetch("http://localhost:8088/category").then((res) => res.json())
   );
 
   const [subcategory, setSubCategory] = useState([]);

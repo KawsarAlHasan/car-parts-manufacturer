@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Form, Table } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Form, Table, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
@@ -7,6 +7,8 @@ import Loading from "../../Shared/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
 function AddCategory() {
+  const [addCategoryLoading, setAddCategoryLoading] = useState(false);
+  const [deleteCategoryLoading, setDeleteCategoryLoading] = useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -15,22 +17,22 @@ function AddCategory() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    fetch("http://localhost:5000/category", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast(`Category added is successful`);
-          refetch();
-        } else {
-          toast.error(`oh no! Category added is not successful`);
-        }
+    setAddCategoryLoading(true);
+    try {
+      const response = await fetch("http://localhost:8088/category", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
+      const result = await response.json();
+
+      toast.success("Category added successfully");
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      refetch();
+      setAddCategoryLoading(false);
+    }
   };
 
   const {
@@ -38,30 +40,28 @@ function AddCategory() {
     isLoading,
     refetch,
   } = useQuery("category", () =>
-    fetch("http://localhost:5000/category").then((res) => res.json())
+    fetch("http://localhost:8088/category").then((res) => res.json())
   );
 
   const handleProduct = (id) => {
     navigate(`subcategory/${id}`);
   };
 
-  const handleDelete = (id) => {
-    console.log(id);
-    const proceed = window.confirm("Are you sure?");
-    if (proceed) {
-      const url = `http://localhost:5000/category/${id}`;
-      fetch(url, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.acknowledged) {
-            toast(`Category Delete Successfully`);
-            window.location.reload(false);
-          } else {
-            toast.error(`oh no! Category not Delete Successfully`);
-          }
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure?")) {
+      setDeleteCategoryLoading(true);
+      try {
+        const response = await fetch(`http://localhost:8088/category/${id}`, {
+          method: "DELETE",
         });
+        const result = await response.json();
+        toast.success("Category deleted successfully");
+      } catch (error) {
+        toast.error("Something went wrong");
+      } finally {
+        refetch();
+        setDeleteCategoryLoading(false);
+      }
     }
   };
 
@@ -84,11 +84,17 @@ function AddCategory() {
             )}
           </div>
           <div>
-            <input
-              className="btn btn-primary"
-              value="Add Category"
+            <Button
               type="submit"
-            />
+              className="btn btn-primary"
+              disabled={addCategoryLoading}
+            >
+              {addCategoryLoading ? (
+                <Spinner size="sm" animation="border" />
+              ) : (
+                "Add Category"
+              )}
+            </Button>
           </div>
         </div>
         {errors.exampleRequired && <span>This field is required</span>}
@@ -122,8 +128,13 @@ function AddCategory() {
                     variant="danger"
                     size="sm"
                     onClick={() => handleDelete(ctg._id)}
+                    disabled={deleteCategoryLoading === ctg._id}
                   >
-                    Delete Category
+                    {deleteCategoryLoading === ctg._id ? (
+                      <Spinner size="sm" animation="border" />
+                    ) : (
+                      "Delete Category"
+                    )}
                   </Button>
                 </td>
               </tr>
