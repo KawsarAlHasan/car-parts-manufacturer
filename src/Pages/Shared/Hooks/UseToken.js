@@ -9,13 +9,16 @@ const useToken = (user) => {
 
     const currentUser = { email: email };
     if (email) {
-      fetch(`http://localhost:8088/users/update/${email}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(currentUser),
-      })
+      fetch(
+        `https://two-start-manufacturer-backend.vercel.app/users/update/${email}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log("data", data);

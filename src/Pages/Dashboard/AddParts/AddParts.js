@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import { useQuery } from "react-query";
 import LoadingButton from "../../../component/LoadingButton";
 
-const AddParts = (props) => {
+const AddProducts = (props) => {
   const {
     register,
     handleSubmit,
@@ -63,7 +63,6 @@ const AddParts = (props) => {
             availability: data.availability,
             img: imgData.secure_url,
           };
-          console.log(parts);
           // save Product
           const url = `http://localhost:5000/carParts`;
           fetch(url, {
@@ -84,27 +83,24 @@ const AddParts = (props) => {
       });
   };
 
-  const {
-    data: category,
-    isLoading,
-    refetch,
-  } = useQuery("category", () =>
-    fetch("http://localhost:8088/category").then((res) => res.json())
+  const { data: category, isLoading } = useQuery("category", () =>
+    fetch("https://two-start-manufacturer-backend.vercel.app/category").then(
+      (res) => res.json()
+    )
   );
 
   const [subcategory, setSubCategory] = useState([]);
-  const [isLoading2, setIsLoading] = useState(false);
+  const [setgetSubIsLoading, setGetSubIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    setGetSubIsLoading(true);
     fetch(
-      `http://localhost:5000/subcategory/search?category=${selectedCategory}`
+      `https://two-start-manufacturer-backend.vercel.app/subcategory/search?category=${selectedCategory}`
     )
       .then((res) => res.json())
       .then((data) => {
-        refetch();
         setSubCategory(data);
-        setIsLoading(false);
+        setGetSubIsLoading(false);
       });
   }, [selectedCategory]);
 
@@ -291,11 +287,13 @@ const AddParts = (props) => {
                 onChange={handleSelectCategory}
               >
                 <option value="">Select an Category</option>
-                {category?.map((ctg) => (
-                  <option key={ctg._id} value={ctg.category}>
-                    {ctg.category}
-                  </option>
-                ))}
+                {isLoading
+                  ? "Loading.."
+                  : category?.map((ctg) => (
+                      <option key={ctg._id} value={ctg.category}>
+                        {ctg.category}
+                      </option>
+                    ))}
               </Form.Select>
             </Form.Group>
 
@@ -307,11 +305,13 @@ const AddParts = (props) => {
                 onChange={handleSubSelectCategory}
               >
                 <option value="">Select an Sub Category</option>
-                {subcategory?.map((sCtg) => (
-                  <option key={sCtg._id} value={sCtg.subcategory}>
-                    {sCtg.subcategory}
-                  </option>
-                ))}
+                {setgetSubIsLoading
+                  ? "Loading.."
+                  : subcategory?.map((sCtg) => (
+                      <option key={sCtg._id} value={sCtg.subcategory}>
+                        {sCtg.subcategory}
+                      </option>
+                    ))}
               </Form.Select>
             </Form.Group>
           </div>
@@ -498,4 +498,4 @@ const AddParts = (props) => {
   );
 };
 
-export default AddParts;
+export default AddProducts;

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../../Shared/Loading/Loading";
 import { useParams } from "react-router-dom";
-import { Button, Form, Table } from "react-bootstrap";
+import { Button, Form, Spinner, Table } from "react-bootstrap";
+import { useQuery } from "react-query";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 function AddSubCategory() {
+  const [addCategoryLoading, setAddSubCategoryLoading] = useState(false);
+  const [deleteSubCategoryLoading, setDeleteSubCategoryLoading] =
+    useState(false);
   const { subCategoryId } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +19,9 @@ function AddSubCategory() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:8088/category/${subCategoryId}`)
+    fetch(
+      `https://two-start-manufacturer-backend.vercel.app/category/${subCategoryId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCategory(data);
@@ -27,63 +33,70 @@ function AddSubCategory() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
-    const result = {
+    const submitData = {
       subcategory: data.subcategory,
       category: ctgry.category,
     };
-    fetch("http://localhost:5000/subcategory", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(result),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast(`Sub Category added is successful`);
-          window.location.reload(false);
-        } else {
-          toast.error(`oh no! Sub Category added is not successful`);
+
+    setAddSubCategoryLoading(true);
+    try {
+      const response = await fetch(
+        "https://two-start-manufacturer-backend.vercel.app/subcategory",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(submitData),
         }
-      });
+      );
+      await response.json();
+
+      toast.success("Sub Category added successfully");
+    } catch (error) {
+      toast.error("oh no! Sub Category added is not successful");
+    } finally {
+      reset();
+      refetch();
+      setAddSubCategoryLoading(false);
+    }
   };
 
-  const [subcategory, setSubCategory] = useState([]);
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(`http://localhost:5000/subcategory/search?category=${categoryname}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setSubCategory(data);
-        setIsLoading(false);
-      });
-  }, [categoryname]);
+  const {
+    data: subcategory,
+    isLoading: subIsLoading,
+    refetch,
+  } = useQuery(["subcategory", categoryname], async () => {
+    const res = await fetch(
+      `https://two-start-manufacturer-backend.vercel.app/subcategory/search?category=${categoryname}`
+    );
+    return res.json();
+  });
 
-  if (isLoading) {
+  if (isLoading || subIsLoading) {
     return <Loading />;
   }
 
-  const handleDelete = (id) => {
-    console.log(id);
-    const proceed = window.confirm("Are you sure?");
-    if (proceed) {
-      const url = `http://localhost:5000/subcategory/${id}`;
-      fetch(url, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.acknowledged) {
-            toast(`Sub Category Delete Successfully`);
-            window.location.reload(false);
-          } else {
-            toast.error(`oh no! Sub Category not Delete Successfully`);
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure?")) {
+      setDeleteSubCategoryLoading(true);
+      try {
+        const response = await fetch(
+          `https://two-start-manufacturer-backend.vercel.app/subcategory/${id}`,
+          {
+            method: "DELETE",
           }
-        });
+        );
+        await response.json();
+        toast.success(`Sub Category Delete Successfully`);
+      } catch (error) {
+        toast.error(`oh no! Sub Category not Delete Successfully`);
+      } finally {
+        refetch();
+        setDeleteSubCategoryLoading(false);
+      }
     }
   };
 
@@ -109,11 +122,13 @@ function AddSubCategory() {
             )}
           </div>
           <div>
-            <input
+            <button
               className="btn btn-primary"
-              value="Add Category"
               type="submit"
-            />
+              disabled={addCategoryLoading}
+            >
+              {addCategoryLoading ? "Adding..." : "Add Category"}
+            </button>
           </div>
         </div>
         {errors.exampleRequired && <span>This field is required</span>}
@@ -138,8 +153,13 @@ function AddSubCategory() {
                     variant="danger"
                     size="sm"
                     onClick={() => handleDelete(sCtg._id)}
+                    disabled={deleteSubCategoryLoading === sCtg._id}
                   >
-                    Delete Sub Category
+                    {deleteSubCategoryLoading === sCtg._id ? (
+                      <Spinner size="sm" animation="border" />
+                    ) : (
+                      "Delete Sub Category"
+                    )}
                   </Button>
                 </td>
               </tr>

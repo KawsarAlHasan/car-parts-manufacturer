@@ -7,7 +7,9 @@ const AllUsers = () => {
   const queryClient = useQueryClient();
 
   const { data: users, isLoading } = useQuery("users", () =>
-    fetch("http://localhost:8088/users").then((res) => res.json())
+    fetch("https://two-start-manufacturer-backend.vercel.app/users").then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading) {

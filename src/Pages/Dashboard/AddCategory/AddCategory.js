@@ -14,22 +14,27 @@ function AddCategory() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
     setAddCategoryLoading(true);
     try {
-      const response = await fetch("http://localhost:8088/category", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
+      const response = await fetch(
+        "https://two-start-manufacturer-backend.vercel.app/category",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+      await response.json();
 
       toast.success("Category added successfully");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
+      reset();
       refetch();
       setAddCategoryLoading(false);
     }
@@ -40,7 +45,9 @@ function AddCategory() {
     isLoading,
     refetch,
   } = useQuery("category", () =>
-    fetch("http://localhost:8088/category").then((res) => res.json())
+    fetch("https://two-start-manufacturer-backend.vercel.app/category").then(
+      (res) => res.json()
+    )
   );
 
   const handleProduct = (id) => {
@@ -51,10 +58,13 @@ function AddCategory() {
     if (window.confirm("Are you sure?")) {
       setDeleteCategoryLoading(true);
       try {
-        const response = await fetch(`http://localhost:8088/category/${id}`, {
-          method: "DELETE",
-        });
-        const result = await response.json();
+        const response = await fetch(
+          `https://two-start-manufacturer-backend.vercel.app/category/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
+        await response.json();
         toast.success("Category deleted successfully");
       } catch (error) {
         toast.error("Something went wrong");

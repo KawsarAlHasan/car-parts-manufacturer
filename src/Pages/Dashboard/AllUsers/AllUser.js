@@ -10,13 +10,16 @@ const AllUser = ({ user, refetchUsers }) => {
   const handleMakeAdmin = async (id) => {
     setMakeAdminLoading(true);
     try {
-      const res = await fetch(`http://localhost:8088/users/admin/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        `https://two-start-manufacturer-backend.vercel.app/users/admin/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
 
       if (data.success) {
@@ -35,7 +38,7 @@ const AllUser = ({ user, refetchUsers }) => {
     setDeleteAdminLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:8088/users/admin/delete/${id}`,
+        `https://two-start-manufacturer-backend.vercel.app/users/admin/delete/${id}`,
         {
           method: "PUT",
           headers: {

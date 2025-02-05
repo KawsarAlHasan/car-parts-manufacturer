@@ -135,7 +135,7 @@ const Footer = (props) => {
         className="text-center p-4"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
-        © 2023 Copyright:
+        © 2025 Copyright:
         <a
           className="text-reset fw-bold text-decoration-none"
           href="https://web.facebook.com/kawsar.alhasan.58/"
