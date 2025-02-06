@@ -8,7 +8,9 @@ import Loading from "../../Shared/Loading/Loading";
 
 const Banner = (props) => {
   const { data: upComing, isLoading } = useQuery("upComing", () =>
-    fetch("http://localhost:5000/upComing").then((res) => res.json())
+    fetch("https://two-start-manufacturer-backend.vercel.app/upComing").then(
+      (res) => res.json()
+    )
   );
 
   // const [upComing, setUpComing] = useState('')

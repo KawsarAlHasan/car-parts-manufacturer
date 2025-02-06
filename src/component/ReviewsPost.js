@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Rating } from "react-simple-star-rating";
@@ -9,6 +9,7 @@ import auth from "../firebase.init";
 function ReviewsPost() {
   const [user] = useAuthState(auth);
   const [rating, setRating] = useState(0);
+  const [loadingRating, setLoadingRating] = useState(false);
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -18,34 +19,44 @@ function ReviewsPost() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const userPic =
     "https://res.cloudinary.com/daizkkv04/image/upload/v1695101649/gpgh0jwdnh69bkvy3fyh.png";
 
   const onSubmit = async (data) => {
-    const result = {
+    setLoadingRating(true);
+    const submitData = {
       userName: data.userName,
       rating: rating,
       userReview: data.userReview,
       userImage: user?.photoURL || userPic,
     };
-    fetch("http://localhost:5000/reviews", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(result),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast(`Sub Category added is successful`);
-          window.location.reload(false);
-        } else {
-          toast.error(`oh no! Sub Category added is not successful`);
+
+    try {
+      const response = await fetch(
+        "https://two-start-manufacturer-backend.vercel.app/reviews",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(submitData),
         }
-      });
+      );
+
+      await response.json();
+
+      if (response.statusText === "Created") {
+        toast.success("Sub Category added is successful");
+        window.location.reload(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("oh no! Sub Category added is not successful");
+    } finally {
+      reset();
+      setLoadingRating(false);
+    }
   };
   return (
     <div>
@@ -74,11 +85,20 @@ function ReviewsPost() {
           />
         </Form.Group>
 
-        <input
-          className="btn btn-primary w-full"
-          value="Add Reviews"
+        {loadingRating}
+
+        <Button
           type="submit"
-        />
+          className="btn btn-primary"
+          disabled={loadingRating}
+        >
+          {loadingRating ? (
+            <Spinner size="sm" animation="border" />
+          ) : (
+            "Add Reviews"
+          )}
+        </Button>
+
         {errors.exampleRequired && <span>This field is required</span>}
       </Form>
     </div>

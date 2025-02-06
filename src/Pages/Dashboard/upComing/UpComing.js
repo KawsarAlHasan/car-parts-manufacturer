@@ -40,7 +40,7 @@ function UpComing() {
             img: imgData.secure_url,
           };
           // save Product
-          const url = `http://localhost:5000/upComing`;
+          const url = `https://two-start-manufacturer-backend.vercel.app/upComing`;
           fetch(url, {
             method: "POST",
             headers: {
@@ -60,7 +60,9 @@ function UpComing() {
   };
 
   const { data: upComing, isLoading } = useQuery("upComing", () =>
-    fetch("http://localhost:5000/upComing").then((res) => res.json())
+    fetch("https://two-start-manufacturer-backend.vercel.app/upComing").then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading) {
@@ -70,7 +72,7 @@ function UpComing() {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/upComing/${id}`;
+      const url = `https://two-start-manufacturer-backend.vercel.app/upComing/${id}`;
       fetch(url, {
         method: "DELETE",
       })
