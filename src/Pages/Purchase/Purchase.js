@@ -31,7 +31,7 @@ const Purchase = (props) => {
   };
 
   useEffect(() => {
-    const url = `http://localhost:5000/carParts/${purchaseId}`;
+    const url = `https://two-start-manufacturer-backend.vercel.app/product/${purchaseId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setPurchase(data));

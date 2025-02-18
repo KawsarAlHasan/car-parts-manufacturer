@@ -25,86 +25,93 @@ const AddProducts = (props) => {
   };
 
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
-
-  const onSubmit = async (data) => {
-    setIsSubmitLoading(true);
-    const image = data.image[0];
-
-    const formData = new FormData();
-    formData.append("file", image);
-
-    formData.append("upload_preset", "v3hakopx");
-    const url = "https://api.cloudinary.com/v1_1/daizkkv04/image/upload";
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imgData) => {
-        if (imgData.asset_id) {
-          const parts = {
-            name: data.name,
-            category: data.category,
-            subcategory: data.subcategory,
-            email: data.email,
-            quantity: data.quantity,
-            price: data.price,
-            productCode: data.productCode,
-            salePrice: data.salePrice,
-            orderQuantity: data.orderQuantity,
-            description: data.description,
-            gender: data.gender,
-            age: data.age,
-            size: data.size,
-            customSize: data.customSize,
-            colorfamily: data.colorfamily,
-            cColorfamily: data.cColorfamily,
-            brand: data.brand,
-            availability: data.availability,
-            img: imgData.secure_url,
-          };
-          // save Product
-          const url = `http://localhost:5000/carParts`;
-          fetch(url, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(parts),
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          })
-            .then((res) => res.json())
-            .then((result) => {
-              setIsSubmitLoading(false);
-              window.location.reload(false);
-              toast.success(`${data.name} is added successfully`);
-            });
-        }
-      });
-  };
-
-  const { data: category, isLoading } = useQuery("category", () =>
-    fetch("https://two-start-manufacturer-backend.vercel.app/category").then(
-      (res) => res.json()
-    )
-  );
+  const [user] = useAuthState(auth);
 
   const [subcategory, setSubCategory] = useState([]);
-  const [setgetSubIsLoading, setGetSubIsLoading] = useState(false);
+  const [getSubIsLoading, setGetSubIsLoading] = useState(false);
+  const [isSubLoading, setIsSubLoading] = useState(false);
 
+  // Fetch Categories
+  const { data: category, isLoading } = useQuery("category", async () => {
+    const res = await fetch(
+      "https://two-start-manufacturer-backend.vercel.app/category"
+    );
+    return res.json();
+  });
+
+  // Fetch Subcategories when category changes
   useEffect(() => {
-    setGetSubIsLoading(true);
-    fetch(
-      `https://two-start-manufacturer-backend.vercel.app/subcategory/search?category=${selectedCategory}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchSubcategories = async () => {
+      if (!selectedCategory) return;
+      setGetSubIsLoading(true);
+      try {
+        const res = await fetch(
+          `https://two-start-manufacturer-backend.vercel.app/subcategory/search?category=${selectedCategory}`
+        );
+        const data = await res.json();
         setSubCategory(data);
+      } catch (error) {
+        console.error("Failed to fetch subcategories:", error);
+      } finally {
         setGetSubIsLoading(false);
-      });
+      }
+    };
+    fetchSubcategories();
   }, [selectedCategory]);
 
-  const [user] = useAuthState(auth);
+  // Image Upload Function
+  const uploadImage = async (image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "v3hakopx");
+
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/daizkkv04/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    return response.json();
+  };
+
+  // Submit Function
+  const onSubmit = async (data) => {
+    setIsSubmitLoading(true);
+    try {
+      const imgData = await uploadImage(data.image[0]);
+      if (!imgData.asset_id) throw new Error("Image upload failed");
+
+      const productData = {
+        ...data,
+        email: user?.email,
+        img: imgData.secure_url,
+      };
+
+      const response = await fetch(
+        "https://two-start-manufacturer-backend.vercel.app/product",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(productData),
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to add product");
+
+      toast.success(`${data.name} added successfully`);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong!");
+    } finally {
+      setIsSubmitLoading(false);
+    }
+  };
+
   return (
     <div>
       <div className="  my-3">
@@ -192,19 +199,6 @@ const AddProducts = (props) => {
               )}
             </Form.Group>
           </div>
-
-          {/* email */}
-          <Form.Group className="d-none">
-            <Form.Control
-              type="email"
-              value={user?.email}
-              readOnly
-              {...register("email")}
-            />
-            {errors.email && (
-              <p className="text-danger">{errors.email?.message}</p>
-            )}
-          </Form.Group>
 
           {/* gender */}
           <Form.Group>
@@ -305,7 +299,7 @@ const AddProducts = (props) => {
                 onChange={handleSubSelectCategory}
               >
                 <option value="">Select an Sub Category</option>
-                {setgetSubIsLoading
+                {getSubIsLoading
                   ? "Loading.."
                   : subcategory?.map((sCtg) => (
                       <option key={sCtg._id} value={sCtg.subcategory}>

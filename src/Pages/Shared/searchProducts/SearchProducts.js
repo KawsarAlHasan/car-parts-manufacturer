@@ -9,7 +9,7 @@ function SearchProducts({ inputValue }) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/carParts")
+    fetch("https://two-start-manufacturer-backend.vercel.app/product")
       .then((res) => res.json())
       .then((data) => {
         setParts(data);

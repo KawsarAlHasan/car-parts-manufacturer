@@ -16,7 +16,7 @@ function ViewAndEdit() {
   } = useForm();
 
   const onSubmit = async (updateData) => {
-    const urlLink = `http://localhost:5000/carParts/${productsId}`;
+    const urlLink = `http://localhost:8008/product/${productsId}`;
     fetch(urlLink, {
       method: "PUT",
       headers: {
@@ -33,7 +33,7 @@ function ViewAndEdit() {
   };
 
   useEffect(() => {
-    const url = `http://localhost:5000/carParts/${productsId}`;
+    const url = `https://two-start-manufacturer-backend.vercel.app/product/${productsId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data));
@@ -73,17 +73,17 @@ function ViewAndEdit() {
           </div>
           <div className="col-md-6">
             <h1>
-              update <span className="text-danger">Parts</span>
+              update <span className="text-danger">Product</span>
             </h1>
             <form
               className="d-flex flex-column"
               onSubmit={handleSubmit(onSubmit)}
             >
               <Form.Group className="">
-                <Form.Label>Parts Name</Form.Label>
+                <Form.Label>Product Name</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Parts Name"
+                  placeholder="Product Name"
                   defaultValue={product?.name}
                   {...register("name", { required: "Name is required" })}
                 />
@@ -152,7 +152,7 @@ function ViewAndEdit() {
 
               <input
                 className="btn btn-primary my-2"
-                value="Update Parts"
+                value="Update Product"
                 type="submit"
               />
             </form>
