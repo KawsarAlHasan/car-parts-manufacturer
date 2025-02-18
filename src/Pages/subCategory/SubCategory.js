@@ -14,6 +14,8 @@ function SubCategory() {
 
   const [products, setProducts] = useState([]);
 
+  console.log(categoryId);
+
   useEffect(() => {
     setIsLoading(true);
     fetch(`http://localhost:5000/clothes?subCategory=${subcategory}`)

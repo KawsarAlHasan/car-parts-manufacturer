@@ -55,6 +55,8 @@ const MyProfile = (props) => {
     formState: { errors },
   } = useForm();
 
+  console.log(errors);
+
   const onSubmit = async (data) => {
     const url1 = await uploadImage(image);
     const url = url1 || user.photoURL;
