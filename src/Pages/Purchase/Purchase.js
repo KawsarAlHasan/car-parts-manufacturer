@@ -11,7 +11,6 @@ import Loading from "../Shared/Loading/Loading";
 
 const Purchase = (props) => {
   const [parts, isLoading] = UseParts();
-  console.log(parts);
   const [user] = useAuthState(auth);
 
   const { purchaseId } = useParams();
@@ -43,8 +42,8 @@ const Purchase = (props) => {
     const email = even.target.email.value;
 
     const partsPurchase = {
-      partsId: purchase._id,
-      parts: purchase.name,
+      productsId: purchase._id,
+      products: purchase.name,
       partsQuantity: purchase.quantity,
       minimumQuantity: purchase.orderQuantity,
       pImg: purchase.img,
@@ -55,7 +54,7 @@ const Purchase = (props) => {
       productCode: purchase.productCode,
     };
 
-    fetch("http://localhost:5000/addToCard", {
+    fetch("https://two-start-manufacturer-backend.vercel.app/addToCard", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -64,6 +63,7 @@ const Purchase = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log("data", data);
         if (data.success) {
           toast(`Your ${uQuantity} Product add to card is successful`);
           window.location.reload(false);

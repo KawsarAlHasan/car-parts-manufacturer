@@ -26,7 +26,7 @@ function AddToCard() {
 
   useEffect(() => {
     const getMyOrders = async () => {
-      const url = `http://localhost:5000/addToCard?email=${user?.email}`;
+      const url = `https://two-start-manufacturer-backend.vercel.app/addToCard?email=${user?.email}`;
       const { data } = await axios.get(url);
       setMyOrders(data);
     };
@@ -36,7 +36,7 @@ function AddToCard() {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `http://localhost:5000/addToCard/${id}`;
+      const url = `https://two-start-manufacturer-backend.vercel.app/addToCard/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -94,7 +94,7 @@ function AddToCard() {
       .then((result) => {
         if (result.acknowledged === true) {
           myOrders.map((mOs) => {
-            const url = `http://localhost:5000/addToCard/${mOs._id}`;
+            const url = `https://two-start-manufacturer-backend.vercel.app/addToCard/${mOs._id}`;
             fetch(url, {
               method: "DELETE",
             })

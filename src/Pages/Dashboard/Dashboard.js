@@ -30,7 +30,7 @@ const Dashboard = (props) => {
           className="bg-secondary text-light  mt-4 mb-3"
           href="/dashboard"
         >
-          MY PROFILE test
+          MY PROFILE
         </Nav.Link>
       </Nav.Item>
       {isAdminLoading ? (
